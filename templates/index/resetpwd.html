@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+{if $backArr.view == 'byCenter'}
+	<link href="{$__PUBLIC__}/css/pangu_fancy.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="{$__PUBLIC__}/js/jquery.js" ></script>
+	
+	<link href="{$__PUBLIC__}/js/boxy/boxy.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{$__PUBLIC__}/js/jquery.boxy.js" ></script>
+	
+	<script type="text/javascript" src="{$__PUBLIC__}/js/fancybox/jquery.fancybox.js?v=2.1.3"></script>
+	<link rel="stylesheet" type="text/css" href="{$__PUBLIC__}/js/fancybox/jquery.fancybox.css?v=2.1.2" media="screen" />
+	
+{/if}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/resetpwd.js"></script>
+
+</head>
+<body>
+
+{include file='complexify.html'}
+
+<div id="reg_box" style="height:440px;">
+    <div class="reset_pwd">
+   		<input type="hidden" id="type" value="{$backArr.view}" />
+    	{if $backArr.view == 'byEmail'}
+	   	    <input type="hidden" id="suEmail" value="{$backArr.uEmail}" />
+	   	    <div class="input_box">
+	            <div class="input_box_title">{$Lang.AccountEmail}：</div><div class="input_big l_input_box"><INPUT type="text" size="20" id="uEmail" value=""></div>
+	        </div>
+	    {else}
+	    	<div class="input_box">
+	            <div class="input_box_title">{$Lang.AccountOrigPwd}：</div><div class="input_big l_input_box"><INPUT type="password" size="20" id="opwd" value=""></div>
+	        </div>
+        {/if}
+        <div class="input_box">
+            <div class="input_box_title">{$Lang.AccountPwd}：</div><div class="input_big l_input_box"><INPUT type="password" size="20" id="pwd" value=""></div>
+        </div>
+        <div class="reset_comp">
+	        <div  id="complexitywrap">
+				<div id="complexity">0%</div>
+			</div>
+        </div> 
+        <div class="input_box">
+            <div class="input_box_title">{$Lang.AccountSPwd}：</div><div class="input_big l_input_box"><INPUT type="password" size="20" id="spwd" value=""></div>
+        </div>
+        <div class="input_box_login">
+            <div class="input_sub" id="submit_btn"><span> {$Lang.ResetPwd} </span></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var resetpwd = new Tresetpwd();
+resetpwd.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	resetpwd.init();
+});
+//释放
+$(window).unload(function(){
+	resetpwd = null;
+});
+</script>
+
+</body>
+</html>

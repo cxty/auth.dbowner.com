@@ -1,0 +1,542 @@
+<?php
+
+include_once(DBO_PATH.'lib/Config.class.php'); //引入处理类的编码格式 utf-8
+
+class indexMod extends commonMod {
+	public function index() {	
+		$this->assign ( 'title', Lang::get('Index_title') );
+
+		if($this->getCookies('UserID')){
+			$url = $this->doCallBack();
+		}else{
+			$url = __ROOT__.'/index/login.html';
+		}
+
+ 		$this->redirect($url);
+	}	
+	/**
+	 * 成功登录后，回调URL处理
+	 */
+	private function doCallBack($fieldArr=null){
+		//已经登录个人中心
+		if(isset($fieldArr['ident'])){
+			$ident = $fieldArr['ident'];
+			ComFun::SaveCallBack($fieldArr);
+		}else{  
+		//还未登录个人中心
+			$ident = ComFun::getCookies('ident');
+		}
+		
+		$client_id = isset($fieldArr['client_id']) ? $fieldArr['client_id'] : ComFun::getCookies($ident.'_client_id');
+		
+		if(!empty($client_id)){
+			//用户是否激活过应用			
+			$MandOAuth = $this->getClass('MandOAuth');	
+			$fieldArr['MandOAuth'] = $MandOAuth;
+			$appInfo = $MandOAuth->getAuthAppInfo($client_id);
+
+			//权限字符串，判断是否用户登录是否需要验证码
+			if(strstr($appInfo['data']['apppermissions'],'inviteCode')){
+				$atArr['UserID'] = isset($fieldArr['UserID']) ? $fieldArr['UserID'] : ComFun::getCookies('UserID');
+						
+				$inviteCode = $this->getClass('InviteCode');
+				$isActive = $inviteCode->IsUserActive($atArr);
+				
+				if($isActive == -1){
+					$this->assign ( 'pageModel', 'inviteCode' );
+					$this->display ('index/index.html'); //输出模板
+					exit;
+				}
+			}
+		}
+
+		return ComFun::getCallBack($this->model,$this->config,$fieldArr);
+	}
+	/**
+	 * 进行页面回调
+	 */
+	function BackToCallPage(){
+		$this->redirect(ComFun::getCallBack($this->model,$this->config));
+	}
+	/**
+	 * URL激活账户
+	 */
+	function inviteCode(){
+		$url = '/index/login?ident=inviteCode&'.ComFun::makeCallBack($_GET);
+		$this->redirect($url);
+	}
+	/**
+	 * 测试方法
+	 */
+	function test(){
+		/*  =====邀请码=====
+		//echo ComFun::getRandom(20,3,25);
+		$inviteCode = $this->getClass('InviteCode');
+		$tArr['UserID'] = 1;
+		$tArr['inviteCode'] = 'bec3f00b26c6ec25f7e083a94';
+		$inviteCode->getInviteCode($tArr); //获取邀请码		
+		//$inviteCode->UseInviteCode($tArr); //使用邀请码		
+		//echo $inviteCode->IsUseInviteCode($tArr); //判断是否使用
+		 * */
+		
+	}
+	/**
+	 * 注册处理
+	 */
+	public function register(){
+		$this->assign ( 'title', Lang::get('Index_title') );
+		
+		$this->assign('redirect',ComFun::makeCallBack($_GET));
+		
+		$this->assign('show',$_GET['show'] ? $_GET['show'] : '');
+		
+		if($_GET['display'] == 'mobile'){
+			$this->display ('index/register_wap.html'); //输出模板
+		}else{
+			$this->display ('index/index.html'); //输出模板
+		}			
+	}
+	/**
+	 * 验证邮箱是否已经注册
+	 */
+	function checkEmail(){
+		$user = $this->getClass('User');
+		$re['uEmail'] = $user->doCheckEmail($_POST['uEmail']);
+		$re['uName'] = $user->docheckUserName($_POST['uName']);
+		
+		echo json_encode($re);
+	}
+	/**
+	 * 处理注册信息
+	 */
+	public function doregister(){
+		$login = $this->getClass('Login');
+		
+		$UserID = $login->doRegister($_POST);
+
+		if($UserID){			
+			if(ComFun::getCookies('ident') == 'oauthlogin'){
+				$tArr['UserID'] = $UserID;
+				$url = $this->doCallBack($tArr);
+			}else{
+				$url = ComFun::checkCallBack($_GET);
+			}	
+		}else{
+			$url = __ROOT__.'/index/doEerro';
+		}
+
+		$this->redirect($url);
+	}			
+	/**
+	 * login登录页面信息处理
+	 */
+	public function login(){
+		$this->assign ( 'title', Lang::get('Index_title') );
+
+		$this->assign('redirect',ComFun::makeCallBack($_GET));
+
+		if($this->getCookies('UserID')){
+			$url = $this->doCallBack($_GET);
+		
+			$this->redirect($url);
+		}
+		
+		//验证是否登录成功之后，所要转向的回调地址
+		ComFun::SaveCallBack($_GET); 
+		
+		$apiArr = ComFun::getAPIConfig();
+		
+		foreach($apiArr['providers'] as $key=>$val){
+			if($val['enabled']){
+				$JsonKeyArr[] = '"'.$key.'":{"txt":"'.$val['txt'].'","icon":"'.$val['icon'].'"}';
+			}
+		}
+		
+		$Partners_json = implode(',',$JsonKeyArr);
+		$Partners_json = '{'.$Partners_json.'}';
+	
+		$this->assign ('Partners_json',$Partners_json);
+			
+		$this->display ('index/index.html'); //输出模板
+	}
+	/**
+	 * login登录处理
+	 */
+	public function dologin(){
+		$login = $this->getClass('Login');
+
+		$url = $this->doCallBack();
+
+		$this->redirect($url);
+	}	
+	/**
+	 * 登录用户账户检测
+	 */
+	public function checkLogin(){
+		$login = $this->getClass('Login');
+		
+		echo $login->doCheckLogin($_GET);
+	}	
+	/**
+	 * 登出处理
+	 */
+   public function loginOut(){
+		$login = $this->getClass('Login');
+			
+		$login->doLoginOut();
+
+		$url = __ROOT__.'/index/login.html';
+	
+		$this->redirect($url);
+	}	
+	/**
+	 * 第三方登录
+	 */
+	public function loginThirdParty(){	
+		$ident = $_GET['1'];
+		if($ident == 'join'){
+			if($this->getCookies('proNum')){
+				$proNum = $this->getCookies('proNum')+1;
+			}else{
+				$proNum = 1;
+			}
+			$cookies['provider_'.$proNum] = $this->getCookies('provider');
+			$cookies['proNum']            = $proNum;
+		}elseif($ident == 'dirJoin'){
+			$cookies['dirJoin'] = $_GET[0];
+		}elseif($ident == 'dirauth'){
+			$cookies['dirauth'] = $_GET[0];
+			$cookies['display'] = $_GET[2];
+		}
+
+		$cookies['provider'] = $_GET[0];
+		
+		$this->setCookies($cookies);
+	
+		$apiArr = ComFun::getNowApi($_GET[0]);
+
+		$tArr['display'] = $_GET[2];
+		$OAuthCommon = $this->getClass('OAuthCommon',$apiArr);		
+		$request_url = $OAuthCommon->getRequestAuth(1,$tArr);
+
+		if($request_url){
+			$this->redirect($request_url);
+		}			
+	}	
+	/**
+	 * 第三方登录验证
+	 */
+	public function checkThirdParty(){	
+		$partner = $this->getCookies('provider');
+		$apiArr = ComFun::getNowApi($partner);
+
+		$authway = $apiArr['provider']['authway'];
+		if($authway == 'auth1'){
+			$fieldArr['oauth_token']          = $_GET['oauth_token'];
+			$fieldArr['oauth_verifier']       = $_GET['oauth_verifier'];
+			$fieldArr['oauth_token_secret']   = $this->getCookies('oauth_token_secret');
+		}elseif($authway == 'auth2'){
+			
+		}elseif($authway == 'openid'){
+			$this->pr($_GET);exit;
+		}
+		
+		$OAuthCommon = $this->getClass('OAuthCommon',$apiArr);	
+		$backInfo = $OAuthCommon->getRequestAuth(2,$fieldArr);
+	
+		switch(strtolower($partner)){
+			case 'renren':
+				$backInfo['user_id'] = $backInfo['user']['id'];
+				break;
+			case 'sina':
+				$backInfo['user_id'] = $backInfo['uid'];
+				break;
+		}
+
+		foreach($backInfo as $key=>$val){
+			$cookies[$partner.'_'.$key] = $val;
+		}
+	
+		$this->setCookies($cookies);
+
+		if($this->getCookies('dirauth') && $this->getCookies('dirauth') == $this->getCookies('provider')){   //作为第三方登录验证
+			$url = '/index/mandThirdLogin';
+		}elseif($this->getCookies('dirJoin') && $this->getCookies('dirJoin') == $this->getCookies('provider')){  //在个人信息页面直接进行绑定
+			$url = '/index/mandjoinThird';
+		}else{     //正常登录接口登录验证
+			$url = '/index/beforeJoinfrom.html';
+		}
+
+		$this->redirect($url);	
+	}	
+	/**
+	 * 处理做为第三方登录：若注册过账号直接返回，若未注册过则插入默认账号跟默认授权用户信息表
+	 */
+	function mandThirdLogin(){		
+		$tArr['client_id']     = $this->getCookies('client_id');
+		$tArr['redirect_uri']  = $this->getCookies('redirect_uri');
+		$tArr['response_type'] = $this->getCookies('response_type');
+		$urlStr = http_build_query($tArr);
+	
+		$login = $this->getClass('Login');
+		
+		$re = $login->checkOAuthInfo(true);
+
+		if($re == -1){			
+			$login->checkJoinThird();
+		}
+		
+		$url = '/oauth/login?'.$urlStr.'&dirauth=1&display='.$this->getCookies('display');
+		
+		setcookie('dirauth','',time()-3600,'/');
+		
+		$this->redirect($url);
+	}
+	/**
+	 * 个人信息页面，直接绑定第三方信息
+	 */
+	function mandjoinThird(){
+		$login = $this->getClass('Login');
+		$login->dirjoinThird(); //直接增加第三方数据
+
+		$url = $this->doCallBack();
+		
+		$this->redirect($url);
+	}
+	/**
+	 * 跳过账户关联，直接注册默认账户跟默认授权信息表
+	 */
+	function joinSkip(){	
+		$login = $this->getClass('Login');
+		
+		$re = $login->checkOAuthInfo(true);
+		
+		if($re == -1){
+			$UserID = $login->checkJoinThird();	
+			$tArr['UserID'] = $re['UserID'];
+		}else{
+			$tArr['UserID'] = $re['UserID'];
+			$login->dirAddAuthInfo($tArr);
+		}
+
+		$user = $this->getClass('User');
+		$user->setUserInfoCookies($re);
+
+		$url = $this->doCallBack($tArr);
+		
+		$this->redirect($url);
+	}
+	/**
+	 * 正常绑定页面显示处理
+	 */
+	function beforeJoinfrom(){
+		$this->assign ( 'title', Lang::get('Index_title') );
+		
+		//验证是否已经绑定且邮箱是否为空
+		$login = $this->getClass('Login');
+		$re = $login->checkOAuthInfo(false);  
+		
+		if($re['UserID'] && $re['uEmail']){
+			$user = $this->getClass('User');
+			$user->setUserInfoCookies($re);
+
+			$login->addOAuthInfo($re);  //是否通过多次第三方登录，是则绑定之前第三方到此第三方账号下
+
+			$this->redirect('/index/NomalLogin');
+		}
+
+		//未绑定的情况
+		$partner = $this->getCookies('provider');
+		$apiArr  = ComFun::getNowApi($partner);
+		$authway = $apiArr['provider']['authway'];
+		
+		$tArr['partner'] = $partner;
+		$tArr['provider'] = $apiArr['provider'];
+
+		if($authway == 'auth1'){		
+			$tArr['OAuthArr'] = ComFun::getOAuthInfo($partner);
+		}elseif($authway == 'auth2'){
+			$tArr['OAuthArr'] = ComFun::getOAuthInfo($partner);
+		}elseif($authway == 'openid'){
+			$this->pr($openArr);
+			exit;
+			$userInfo = $this->getOpenIdUserInfo();
+		}
+
+		$getUserInfo = $this->getClass('GetUserInfo',$tArr);		
+		$userInfo = $getUserInfo->getUserInfo();
+
+		if($userInfo['error'] == -1){
+			ThrowMessage::ThrowMsg(Lang::get('Ex_OauthError'));
+		}
+
+		$this->assign('userInfo',$userInfo);
+		$this->display ('index/index.html'); //输出模板
+	}
+	/**
+	 * 正常登录
+	 */
+	function NomalLogin(){		
+		$this->redirect($this->doCallBack());
+	}
+	/**
+	 * 验证密码是否正确
+	 */
+	function checkPassword(){
+		$login = $this->getClass('Login');
+		$reUserID = $login->doCheckLogin($_GET);
+		$thUserID = $login->doCheckBandThird($reUserID,$_GET['uEmail']);
+		if($reUserID > 0 && $thUserID >0){
+			echo -3;
+		}else{
+			echo $reUserID;
+		}	
+	}
+	/**
+	 * 关联账户
+	 */
+	function joinfrom(){
+		$login = $this->getClass('Login');
+
+		$login->doJoinForm($_POST);
+
+		$url = $this->doCallBack();
+		
+		$this->redirect($url);
+	}	
+	/**
+	 * 已经默认绑定的账号，重新给予绑定
+	 */
+	function reBangJoin(){
+		$login = $this->getClass('Login');	
+
+		$login->doReBangJoin($_GET[0],$_POST);
+
+		$url = $this->doCallBack();
+
+		$this->redirect($url);
+	}
+	/**
+	 * 关联账户时，对邮箱已绑定的账户进行处理
+	 */
+	function checkJoinfrom(){
+ 		$apiArr = ComFun::getAPIConfig();
+
+		$login = $this->getClass('Login');	
+		$theApiArr = $login->doCheckJoinfrom($_POST['uEmail']);
+		$authInfo  = $login->checkOAuthInfo(true);
+
+		if($authInfo == -1 && $theApiArr){
+			foreach($theApiArr  as $key=>$val){
+				$JsonKeyArr[] = '"'.$val['uProvider'].'":{"txt":"'.$apiArr['providers'][$val['uProvider']]['txt'].'","icon":"'.$apiArr['providers'][$val['uProvider']]['icon'].'"}';
+			}
+			
+			if($authInfo['uPWD']){
+				$pwd = 1;
+			}else{
+				$pwd = -1;
+			}
+			
+			$Partners_json = implode(',',$JsonKeyArr);
+			$Partners_json = '{'.$Partners_json.'}';
+			$Partners_json = '{"msg":"-2","pwd":"'.$pwd.'","data":'.$Partners_json.'}';
+			echo $Partners_json;
+		}elseif($authInfo != -1 && !$theApiArr){
+			echo '{"msg":"'.$authInfo['UserAuthenticationsID'].'"}';
+		}else{
+			echo '{"msg":"-1"}';
+		}
+	}
+	/**
+	 * 检查UserID是否存在$_COOKIE中
+	 */
+	function checkCookieUserID(){
+		if($this->getCookies('UserID')){
+			echo $this->getCookies('UserID');
+		}else{
+			echo -1;
+		}
+	}
+	/**
+	 * 注册后未激活处理
+	 */
+	public function befordActivate(){
+		$this->assign ( 'title', Lang::get('Index_title') );
+		
+		$backArr['msg'] = Lang::get('BeforeActivate');
+		$backArr['url'] = __ROOT__.'/main/index.html';
+	
+		$this->assign('msg',$backArr['msg']);
+		$this->assign('url',$backArr['url']);
+	
+		$this->display ('index/index.html'); //输出模板
+	}
+	/**
+	 * 激活处理
+	 */
+	public function activate(){
+		$this->assign ( 'title', Lang::get('Index_title') );
+		
+		$login = $this->getClass('Login');
+
+		$type = $login->doActivate($_GET);
+		if($type == 1){
+			$backArr['msg'] = Lang::get('SuccessActivate');
+		}elseif($type == 2){
+			$backArr['msg'] = Lang::get('SuccessReActivate');
+		}else{
+			$backArr['msg'] = Lang::get('FailActivate');
+		}
+	
+		$backArr['url'] = '/index/login';
+	
+		$this->assign('msg',$backArr['msg']);
+		$this->assign('url',$backArr['url']);
+	
+		$this->display ('index/index.html'); //输出模板
+	}
+	/**
+	 * 取得类
+	 */
+	private function getClass($className,$fieldArr=null){
+		switch($className){
+			case 'Login':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/Login.class.php');
+				return new Login($this->model);
+				break;
+			case 'User':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/User.class.php');
+				return new User($this->model);
+				break;
+			case 'ApiInterface':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/ApiInterface.class.php');
+				return new ApiInterface();
+				break;
+			case 'HttpClient':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/HttpClient.class.php');
+				$post = __ROOT__;
+				return new HttpClient($post);
+				break;
+			case 'OAuthCommon':
+				include_once(dirname(dirname(__FILE__)).'/include/ext/partner/common/OAuthCommon.php');
+				return new OAuthCommon($fieldArr['callback'],$fieldArr['provider'],$fieldArr['partner']);				
+				break;
+			case 'GetUserInfo':
+				include_once(dirname(dirname(__FILE__)).'/include/ext/partner/common/GetUserInfo.php');
+				//return new GetUserInfo($this->api_key,$this->api_sercet,$this->partner,$this->hostURL,$this->wrapper,$this->authway,$this->OAuthArr);
+				return new GetUserInfo($fieldArr['partner'],$fieldArr['provider'], $fieldArr['OAuthArr']);
+				break;
+			case 'InviteCode':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/InviteCode.class.php');
+				return new InviteCode($this->model);
+				break;
+			case 'MandOAuth':
+				include_once(dirname(dirname(__FILE__)).'/include/lib/MandOAuth.class.php');
+				return new MandOAuth($this->model,$this->config);
+				break;
+			default:
+				break;
+		}
+	}
+}
+?>

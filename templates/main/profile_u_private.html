@@ -1,0 +1,45 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/profile_u_private.js"></script>
+
+<div class="user_profile_right_box">
+
+	<div class="user_profile_right_box_b" style="display:none;">
+        <div class="b_title">{$Lang.BandAccount}</div>     
+        <div class="b_qr">
+        	<img src="{$qrUrl}" />
+        	<div class="b_exp">{$Lang.QRExplain}.&nbsp;&nbsp;<a href="{$clientSDK}" target="_blank">{$Lang.Download}</a></div>
+        </div>
+    </div>
+
+	<div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.ContactSocial}</div>
+        <div class="b_content" id="contactSocial">
+            <ul>
+            	{if $socialInfo}
+	            	{foreach item=item from=$socialInfo}
+	            		<li><dl>{$item.txt}:</dl><dt id="contactSocial_{$item.UserAuthenticationsID}">{if $item.uDisplay_name}{$item.uDisplay_name}{else}{$item.txt}{$Lang.Account}{/if}</dt><dt>&nbsp;&nbsp;<a href="javascript:Uprivate.unBinding('{$item.uProvider}')">{$Lang.UnBinding}</a></dt></li>
+	            	{/foreach}
+	            {/if}
+	            {if $bindArr}
+	            	{foreach item=item from=$bindArr}
+	            		<li><dl>{$item.txt}:</dl><dt><a href="/index/loginThirdParty?provider={$item.provider}&idProvider=dirJoin">{$Lang.Binding}</a></dt></li>
+	            	{/foreach}
+            	{/if}
+            </ul>
+        </div>
+        <div class="b_tool"><a href="#"></a></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var Uprivate = new TUprivate();
+Uprivate.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	Uprivate.init();
+});
+//释放
+$(window).unload(function(){
+	Uprivate = null;
+});
+</script>

@@ -1,0 +1,25 @@
+{include file='header_nature.html'}
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/changePass.js"></script>
+
+<div class="lg_ct">
+	<form method="post" id="login_form" action="{$vdata.actUrl}">
+		<div class="lg_cpwd_box">
+			<div class="lo_input_box">
+				<input type="password" name="oPwd" id="oPwd" />
+				<input type="password" name="nPwd" id="nPwd" />
+				<input type="password" name="aPwd" id="aPwd" />
+			</div>
+			<div class="lo_btn_msg">{$vdata.error}</div>
+			<div class="lo_btn_box">
+				<div class="lo_btn_sure" id="sub_btn"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+var jdata = {$JS_LANG};
+</script>
+
+{include file='footer_nature.html'}

@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="{$__PUBLIC__}/js/jsPortrait/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="{$__PUBLIC__}/js/jsPortrait/demos.css" type="text/css" />
+<link rel="stylesheet" href="{$__PUBLIC__}/js/jsPortrait/uploadPortrait.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jsPortrait/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jsPortrait/jquery.Jcrop.js"></script>
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jsPortrait/ajaxupload.js"></script>
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jsPortrait/uploadPortrait.js"></script>
+
+
+<div class="user_profile_right_box">
+    <div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.Portrait}</div>
+        <div class="b_content">
+    		<ul>
+		        <input type="text" size="50" id="pic_path">
+		        <div id="upload_button">{$Lang.UploadPortrait}</div> 
+		    </ul>   
+        </div>
+        <div class="b_content" id="showPic">  
+		    <div id="outer">
+				<div class="jcExample">
+				<div class="article">
+					<table>
+					<tr>
+			            <td>
+			            <div>
+			                <img  src="" id="cropbox" />
+			            </div>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			            <div style="width:81px;height:81px;overflow:hidden;">
+			                <img src="" id="preview" />
+			            </div>
+			    		<form method="GET" action="cutImage">
+			                <input type="hidden" name="action" id="upload" value="upload" /><br />
+			                <input type="hidden" name="bigImage" id="bigImage" /><br />
+			                <input type="hidden" name="xlen" id="xlen" />	<br />
+			                <input type="hidden" name="ylen" id="ylen" />	<br />
+			                <input type="hidden" name="wlen" id="wlen" />	<br />
+			                <input type="hidden" name="hlen" id="hlen" />	<br />
+			                <input type="submit" name="sub" value="{$Lang.Save}" />
+			            </form>
+			            </td>
+					</tr>
+					</table>
+				</div>
+				</div>
+			</div>
+        </div>
+        <div class="b_tool"><a href="{$__ROOT__}/main/index-u_profile.html">{$Lang.Back}</a></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var uplodPortrait = new TuplodPortrait();
+uplodPortrait.ns = '';
+uplodPortrait.root = '{$__ROOT__}/';
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	uplodPortrait.init();
+});
+//释放
+$(window).unload(function(){
+	uplodPortrait = null;
+});
+</script>

@@ -1,0 +1,19 @@
+#pic_path{
+	float:left;
+}
+
+#upload_button{
+	float: left;
+	border-bottom: #cc4f00 1px solid;
+    border-left: #ff9000 1px solid;
+    border-top: #ff9000 1px solid;   
+    border-right: #cc4f00 1px solid;
+    text-align: center; 
+    padding: 2px 10px; 
+    line-height: 16px; 
+    background: #e36b0f;  
+    height: 24px; 
+    color: #fff; 
+    font-size: 12px; 
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+
+#js_comment_starBox{
+	width:150px;
+	font-size: 13px;
+	color: #666;
+	font-family: Arial !important;
+    font-size: 12px !important;
+	padding:5px;
+}
+#js_comment_starBox #js_comment_title{
+	
+}
+#js_comment_starBox #js_comment_star{
+	margin-top:5px;
+	text-align:center;
+}

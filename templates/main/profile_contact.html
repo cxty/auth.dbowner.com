@@ -1,0 +1,21 @@
+
+<div class="user_profile_right_box">
+    <div class="user_profile_right_box_b">
+    	<form method="post" id="myform" action="{$__ROOT__}/main/saveContact.html">
+	        <div class="b_title"></div>
+	        <div class="b_content">
+	    		<ul>
+			        <li>
+			        	<dl>{$Lang.ContactAddr}:</dl>
+			        	<dt><input type="text" name="uComeForm" id="mo_uComeForm" value="{$userInfo.uComeForm}" /></dt>
+			        </li>
+	                <li>
+		                <dl>{$Lang.ContactEmail}:</dl>
+		                <dt><input type="text" name="uEmail" id="mo_uEmail" value="{$userInfo.uEmail}" /></dt>
+	                </li>
+			    </ul>   
+	        </div>
+	        <div class="b_tool"><a href="javascript:dosub()">{$Lang.Save}</a></div>
+        </form>
+    </div>
+</div>

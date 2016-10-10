@@ -1,0 +1,46 @@
+{include file='header_wap.html'}
+
+{include file='checkbox.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/checkAuth.js"></script>
+	
+	</div>
+	<form method="POST" id="loginform" name="loginform" action="/oauth/saveAuth?{$urlStr}">	
+		<input type="hidden" name="limit" id="limit" value="" />
+		<input type="hidden" name="type" id="type" value="" />
+		
+		<div id="login_explain">
+			<div class="line"></div>
+			<div class="login_content">{$userName}：{$Lang.JS_LANG.OAuthMsg1} {$theApp} {$Lang.JS_LANG.OAuthMsg2}</div>
+			
+			<ul id="checkbox">
+				{foreach key=key item=item from=$permArr}
+					<li {if $key > 3}style="display:none;"{/if}>{$item.permInfo}<div><span><input type="checkbox" value="{$item.permName}" {if $item.isDefault}checked="checked"{/if} {if !$item.isDisable}disabled="true"{/if} data-on="on" data-off="off" /></span></div></li>
+				{/foreach}
+			</ul>
+			
+			<div class="auth_check_more" style="display:none;"><a id="clickMore" href="javascript:void(0);">{$Lang.MoreLimit}<span class="hand_show"></span></a></div>
+	
+			<div class="line padding_top"></div>
+			<div id="login_button">
+				<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.OAuthBtn}" />
+				<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+			</div>
+		</div>
+	</form>	
+
+<script type="text/javascript">
+var checkAuth = new TcheckAuth();
+checkAuth.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	checkAuth.init();
+});
+//释放
+$(window).unload(function(){
+	checkAuth = null;
+});
+</script>
+
+{include file='footer_wap.html'}

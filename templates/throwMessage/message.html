@@ -1,0 +1,44 @@
+{include file='header.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/activate.js"></script>
+
+<div class="content_box">
+    <div class="content_box_c">
+         <div class="content">
+          	<div class="msg_box">
+          		{if $backArr.appshow}
+          			<div class="msg_pic"><img src="{$backArr.pic}" /></div>
+          		{else}
+          			<div class="msg_rmd">{$Lang.WarmRemind}：</div>
+          		{/if}
+          		<div class="msg_cont">
+          			{if $backArr.appshow}{$backArr.aName}&nbsp;{/if}{$backArr.msg}
+          			{if $backArr.urlTurn }<div class="time_out" id="time_out"></div>{/if}
+          			<input type="hidden" id="urlTurn" value="{$backArr.urlTurn}" />
+          		</div>
+			   	<div class="msg_app">
+			   		{if $backArr.appshow}
+			   			<a href="{$backArr.url}">{$Lang.MessageApp}</a>
+			   		{else}
+			   			{$Lang.YouChoose}&nbsp;<a href="{$backArr.retry}" title="{$Lang.Retry}">{$Lang.Retry}</a>&nbsp;<a href="javascript:history.back()" title="{$Lang.Back}">{$Lang.Back}</a>&nbsp;{$Lang.Or}&nbsp;<a href="{$backArr.url}" title="{$Lang.BackIndex}">{$Lang.BackIndex}</a>
+			   		{/if}
+			   	</div>
+			</div>
+         </div>
+    </div>
+</div>
+           
+<script type="text/javascript">
+var activate = new Tactivate();
+activate.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	activate.urlTurn();
+});
+//释放
+$(window).unload(function(){
+	activate = null;
+});
+</script>
+{include file='footer.html'}

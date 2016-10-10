@@ -1,0 +1,37 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/regFrom.js"></script>
+
+<div id="reg_box">
+    <form method="POST" id="regform" name="regform" action="{$__ROOT__}/index/doregister.html">
+    	<div class="l_box title">{$Lang.WelcomeJoin}:</div>
+        <div class="r_box">
+        	<div class="input_box">
+                <div class="input_big l_input_box"><INPUT type="text" size="20" name="uEmail" id="uEmail" value=""></div><div id="uEmail_box" class="r_input_box">{$Lang.ActiveEmail}</div>
+            </div>
+            <div class="input_box">
+            	<div class="input_big l_input_box"><INPUT type="password" size="20" name="uPWD" id="password"></div><div id="password_box" class="r_input_box">{$Lang.remindPass}</div>
+            </div>
+            <div class="input_box">
+                <div class="input_big l_input_box"><INPUT type="text" size="20" name="uName" id="uName" value=""></div><div id="uName_box" class="r_input_box">{$Lang.LoginNickName}</div>
+            </div>
+            <div class="input_box_b">
+            	<div class="box_002"></div>
+            	<div class="box_body">{$Lang.UseRule}:<div id="box_body_msg">{include file='index/regFrom.html'}</div></div>
+                <div class="box_001"><div style="height:15px;"></div><div class="input_sub_big" id="submit_btn"><span> {$Lang.ComfirmRegister} </span></div></div>              
+            </div>
+        </div>
+    </form>
+</div>
+
+<script language="javascript" type="text/javascript">
+var regFrom = new TregFrom();
+regFrom.ns = '';
+regFrom.JS_LANG = {$JS_LANG};
+//页面完全再入后初始化
+$(document).ready(function(){
+	regFrom.init();
+});
+//释放
+$(window).unload(function(){
+	regFrom = null;
+});
+</script>

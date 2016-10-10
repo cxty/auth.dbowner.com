@@ -1,0 +1,41 @@
+{include file='header_wap_new.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/DB.loginWap.js"></script>
+
+				<div class="login_right"><a href="/index/register?{$redirect}">{$Lang.JS_LANG.Register}</a></div>
+			</div>
+		</aside>
+	</header>
+
+<div id="login_form">
+<section>
+	<div class="line"></div>
+	<div class="login_remind">{$Lang.JS_LANG.Remind}:</div>
+	
+	<div id="login_common">
+		<div class="msg_box">
+			{$backArr.msg}
+		</div>			
+		<div class="remind_box">
+			{$Lang.JS_LANG.Remind1}<br />
+			{$Lang.JS_LANG.Remind2}<a class="c_red" href="/index/register?{$redirect}">{$Lang.JS_LANG.Register}</a>。
+		</div>
+	</div>	
+</div>
+</section>
+<script type="text/javascript">
+var loginWap = new TloginWap();
+loginWap.PH_LANG = {$JS_LANG};
+loginWap.jdata = {$jdata};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginWap.init();
+});
+//释放
+$(window).unload(function(){
+	loginWap = null;
+});
+</script>
+
+{include file='footer_wap_new.html'}

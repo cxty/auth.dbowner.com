@@ -1,0 +1,34 @@
+{include file='header_nature.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/forgetPass.js"></script>
+<div class="reg_warp">
+	<div class="reg_box" id="reg_box">
+		<div class="forgetpwd_box">
+			<div class="fg_title"><span class="cl_49ACCF">{$Lang.RetakePwd}</span> => {$Lang.CheckMail} => {$Lang.SetNewPwd}</div>
+			<div class="fg_cont">
+				<div class="fg_col"><dl>{$Lang.AccountEmail}</dl><dt><input type="text" class="input" id="uEmail" /></dt></div>
+			</div>
+			<div class="fg_box_b" >
+				<div class="input_sub input_sub_w200" id="submit_btn"><span>{$Lang.Submint}</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content_box_c"></div>
+
+<script type="text/javascript">
+var forgetPass = new TforgetPass();
+forgetPass.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	forgetPass.init();
+});
+//释放
+$(window).unload(function(){
+	forgetPass = null;
+});
+</script>
+
+{include file='footer_nature.html'}

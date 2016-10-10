@@ -1,0 +1,178 @@
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/msglist.js"></script>
+
+<div class="msg_title">
+	{if $type == 'unreadMsg'}
+		{$Lang.UnreadMsg}
+	{elseif $type == 'readMsg'}
+		{$Lang.ReadedMsg}
+	{elseif $type == 'sendMsg'}
+		{$Lang.SendMsg}
+	{elseif $type == 'delMsg'}
+		{$Lang.DelMsg}
+	{/if}
+</div>
+
+{if $view == 'detail'}
+	<div class="msg_content">
+		<div class="msg_detail_box">
+			<div class="msg_d_b_box">
+				{if $ident == 'send'}
+					<div class="msg_d_b_pic_box">
+						{foreach item=item from=$detailMsg.list}
+							<img src="{$item.portrait.imagesUrl_3}" />
+							{$item.uName}
+						{/foreach}
+					</div>
+					<div class="msg_d_b_time">
+						{if $nowtime|date_format:'%Y' == $detailMsg.uAppendTime|date_format:'%Y'}
+							{if $nowtime|date_format:'%Y-%m-%d' == $detailMsg.uAppendTime|date_format:'%Y-%m-%d'}
+								{$Lang.Today}  {$detailMsg.uAppendTime|date_format:"%H:%M"}
+							{elseif $yestime|date_format:'%Y-%m-%d' == $detailMsg.uAppendTime|date_format:'%Y-%m-%d'}
+								{$Lang.Yestoday}  {$detailMsg.uAppendTime|date_format:"%H:%M"}
+							{else}
+								{$detailMsg.uAppendTime|date_format:"%m-%d %H:%M"}
+							{/if}
+						{else}
+							{$detailMsg.uAppendTime|date_format:"%Y-%m-%d %H:%M"}
+						{/if}
+					</div>
+				{else}
+					<div class="msg_d_b_pic">
+						<img src="{$detailMsg.portrait.imagesUrl_3}" />
+					</div>
+					<div class="msg_d_b_right">
+						{$detailMsg.people}
+						&nbsp;&nbsp;
+						{if $nowtime|date_format:'%Y' == $detailMsg.uAppendTime|date_format:'%Y'}
+							{if $nowtime|date_format:'%Y-%m-%d' == $detailMsg.uAppendTime|date_format:'%Y-%m-%d'}
+								{$Lang.Today}  {$detailMsg.uAppendTime|date_format:"%H:%M"}
+							{elseif $yestime|date_format:'%Y-%m-%d' == $detailMsg.uAppendTime|date_format:'%Y-%m-%d'}
+								{$Lang.Yestoday}  {$detailMsg.uAppendTime|date_format:"%H:%M"}
+							{else}
+								{$detailMsg.uAppendTime|date_format:"%m-%d %H:%M"}
+							{/if}
+						{else}
+							{$detailMsg.uAppendTime|date_format:"%Y-%m-%d %H:%M"}
+						{/if}
+					</div>
+				{/if}
+			</div>
+			<div class="msg_d_b_content {if $ident == 'send'}m_t_30{else}m_t_10{/if}">
+				{$detailMsg.content}
+			</div>
+			{if $ident != 'send'}
+				<div class="msg_d_b_edit">
+					<form method="POST" action="/main/answerMsg">
+						<input type="hidden" name="type" value="{$type}" />
+						<input type="hidden" name="uFormID" value="{$detailMsg.UserID}" />
+						<input type="hidden" name="uMsgID" value="{$detailMsg.uMsgID}" />
+						<input type="hidden" name="uAncMsgID" value="{$detailMsg.uAncMsgID}" />
+						<input type="hidden" name="uPreMsgID" value="{$detailMsg.uPreMsgID}" />
+						
+						<textarea name="uContent" id="uContent" style="width:700px;height:150px;"></textarea>
+						<input type="submit" value="{$Lang.CallBack}" />		
+					</form>	
+				</div>
+			{/if}
+		</div>	
+	</div>
+{else}
+	<div class="msglist_content">		
+		{if $msgArr}
+			<div class="msglist_box_space"></div>
+			{foreach item=item key=key from=$msgArr}
+				<div class="msglist_box" id="msglist_box_{$item.uMsgID}">
+					{if $type == 'sendMsg'}
+						<div class="msg_b_l_input">
+							<input type="checkbox" value="{$item.selfid}" />
+						</div>
+						<div class="msg_b_l_more_box">
+							<div class="msg_b_l_more">
+								{foreach item=item2 key=key2 from=$item.portrait}
+									<img src="{$item2.imagesUrl_3}" />{$item.nameList.$key2}
+								{/foreach}
+							</div>
+							<div class="msg_b_m_content">
+								<a href="/main/message?type={$type}&ident={$item.ident}&view=detail&uMsgID={$item.uMsgID}">{$item.uContent|smartTruncate:38:"..."}</a>
+							</div>
+							<div class="msg_b_m_time">
+								{if $nowtime|date_format:'%Y' == $item.uAppendTime|date_format:'%Y'}
+									{if $nowtime|date_format:'%Y-%m-%d' == $item.uAppendTime|date_format:'%Y-%m-%d'}
+										{$Lang.Today}  {$item.uAppendTime|date_format:"%H:%M"}
+									{elseif $yestime|date_format:'%Y-%m-%d' == $item.uAppendTime|date_format:'%Y-%m-%d'}
+										{$Lang.Yestoday}  {$item.uAppendTime|date_format:"%H:%M"}
+									{else}
+										{$item.uAppendTime|date_format:"%m-%d %H:%M"}
+									{/if}
+								{else}
+									{$item.uAppendTime|date_format:"%Y-%m-%d %H:%M"}
+								{/if}
+							</div>
+						</div>
+					{else}
+						<div class="msg_b_l">
+							<input type="checkbox" value="{$item.selfid}" />
+							<img src="{$item.portrait.imagesUrl_2}" />
+						</div>
+						<div class="msg_b_m">
+							<div class="msg_b_m_title">{if $type == 'sendMsg'}{$item.userList}{else}{$item.uName}{/if}</div>
+							<div class="msg_b_m_content">
+								<a href="/main/message?type={$type}&ident={$item.ident}&view=detail&uMsgID={$item.uMsgID}">{$item.uContent|smartTruncate:38:"..."}</a>
+							</div>
+							<div class="msg_b_m_time">
+								{if $nowtime|date_format:'%Y' == $item.uAppendTime|date_format:'%Y'}
+									{if $nowtime|date_format:'%Y-%m-%d' == $item.uAppendTime|date_format:'%Y-%m-%d'}
+										{$Lang.Today}  {$item.uAppendTime|date_format:"%H:%M"}
+									{elseif $yestime|date_format:'%Y-%m-%d' == $item.uAppendTime|date_format:'%Y-%m-%d'}
+										{$Lang.Yestoday}  {$item.uAppendTime|date_format:"%H:%M"}
+									{else}
+										{$item.uAppendTime|date_format:"%m-%d %H:%M"}
+									{/if}
+								{else}
+									{$item.uAppendTime|date_format:"%Y-%m-%d %H:%M"}
+								{/if}
+							</div>
+						</div>
+					{/if}
+					
+					<div class="msg_b_r">
+						<div class="msg_b_r_del">
+							<a class="adelt" href="javascript:msglist.delClick({$item.uMsgID},this)"></a>
+						</div>
+						<div class="msg_b_r_check"><a href="/main/message?type={$type}&ident={$item.ident}&view=detail&uMsgID={$item.uMsgID}">{$Lang.CheckDetail}</a></div>
+					</div>
+				</div>
+			{/foreach}
+			
+			<div class="sub_foot">
+				<div class="subBut">
+					{if $type != 'delMsg'}
+						<input type="checkbox" id="selectAll" value="all" />
+						<input type="button" id="sub_but" name="but" value="{$Lang.Delete}" />
+					{/if}
+				</div>
+				<div class="showpage_r">{$showpage}</div>
+			</div>
+		{else}
+			<div class="notcontent">
+				{$Lang.NotNullContent}
+			</div>		
+		{/if}
+	</div>
+{/if}
+
+<script type="text/javascript">
+var msglist = new Tmsglist();
+msglist.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	msglist.edit();
+	msglist.init();
+});
+//释放
+$(window).unload(function(){
+	msglist = null;
+});
+</script>

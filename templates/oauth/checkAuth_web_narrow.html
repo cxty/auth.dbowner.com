@@ -1,0 +1,76 @@
+{include file='header_auth.html'}
+
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3168919025" type="text/javascript" charset="utf-8"></script>
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/checkAuth.js"></script>
+
+	{if !$vdata.showLogo}
+		</div>
+	{/if}
+	</div>	
+	
+<form method="POST" id="loginform" name="loginform" action="/oauth/saveAuth?{$urlStr}">
+	<input type="hidden" name="limit" id="limit" value="" />
+	<input type="hidden" name="type" id="type" value="" />
+	
+	<div class="auth_left" style="display:none;">
+		<div class="auth_title">{$Lang.OAuthMsg1}{$Lang.OAuthMsg2}：</div>
+		
+		<ul id="checkbox">
+			{foreach key=key item=item from=$permArr}
+				<li {if $key > 3}style="display:none;"{/if}><div>⊙ {$item.permInfo}</div><span><input type="checkbox" value="{$item.permName}" {if $item.isDefault}checked="checked"{/if} {if !$item.isDisable}disabled="true"{/if} /></span></li>
+			{/foreach}
+		</ul>
+		
+		<div class="auth_check_more" style="display:none;"><a id="clickMore" href="javascript:void(0);">{$Lang.MoreLimit}<span class="hand_show"></span></a></div>
+		
+	</div>
+	
+	<div class="auth_narrow_right">
+	
+		<div class="narrow_top" style="display:none;">
+			<img src="{$pic}" />
+			<div class="narrow_exp">
+				<p>{$theApp}</p>
+				<p style="display:none;">{$userDev}</p>
+				<p>{$userDev}</p>
+				<p>{$Lang.AppTotal}{$count}{$Lang.AppMsg}</p>
+			</div>
+		</div>
+		
+		<div class="narrow_content">
+			<div class="narrow_title">{$Lang.OAuthMsg1}{$Lang.OAuthMsg2}：</div>
+			<ul id="checkbox" class="narrow_auth_box">
+				{foreach key=key item=item from=$permArr}
+					<li {if $key > 3}style="display:none;"{/if}><div class="narrow_word">⊙ {$item.permInfo}</div><div class="narrow_check"><input type="checkbox" value="{$item.permName}" {if $item.isDefault}checked="checked"{/if} {if !$item.isDisable}disabled="true"{/if} /></div></li>
+				{/foreach}
+			</ul>
+		</div>
+		
+		<div class="line"></div>
+		
+		<div class="auth_info" style="display:none;">{$Lang.JS_LANG.AppInfo}</div>
+		
+		<div class="form_button">
+			<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.OAuthBtn}" />
+			<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+		</div>		
+	</div>
+</form>
+
+<script type="text/javascript">
+var checkAuth = new TcheckAuth();
+checkAuth.JS_LANG = {$JS_LANG};
+checkAuth.sData = {$sData};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	checkAuth.init();
+});
+//释放
+$(window).unload(function(){
+	checkAuth = null;
+});
+</script>
+
+{include file='footer_auth.html'}

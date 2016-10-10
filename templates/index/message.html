@@ -1,0 +1,39 @@
+<script type="text/javascript" src="{$__PUBLIC__}/js/activate.js"></script>
+
+{if $backArr.type == 'backpwd'}
+	<div id="reg_box">
+        <div class="reset_pwd">
+        	<input type="hidden" id="suEmail" value="{$backArr.uEmail}" />
+        	<div class="input_box">
+                <div class="input_box_title">{$Lang.AccountEmail}：</div><div class="input_big l_input_box"><INPUT type="text" size="20" id="uEmail" value=""></div>
+            </div>
+            <div class="input_box">
+                <div class="input_box_title">{$Lang.AccountPwd}：</div><div class="input_big l_input_box"><INPUT type="password" size="20" id="pwd" value=""></div>
+            </div>
+            <div class="input_box">
+                <div class="input_box_title">{$Lang.AccountSPwd}：</div><div class="input_big l_input_box"><INPUT type="password" size="20" id="spwd" value=""></div>
+            </div>
+            <div class="input_box_login">
+                <div class="input_sub" id="submit_btn"><span> {$Lang.ResetPwd} </span></div>
+            </div>
+        </div>
+	</div>
+{else}
+	<div id="login_box">
+	   	<div class="do_login">{$backArr.msg}&nbsp;{if $urlStr }<span class="time_out" id="time_out"></span>{else}<span class="time_out" id="do_login"> {$Lang.Login} </span>{/if}</div>
+	</div>
+{/if}
+<input type="hidden" id="urlTurn" value="{$urlStr}" />
+<script type="text/javascript">
+var activate = new Tactivate();
+activate.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	//activate.init();
+});
+//释放
+$(window).unload(function(){
+	activate = null;
+});
+</script>

@@ -1,0 +1,95 @@
+<script type="text/javascript" src="{$__PUBLIC__}/js/profile_u_profile.js"></script>
+<script type="text/javascript" src="{$__PUBLIC__}/js/jquery.jUploader-1.0.js"></script>
+
+<div class="user_profile_right_box">
+    <div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.Portrait}</div>
+        <div class="b_content">
+        	<div class="user_ico_b"><img class="fancybox" src="{$imagesUrl_1}" /></div>
+            <div class="user_ico_m"><img class="fancybox" src="{$imagesUrl_2}" /></div>
+            <div class="user_ico_s"><img class="fancybox" src="{$imagesUrl_3}" /></div>
+            
+        </div>
+        <div class="b_tool"><a href="javascript:void(0);" id="user_ico_tool_bar">{$Lang.Modify}</a></div>
+    	<div id="Protrait"><div class="b_content pro-upload">{$Lang.PictrueLoading}</div></div>
+    </div>
+    
+    <div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.CommonInfo}</div>
+        <div class="b_content" id="CommonInfo">
+            <ul>
+            	<li><dl>{$Lang.ContactNickname}:</dl><dt>{$userInfo.uName}</dt></li>
+            	<li><dl>{$Lang.Sex}:</dl><dt>{if $userInfo.uSex == 1}{$Lang.Female}{else}{$Lang.Male}{/if}</dt></li>
+                <li><dl>{$Lang.Birthday}:</dl><dt>{$userInfo.uBirthday}</dt></li>
+            </ul>
+        </div>
+        <div class="b_tool"><a id="common_btn" href="javascript:void(0);">{$Lang.Modify}</a></div>
+    </div>
+    
+    <div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.ContactInfo}</div>
+        <div class="b_content" id="contactInfo">
+            <ul>
+            	<li><dl>{$Lang.ContactAddr}:</dl><dt>{$userInfo.uComeFrom}</dt></li>
+                <li><dl>{$Lang.ContactEmail}:</dl><dt>{$userInfo.uEmail}{if $userInfo.uEmail && ($userInfo.uEstate == -1 || $userInfo.uEstate == -2)}&nbsp;&nbsp;<a id="activateBtn" href="javascript:void(0);" title="{$Lang.ToActivateMessage}">{$Lang.ToActivate}</a>{/if}</dt></li>
+            </ul>
+        </div>
+        <div class="b_tool"><a id="contact_btn" href="javascript:void(0);">{$Lang.Modify}</a></div>
+    </div> 
+    
+    <div class="user_profile_right_box_b">
+        <div class="b_title">{$Lang.WorkInfo}</div>
+        <div class="b_content">
+            <ul>
+            	{if $workInfo}
+            		{foreach item=item from=$workInfo}
+	            		<li class="li_show" id="li_{$item.AutoID}">
+	            			<dl></dl>
+	            			<dt>
+	            				{$item.wStartYear}-{$item.wEndYear}
+	            				&nbsp;&nbsp;
+	            				{$item.wCompanyName}
+	            				&nbsp;&nbsp;
+	            				{$item.wDepartment}
+	            				&nbsp;&nbsp;
+	            				{$item.State}{$item.Provice}{$item.City}
+	            				&nbsp;&nbsp;
+	            				<a class="aedit" href="javascript:UserProfile.workEdit({$item.AutoID});"></a>
+	            				<a class="adelt" href="javascript:UserProfile.workDele({$item.AutoID})"></a>
+	            			</dt>
+	            		</li>
+            		{/foreach}
+            	{else}
+            		<li><dl>{$Lang.NotFill}</dl><dt></dt></li>
+           		{/if}
+            </ul>
+        </div>
+        <div class="b_tool"><a id="work_btn" href="javascript:void(0);">{$Lang.Add}</a></div>
+    </div>
+    
+    <div class="user_profile_right_box_b" style="display:none;">
+        <div class="b_title">{$Lang.EducationInfo}</div>
+        <div class="b_content">
+            <ul>
+            	<li><dl>{$Lang.NotFill}</dl><dt></dt></li>
+            </ul>
+        </div>
+        <div class="b_tool"><a id="education_btn" href="javascript:void(0);">{$Lang.Add}</a></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var UserProfile = new TUserProfile();
+UserProfile.IMAGES = {$images};
+UserProfile.theEamil = $('#contactInfo input').eq(1).val();
+UserProfile.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	UserProfile.init();
+});
+//释放
+$(window).unload(function(){
+	UserProfile = null;
+});
+</script>

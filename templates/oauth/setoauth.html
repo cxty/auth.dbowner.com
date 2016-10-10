@@ -1,0 +1,42 @@
+{include file='header_wap.html'}
+	
+{include file='checkbox.html'}	
+	
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/setoauth_wap.js"></script>
+
+		<div class="login_right"></div>
+	</div>
+	
+	<div id="set_oauth">
+		<form method="post" id="setform" name="setform" action="/account/doset_oauth">
+			<input type="hidden" name="UserID" id="UserID" value="{$UserID}" />
+			<input type="hidden" name="client_id" id="client_id" value="{$client_id}" />
+			<input type="hidden" name="ulimit" id="ulimit" value="" />
+
+			<ul id="checkbox">
+				{foreach item=item from=$permArr}
+						<li>{$item.permInfo}<span><input type="checkbox" value="{$item.permName}" {if $item.isDefault}checked="checked"{/if} {if !$item.isDisable}disabled="true"{/if}  data-on="on" data-off="off" /></span></li>
+				{/foreach}
+			</ul>
+			
+			<div class="form_button">
+				<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.Confirm}" />
+			</div>
+		</form>
+	</div>
+	
+<script language="javascript">
+var resetFrom = new TresetFrom();
+resetFrom.PH_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	resetFrom.init();
+});
+//释放
+$(window).unload(function(){
+	resetFrom = null;
+});
+</script>
+
+{include file='footer_wap.html'}

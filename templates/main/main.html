@@ -1,0 +1,19 @@
+{if $smarty.get._action == 'index' and $smarty.get.0 == 'u_profile'}
+	{include file="main/profile_u_profile.html"}
+{elseif $smarty.get._action == 'index' and $smarty.get.0 == 'u_safe'}
+	{include file="main/profile_u_safe.html"}
+{elseif $smarty.get._action == 'index' and $smarty.get.0 == 'u_private'}
+	{include file="main/profile_u_private.html"}
+{elseif $smarty.get._action == 'index' and $smarty.get.0 == 'u_points'}
+	{include file="main/profile_u_points.html"}
+{elseif $smarty.get._action == 'index' and $smarty.get.0 == 'u_active'}
+	{include file="main/profile_u_active.html"}
+{elseif $smarty.get._action == 'uploadPortrait'}
+	{include file="main/uploadPortrait.html"}
+{elseif $smarty.get._action == 'profile_contact'}
+	{include file="main/profile_contact.html"}
+{elseif $smarty.get._action == 'profile_common'}
+	{include file="main/profile_common.html"}	
+{elseif $smarty.get._action == 'profile_social'}
+	{include file="main/profile_social.html"}		
+{/if}

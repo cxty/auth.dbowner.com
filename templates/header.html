@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title} {$SysName}</title>
+{include file='link.html'}
+
+</head>
+
+<body id="top">
+
+
+<script lauguage="javascript">
+{if $show != 'auth' && $urlStr && $uName}
+var headjs = new Theadjs();
+headjs.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	headjs.init();
+});
+//释放
+$(window).unload(function(){
+	headjs = null;
+});
+{/if}
+</script>
+
+<div class="container_box">
+        <div class="header_box">
+        	<div class="header_box_c">
+              <div class="header">
+              <div class="header_inner">
+              	  <div class="h_img"><a href="/" ><img src="{$__PUBLIC__}/images/ico_2.png"  height="35" /></a>	</div>  
+                  <div class="h_left">
+                 	     
+                  	  {if $show != 'auth'}                
+		                  {if $urlStr}
+		                  	 | <a href="{$__ROOT__}/main/index.html">{$Lang.Index}</a>
+		                  {else}
+		                  	| <a href="{$__ROOT__}/index/index.html">{$Lang.Index}</a>
+		                  	| <a href="{$__ROOT__}/index/register.html">{$Lang.Register}</a>
+		                  {/if}
+		               {/if}
+                  </div>
+                  <div class="r_left">
+                  	  {if $show != 'auth'}
+		                  {if $urlStr}                	   
+		                	   {if $uName}
+		                	   <div id="header_tog">
+		                	   		<span>{$uName}</span>
+		                	   		<div style="display:none;">
+		                	   			<img id="header_img" src="{$imagesUrl_3}" />	 
+		                	   			<a class="header_lo" href="{$__ROOT__}/index/loginOut.html" id="loginout">{$Lang.LoginOut}</a>
+		                	   			<ul>
+		                	   				<li><a href="/main/index">{$Lang.PensonalPage}</a></li>
+		                	   				<li><a href="/main/message">{$Lang.PensonalMsg}<span id="header_num">({$unread})</span></a></li> 
+		                	   				<li></li>	   				         	   			
+		                	   			</ul>		                	   			               	   			
+		                	   		</div>
+		                	   </div>
+		                	   {/if}
+		                  {else}
+							   <a href="{$__ROOT__}/index/login.html">{$Lang.Login}</a>
+						  {/if}
+		                  | <a href="#">{$Lang.Help}</a>
+	                  {else}
+	                  	 <a href="javascript:history.back()">{$Lang.Back}</a> 
+	                  {/if}
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        

@@ -1,0 +1,564 @@
+<?php
+/**
+ * 处理用户信息类
+ * 
+ * @author wbqing405@sina.com
+ */
+class ComFun{
+	static $key = '741123';
+	static $iv = 'QWE123';
+	
+	/**
+	 * 加密
+	 */
+	public static function _encrypt($value=false){
+		if($value){
+			include_once('DES.class.php');
+			$des = new DES(self::$key,self::$iv);
+				
+			return $des->encrypt($value);
+		}
+	}
+	/**
+	 * 解密
+	 */
+	public static function _decrypt($value=false){
+		if($value){
+			include_once('DES.class.php');
+			$des = new DES(self::$key,self::$iv);
+	
+			return $des->decrypt($value);
+		}
+	}
+	/**
+	 * url转化
+	 */
+	public function url_replace($string){
+		return self::_decrypt(str_replace('%20', '+', $string));
+	}
+	/**
+	 * urlencode处理
+	 */
+	public function urlencode_rfc3986($input) {
+		if (is_scalar($input)) {
+			return str_replace(
+					'+',
+					' ',
+					str_replace('%7E', '~', rawurlencode(self::_encrypt($input)))
+			);
+		} else {
+			return '';
+		}
+	}
+	
+	/**
+	 * urldecode处理
+	 */
+	public static function urldecode_rfc3986($string) {
+		return urldecode(self::_decrypt($string));
+	}
+	/**
+	 * 对邮件数组进行加密处理
+	 */
+	public static function _encodeArr($arr){
+		if(is_array($arr)){
+			return self::urlencode_rfc3986(json_encode($arr));
+		}
+	}
+	/**
+	 * 对邮箱数组进行解密处理
+	 */
+	public static function _decodeArr($str){
+		if($str){
+			return json_decode(self::urldecode_rfc3986($str),true);
+		}else{
+			return $str;
+		}
+	}
+	/**
+	 * 注册$_COOKIES
+	 */
+	public static function SetCookies($params,$lifeTime=false){
+		if(is_array($params)){
+			session_start();
+			//设定$_COOKIES保存时间;
+			if($lifeTime){
+				$lifeTime = $lifeTime;
+			}else{
+				$lifeTime = 24 * 3600;
+			}
+			//self::pr($params);	
+			foreach($params as $key=>$val){
+				setcookie($key,self::_encrypt($val),time()+$lifeTime,"/");
+			}
+		}
+	}
+	/**
+	 * 取$_COOKIE值 decrypt
+	 */
+	public static function getCookies($pStr=false){
+		if(is_array($pStr)){
+			return self::getCookiesArr($pStr);
+		}elseif($pStr){
+			return self::_decrypt($_COOKIE[$pStr]);
+		}else{
+			return self::getCookiesArr($_COOKIE);
+		}
+	}
+	/**
+	 * 对$_COOKIE数组的处理，是getCookies函数的后续
+	 */
+	public static function getCookiesArr($fieldArr){
+		if(is_array($fieldArr)){
+			foreach($fieldArr as $key=>$val){
+				if($key == 'cp_language' || $key == 'PHPSESSID'){
+					$cookies[$key] = $val;
+				}else{
+					$cookies[$key] = self::_decrypt($val);
+				}
+			}
+		}
+	
+		return $cookies;
+	}
+	/**
+	 * 注销$_COOKIES
+	 */
+	public static function destoryCookies($fieldArr=null){
+		if(is_array($fieldArr)){
+			$cookies = $fieldArr;
+		}else{
+			$cookies = $_COOKIE;
+		}
+		
+		session_start();
+		foreach($cookies as $key=>$val){
+			setcookie($key,'',time()-3600,'/');
+		}
+	}
+	/**
+	 * 取第三方配置库
+	 */
+	public static function getAPIConfig(){
+		$url = dirname(dirname(dirname(__FILE__))).'/conf/configProviders.php';
+	
+		return include($url);
+	}
+	/**
+	 * 取指定第三方的配置信息
+	 */
+	public static function getNowApi($partner=false){
+		$apiArr = self::getAPIConfig();
+	
+		$re['callback']  = $apiArr['callback'];
+		$re['providers'] = $apiArr['providers'];
+
+		if($partner){
+			foreach((array)$apiArr['providers'] as $key=>$val){
+				if(strtolower(trim($key)) == strtolower(trim($partner))){
+					$re['provider'] = $val;
+				}
+			}
+		}
+		
+		$re['partner'] = $partner;
+
+		return $re;
+	}
+	/**
+	 * 取第三方user_id值
+	 */
+	public static function getTUserID($provider,$data=null){
+		if(is_array($data)){
+			return self::getFUserID($provider,$data);
+		}else{
+			return self::getCUserID($provider);
+		}
+	}
+	/**
+	 * 取数组中的TUserID
+	 */
+	public static function getFUserID($provider,$fieldArr){
+		if(is_array($fieldArr)){
+			switch(ucfirst($provider)){
+				case 'Douban':
+					return $fieldArr['douban_user_id'];
+					break;
+				case 'Qq':
+					return $fieldArr['name'];
+					break;
+				default:
+					return $fieldArr['user_id'];
+					break;
+			}
+		}
+	}
+	/**
+	 * 取$_COOKIE中的TUserID
+	 */
+	public static function getCUserID($provider){
+		switch(ucfirst($provider)){
+			case 'Douban':
+				return self::getCookies($provider.'_douban_user_id');
+				break;
+			case 'Qq':
+				return self::getCookies($provider.'_name');
+				break;
+			default:
+				return self::getCookies($provider.'_user_id');
+				break;
+		}
+	}
+	/**
+	 * 取第三方验证信息值(具有唯一性)
+	 */
+	public static function getTCheckValue($provider,$data=false){
+		$apiArr = self::getNowApi($provider);
+
+		$authway = $apiArr['provider']['authway'];
+		
+		if($authway == 'auth1'){
+			return self::getCookies($provider.'_oauth_token_secret');
+		}elseif($authway == 'auth2'){
+			switch(strtolower($provider)){
+				case 'sina':
+					return self::getCookies($provider.'_user_id');
+					break;
+				default:
+					return self::getCookies($provider.'_refresh_token');
+					break;
+			}
+		}
+	}
+	/**
+	 * 获取第三方授权信息
+	 * auth1跟auth2对应的值：oauth_token=refresh_token，oauth_token_secret=access_token，oauth_identify=user_id
+	 */
+	public static function getOAuthInfo($partner){	
+		$apiArr = self::getNowApi($partner);
+
+		$authway = $apiArr['provider']['authway'];
+
+		if($authway == 'auth1'){
+			$OAuthArr['oauth_token']        = self::getCookies($partner.'_oauth_token');
+			$OAuthArr['oauth_token_secret'] = self::getCookies($partner.'_oauth_token_secret');
+			$OAuthArr['oauth_identify']     = self::getCUserID($partner);
+		}elseif($authway == 'auth2'){
+			$OAuthArr['refresh_token']        = self::getCookies($partner.'_refresh_token');
+			$OAuthArr['access_token']         = self::getCookies($partner.'_access_token');
+			$OAuthArr['user_id']              = self::getCookies($partner.'_user_id');
+		}
+		
+		
+		return $OAuthArr;
+	}
+	/**
+	 * 取第三方用户信息
+	 */
+	public static function getTUserInfo($fieldArr){
+		include_once(dirname(dirname(dirname(__FILE__))).'/include/ext/partner/common/GetUserInfo.php');
+		$getUserInfo = new GetUserInfo($fieldArr['partner'],$fieldArr['provider'],$fieldArr['OAuthArr']);
+		
+		return $getUserInfo->getUserInfo();
+	}
+	/**
+	 * 发送邮件
+	 */
+	public static function toSendMail($emailArr,$type){
+		include_once('Email.class.php'); //邮件发送类
+		$email = new Email();
+		$backStr = $email->sendMail($emailArr,$type);
+	}
+	/**
+	 * 随机明文 md5 16位
+	 */
+	public static function getRandom($len=10,$start=2,$end=16){
+		$srcstr="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	
+		mt_srand();
+		$strs="";
+	
+		for($i=0;$i<$len;$i++){
+			$strs.=$srcstr[mt_rand(0,35)];
+		}
+	
+		$strs .= time();
+	
+		return substr(md5($strs),$start,$end);
+	}
+	/**
+	 * 获取IP
+	 */
+	public static function getIP(){
+		if ($HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"]){
+			$ip = $HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"];
+		}elseif ($HTTP_SERVER_VARS["HTTP_CLIENT_IP"]){
+			$ip = $HTTP_SERVER_VARS["HTTP_CLIENT_IP"];
+		}elseif ($HTTP_SERVER_VARS["REMOTE_ADDR"]){
+			$ip = $HTTP_SERVER_VARS["REMOTE_ADDR"];
+		}elseif (getenv("HTTP_X_FORWARDED_FOR")){
+			$ip = getenv("HTTP_X_FORWARDED_FOR");
+		}elseif (getenv("HTTP_CLIENT_IP")){
+			$ip = getenv("HTTP_CLIENT_IP");
+		}elseif (getenv("REMOTE_ADDR")){
+			$ip = getenv("REMOTE_ADDR");
+		}else{
+			$ip = "Unknown";
+		}
+	
+		return $ip;
+	}
+	/**
+	 * 判断是用户是通过PC机还是手机访问网站
+	 */
+	public static function checkBrowse(){
+		$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+		
+		$uachar = "/(nokia|sony|ericsson|mot|samsung|sgh|lg|philips|panasonic|alcatel|lenovo|cldc|midp|mobile)/i";
+		
+		if(($ua == '' || preg_match($uachar, $ua))&& !strpos(strtolower($_SERVER['REQUEST_URI']),'wap')){
+			return 1;
+		}else{
+			return -1;
+		}
+	}
+	/**
+	 * 另一种判断通过PC亦或手机
+	 */
+	public static function check_wap() {
+		return stristr($_SERVER['HTTP_VIA'],"wap") ? true : false;
+	}
+	/**
+	 * url回调参数构造(index)
+	 */
+	public static function makeCallBack($fieldArr){
+		if($fieldArr){
+			foreach($fieldArr as $key=>$val){
+				if($key != '_module' && $key != '_action'){
+					$urlArr[$key] =  $val;
+				}
+			}
+			if($urlArr){
+				return http_build_query($urlArr);
+			}
+		}	
+	}
+	/**
+	 * 操作成功后，返回调用地址，默认个人中心(index)
+	 */
+	public static function checkCallBack($fieldArr){
+		if($fieldArr){
+			if($fieldArr['redirect']){
+				foreach($fieldArr as $key=>$val){
+					if($key != '_module' && $key != '_action' && $key != 'redirect'){
+						$urlArr[$key] =  $val;
+					}
+				}
+				
+				$redirect = $fieldArr['redirect'].'?'.'type=checked';
+				
+				if($urlArr){
+					return $redirect.'&'.http_build_query($urlArr);
+				}else{
+					return $redirect;
+				}
+			}else{
+				return '/main/index';
+			}
+		}else{
+			return '/main/index';
+		}
+	}
+	/**
+	 * 回调参数保存为$_COOKIES(index)
+	 */
+	public static function SaveCallBack($fieldArr){
+		if($fieldArr['ident']){
+			$cookies['ident'] = $fieldArr['ident'];
+			foreach($fieldArr as $key=>$val){
+				if($key != '_module' && $key != '_action' && $key != 'ident'){
+					$cookies[$fieldArr['ident'].'_'.$key] =  $val;
+				}
+			}
+			self::SetCookies($cookies);
+		}
+	}
+	/**
+	 * 取回调地址(index)
+	 */
+	public static function getCallBack($model,$config,$fieldArr=null){
+		$ident = isset($fieldArr['ident']) ? $fieldArr['ident'] : ComFun::getCookies('ident');
+
+		if($ident == 'oauthlogin'){
+			$tArr['UserID'] = isset($fieldArr['UserID']) ? $fieldArr['UserID'] : ComFun::getCookies('UserID');
+			$tArr['client_id'] = isset($fieldArr['client_id']) ? $fieldArr['client_id'] : ComFun::getCookies($ident.'_client_id');
+			
+			if(class_exists('MandOAuth',false)){
+				$MandOAuth = $fieldArr['MandOAuth'];
+			}else{
+				include('MandOAuth.class.php');
+				$MandOAuth = new MandOAuth($model,$config);
+			}
+			
+			$token = $MandOAuth->getAuthToken($tArr);
+
+			$cookies['ident'] = $ident;
+			
+			foreach($_COOKIE as $key=>$val){
+				if( strpos($key, $ident) !== false ){
+					$cookies[$key] = $val;
+				}				
+			}
+			
+			$redirect_uri = isset($fieldArr['redirect_uri']) ? $fieldArr['redirect_uri'] : ComFun::getCookies($ident.'_redirect_uri');
+			$url = $redirect_uri.'?'.http_build_query($token);		
+
+			self::destoryCookies($cookies);
+		}elseif($ident == 'inviteCode'){
+			$ident      = ComFun::getCookies('ident');
+			$user_id    = ComFun::getCookies($ident.'_user_id');
+			$inviteCode = ComFun::getCookies($ident.'_inviteCode');
+			$type       = ComFun::getCookies($ident.'_type');
+			
+			if(class_exists('MandOAuth',false)){
+				$MandOAuth = $fieldArr['MandOAuth'];
+			}else{
+				include('MandOAuth.class.php');
+				$MandOAuth = new MandOAuth($model,$config);
+			}
+
+			$openStr = $MandOAuth->releaseUserID($user_id);
+			$openArr = explode('|', $openStr);
+			
+			$tArr['fromUserID'] =  $openArr[0];
+			$tArr['client_id']  =  $openArr[1];
+			$tArr['inviteCode'] =  $inviteCode;
+			$tArr['codeType']   =  isset($type) ? $type : 2;		
+
+			$UserID = ComFun::getCookies('UserID');
+
+			if(empty($inviteCode)){
+				ThrowMessage::ThrowMsg(Lang::get('Ex_ErrorInviteCode1'));
+			}elseif(empty($openArr[0])){
+				ThrowMessage::ThrowMsg(Lang::get('Ex_ErrorInviteCode2'));
+			}elseif(empty($openArr[1])){
+				ThrowMessage::ThrowMsg(Lang::get('Ex_ErrorInviteCode3'));
+			}elseif($UserID == $openArr[0]){
+				ThrowMessage::ThrowMsg(Lang::get('Ex_NotInviteSelf'));
+			}
+			
+			include('InviteCode.class.php');
+			$InviteCode = new InviteCode($model);
+			$InviteCode->IsUserInviteCodeStri($tArr);
+			
+			if($InviteCode->IsUserInviteCodeStri($tArr) != 1){
+				ThrowMessage::ThrowMsg(Lang::get('Ex_UsedInviteCode'));
+			}
+			
+			$udata['toUserID'] = $UserID;
+			$InviteCode->UseInviteCodeStri($tArr,$udata);
+			
+			$cookies['ident'] = $ident;
+			
+			foreach($_COOKIE as $key=>$val){
+				if( strpos($key, $ident) !== false ){
+					$cookies[$key] = $val;
+				}
+			}
+			
+			self::destoryCookies($cookies);
+			
+			$url = '/main/index';
+		}elseif($fieldArr['redirect_uri']){
+			$url = $fieldArr['redirect_uri'];
+		}else{
+			$url = '/main/index';
+		}
+		
+		return $url;
+	}
+	/**
+	 * 获取$_GET或$_POST参数
+	 */
+	public static function GetString($key, $len = 0, $def = null) {
+		$_val = $_GET [$key] ? $_GET [$key] : $_POST [$key];
+		self::pr($_val);exit;
+		if ($_val) {
+			$_val = $this->_addslashes ( $_val );
+			if ($len > 0) {
+				return substr ( $_val, 0, $len );
+			} else {
+				return $_val;
+			}
+		} else if ($def) {
+			return $def;
+		} else {
+			return null;
+		}
+	}
+	/**
+	 * 过滤html标签
+	 */
+	public static function preg_html($str){
+		$str = htmlspecialchars_decode($str);
+		$str = preg_replace( "@<script(.*?)</script>@is", "", $str );
+		$str = preg_replace( "@<iframe(.*?)</iframe>@is", "", $str );
+		$str = preg_replace( "@<style(.*?)</style>@is", "", $str );
+		//$str = preg_replace( "@<(.*?)>@is", "", $str );
+	
+		return $str;
+	}
+	/**
+	 * 剥去 HTML、XML 以及 PHP 的标签
+	 */
+	public static function preg_strip_tags($str){
+		return strip_tags($str);
+	}
+	/**
+	 * curl传递过滤标签处理
+	 */
+	public static function preg_curl_strip($str){
+		$str = self::preg_html($str);
+		$str = self::preg_strip_tags($str);
+		
+		return $str;
+	}
+	/**
+	 * 剥去所有html标签代码
+	 */
+	public static function delhtml($str){   //清除HTML标签
+		$st=-1; //开始
+		$et=-1; //结束
+		$stmp=array();
+		$stmp[]="&nbsp;";
+		$len=strlen($str);
+		for($i=0;$i<$len;$i++){
+		   $ss=substr($str,$i,1);
+		   if(ord($ss)==60){ //ord("<")==60
+		    $st=$i;
+		   }
+		   if(ord($ss)==62){ //ord(">")==62
+		    $et=$i;
+		    if($st!=-1){
+		     $stmp[]=substr($str,$st,$et-$st+1);
+		    }
+		   }
+		}
+		$str=str_replace($stmp,"",$str);
+		return $str;
+	}
+	/**
+	 * 取授权信息
+	 */
+	public static function getPermissionInfo(){
+		return include(dirname(dirname(dirname(__FILE__))).'/conf/config_oauthinfo.php');
+	}
+	/**
+	 * 打印类
+	 */
+	public static function pr($arr=null){
+		echo '<pre>';
+		print_r($arr);
+		echo '</pre>';
+	}
+}

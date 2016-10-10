@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript" src="{$__PUBLIC__}/js/jquery.js" ></script>
+
+</head>
+<body>
+
+<script language="javascript" type="text/javascript">
+function createXMLHttpRequest() {  
+    if(window.ActiveXObject){  
+        return new ActiveXObject("Microsoft.XMLHTTP");  
+    }else if (window.XMLHttpRequest){  
+        return new XMLHttpRequest();  
+    }  
+}
+$(document).ready(function(){
+	var hostURL = '{$hostURL}';
+	var access_token = '{$access_token}';
+	_get(hostURL, access_token);
+});
+function _get(hostURL, access_token){
+	var req = createXMLHttpRequest();
+	req.open('GET', hostURL + 'oauth2/v2/userinfo?access_token='+access_token, false);
+	req.setRequestHeader('Authorization', 'Bearer '+access_token);
+	req.onreadystatechange = function (e) {
+	  if (req.readyState == 4) {
+	     if(req.status == 200){
+	    	 var text = req.responseText;
+	    	 var _text = eval("(" + text + ")");
+	    	 var url = '/index/mandGoogleLogin?act=sub&callback={$callback}';
+	    	 url += '&id=' + _text.id;
+	    	 url += '&name=' + _text.name;
+	    	 url += '&picture=' + _text.picture;
+	    	 url += '&locale=' + _text.locale;
+	    	 location = url;
+		 }
+	  }
+	};
+	req.send(null);
+}
+</script>
+</body>
+</html>

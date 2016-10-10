@@ -1,0 +1,47 @@
+{include file='header.html'}
+
+{include file='kindsoft.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/message.js"></script>
+
+<div class="user_profile">
+	<div class="user_profile_left">
+        <div class="user_profile_left_tool" id="msg_num">
+        	<ul>
+            	<li id="writeMsg" {if $type == 'writeMsg'}class="selected"{/if}><div></div><label>{$Lang.WriteMsg}</label><span></span></li>
+                <li id="unreadMsg" {if $type == 'unreadMsg'}class="selected"{/if}><div></div><label>{$Lang.UnreadMsg}</label><span>【{$unread}】</span></li>
+                <li id="readMsg" {if $type == 'readMsg'}class="selected"{/if}><div></div><label>{$Lang.ReadedMsg}</label><span>【{$msgNum.readMsg}】</span></li>
+                <li id="sendMsg" {if $type == 'sendMsg'}class="selected"{/if}><div></div><label>{$Lang.SendMsg}</label><span>【{$msgNum.sendMsg}】</span></li>
+                <li style="display:none;" id="delMsg" {if $type == 'delMsg'}class="selected"{/if}><div></div><label>{$Lang.DelMsg}</label><span>【{$msgNum.delMsg}】</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="user_profile_right">
+    	<div class="msg_content_box">
+		    	{if $type == 'writeMsg'}
+		    		{include file='main/msgadd.html'}
+		    	{else}
+		    		{include file='main/msglist.html'}
+		    	{/if}
+    	</div>
+    </div>
+    <div class="content_box_c">
+		
+    </div>
+</div>
+
+<script type="text/javascript">
+var msg = new Tmsg();
+msg.JS_LANG = {$JS_LANG};
+msg.init();
+//页面完全再入后初始化
+$(document).ready(function(){
+	msg.init();
+});
+//释放
+$(window).unload(function(){
+	msg = null;
+});
+</script>
+
+{include file='footer.html'}

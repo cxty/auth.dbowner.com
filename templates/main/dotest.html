@@ -1,0 +1,20 @@
+
+{include file='kindsoft.html'}
+
+<script>
+KindEditor.ready(function(K) {
+	keditor = K.create('textarea[name="uContents"]', {
+		allowFileManager : true
+	});
+});
+</script>
+
+{$smarty.post.uContents}
+
+<form id="msgForm" name="msgForm" method="POST" action="/main/dotest">
+	
+	<textarea name="uContents" cols="80" rows="10" id="editor" style="width:545px;height:450px;">{$docContent}</textarea>
+	
+	<input type="submit" name="but" id="sub" class="mar_rigth_55" value="{$Lang.Submint}" />			
+</form>
+

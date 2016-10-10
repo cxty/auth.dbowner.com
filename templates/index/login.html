@@ -1,0 +1,40 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/loginForm.js"></script>
+
+<div id="login_box">
+    <form method="POST" id="loginform" name="loginform" action="{$__ROOT__}/index/dologin.html">
+        <div class="l_box title">{$Lang.WelcomeBack}</div>
+        <div class="r_box">
+            <div class="input_box">
+                <div class="input_big l_input_box"><INPUT type="text" size="20" name="uEmail" id="uEmail" value=""></div><div id="uEmail_box" class="r_input_box">{$Lang.Email}</div>
+            </div>
+            <div class="input_box">
+            	<div class="input_big l_input_box"><INPUT type="password" size="20" name="uPWD" id="password"></div><div id="password_box" class="r_input_box">{$Lang.Notice}&nbsp;<a href="/index/forgetPass">{$Lang.ForgetPass}</a></div>
+            </div>
+            <div class="input_box_b">
+                <div ><input type="checkbox" value="yes" name="remusrname" id="remusrname" /><label>{$Lang.LoginTwoWeek}</label></div>
+                <div class="input_sub" id="submit_btn"><span> {$Lang.Login} </span></div>
+            </div>
+        </div>
+    </form>
+    
+    <div style="float:left;width:600px;height:200px;margin-top:50px;">
+    	<div style="float:left;width:170px;height:200px;font-size: 20px;font-weight: bold;">二维码登录：</div>
+    	<img src="{$qrCode}" />
+    </div>
+</div>
+
+<script type="text/javascript">
+var loginForm = new TloginForm();
+loginForm.ns = '';
+loginForm.Partners_json = {$Partners_json};
+loginForm.JS_LANG = {$JS_LANG};
+loginForm.vData = {$vData};
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginForm.init();
+});
+//释放
+$(window).unload(function(){
+	loginForm = null;
+});
+</script>

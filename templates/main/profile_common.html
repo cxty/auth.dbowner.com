@@ -1,0 +1,29 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/profile_u_profile.js"></script>
+
+<div class="user_profile_right_box">
+    <div class="user_profile_right_box_b">
+    	<form method="post" id="myform" action="{$__ROOT__}/main/saveCommon.html">
+	        <div class="b_title">{$Lang.ContactInfo}</div>
+	        <div class="b_content">
+	    		<ul>
+			        <li>
+			        	<dl>{$Lang.Sex}:</dl>
+			        	<dt>
+			        		<select name="uSex">
+			        			<option value="0" {if $userInfo.Sex != 1}selected{/if}>男</option>
+			        			<option value="1" {if $userInfo.Sex == 1}selected{/if}>女</option>
+			        		</select>
+			        	</dt>
+			        </li>
+	                <li>
+		                <dl>{$Lang.Birthday}:</dl>
+		                <dt><input type="text" name="uBirthday" value="{$userInfo.uBirthday|date_format:'%Y-%m-%d'}" />&nbsp;输入格式：2012-04-01</dt>
+	                </li>
+			    </ul>   
+	        </div>
+	
+	        <div class="b_tool"><a href="javascript:$('#myform').submit();">{$Lang.Save}</a></div>
+        </form>
+    </div>
+</div>
+

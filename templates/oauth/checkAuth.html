@@ -1,0 +1,65 @@
+{include file='header_auth.html'}
+
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3168919025" type="text/javascript" charset="utf-8"></script>
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/checkAuth.js"></script>
+
+		</div>
+	</div>	
+	
+<form method="POST" id="loginform" name="loginform" action="/oauth/saveAuth?{$urlStr}">
+	<input type="hidden" name="limit" id="limit" value="" />
+	<input type="hidden" name="type" id="type" value="" />
+	
+	<div class="auth_left">
+		<div class="auth_title">{$Lang.OAuthMsg1}{$Lang.OAuthMsg2}：</div>
+		
+		<ul id="checkbox">
+			{foreach key=key item=item from=$permArr}
+				<li {if $key > 3}style="display:none;"{/if}><div>⊙ {$item.permInfo}</div><span><input type="checkbox" value="{$item.permName}" {if $item.isDefault}checked="checked"{/if} {if !$item.isDisable}disabled="true"{/if} /></span></li>
+			{/foreach}
+		</ul>
+		
+		<div class="auth_check_more" style="display:none;"><a id="clickMore" href="javascript:void(0);">{$Lang.MoreLimit}<span class="hand_show"></span></a></div>
+		
+	</div>
+	
+	<div class="auth_mid"></div>
+	
+	<div class="auth_right">
+		<div class="auth_top">
+			<div class="auth_img"><img src="{$pic}" /></div>
+			<ul>
+				<li class="li_bold">{$theApp}</li>
+				<li>{$Lang.AppDev}：{$userDev}</li>
+				<li>{$Lang.AppUser}：{$userName}</li>
+				<li>{$Lang.AppTotal}{$count}{$Lang.AppMsg}</li>			
+			</ul>
+		</div>
+		
+		<div class="line"></div>
+		
+		<div class="auth_info">{$Lang.JS_LANG.AppInfo}</div>
+		
+		<div class="form_button">
+			<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.OAuthBtn}" />
+			<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+		</div>		
+	</div>
+</form>
+
+<script type="text/javascript">
+var checkAuth = new TcheckAuth();
+checkAuth.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	checkAuth.init();
+});
+//释放
+$(window).unload(function(){
+	checkAuth = null;
+});
+</script>
+
+{include file='footer_auth.html'}

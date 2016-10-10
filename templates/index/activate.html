@@ -1,0 +1,19 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/activate.js"></script>
+
+<div id="login_box">
+   	<div class="do_login">{$msg}&nbsp;{if $urlStr == true}<span class="time_out" id="time_out"></span>{else}<span class="time_out" id="do_login"> {$Lang.Login} </span>{/if}</div>
+</div>
+
+<input type="hidden" id="urlStr" value="{$urlStr}" />
+<script type="text/javascript">
+var activate = new Tactivate();
+activate.JS_LANG = {$JS_LANG};
+//页面完全再入后初始化
+$(document).ready(function(){
+	activate.init();
+});
+//释放
+$(window).unload(function(){
+	activate = null;
+});
+</script>

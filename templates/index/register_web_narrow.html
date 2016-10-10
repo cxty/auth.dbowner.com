@@ -1,0 +1,59 @@
+{include file='header_auth.html'}
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/regFrom_auth.js"></script>
+	
+		{if !$vdata.showLogo}
+			<div class="login_right"><a href="javascript:history.back()" id="login">{$Lang.JS_LANG.Back}</a></div>
+		</div>
+		{/if}
+	</div>
+	
+	<div id="reg_form">
+	<section>
+		<div class="line"></div>
+		<form method="POST" id="regform" name="regform" action="/index/doregister.html">
+			
+			<div class="narrow_sp_top"></div>		
+					
+			<div class="form_input">
+				<div><input type="text" size="20" name="uEmail" id="uEmail" /></div>		
+				<div><input type="password" size="20" name="uPWD" id="password" /></div>
+				<div><input type="text" size="20" name="uName" id="uName" /></div>
+			</div>
+					
+			<div class="reg_useclause"><a class="check_btn" href="javascript:void(0);">{$Lang.CheckClause}</a></div>
+								
+			<div class="form_button">
+				<input type="button" id="submit_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.ComfirmRegister}" />
+				<input type="button" id="button_btn" class="mar_left form_btn_clo" size="20" value="{$Lang.JS_LANG.Reset}" />
+			</div>
+		</form>
+		
+		{if $vdata.showLogo}
+			<div class="login_btn"><a href="javascript:history.back()" id="login">{$Lang.JS_LANG.Back}</a></div>
+		{/if}
+	</section>	
+	</div>
+	
+	<section style="display:none;">
+		<div id="use_rule">{include file='index/regFrom.html'}</div>
+	</section>
+
+
+<script language="javascript" type="text/javascript">
+var regFromAuth = new TregFromAuth();
+regFromAuth.ns = '';
+regFromAuth.JS_LANG = {$JS_LANG};
+regFromAuth.sData = {$sData};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	regFromAuth.init();
+});
+//释放
+$(window).unload(function(){
+	regFromAuth = null;
+});
+</script>
+
+{include file='footer_auth.html'}

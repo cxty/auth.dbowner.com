@@ -1,0 +1,35 @@
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/ckeditor.js"></script>
+
+<div class="msg_title">{$Lang.WriteMsg}</div>
+<div class="msg_content">
+	<form id="msgForm" name="msgForm" method="POST" action="/main/saveMsg">
+	
+		<ul>
+			{if $msg}<li><dl>&nbsp;</dl><dt style="color:red">{$msg}</dt></li>{/if}
+			<li><dl>{$Lang.Accepter}:</dl><dt><input type="text" name="accepter" value="{$smarty.post.accepter}" /></dt></li>
+			<li ><dl>{$Lang.Text}:</dl><dt><textarea name="uContent" style="width:545px;height:250px;">{$smarty.post.uContent}</textarea></dt></li>
+			<li><dl>&nbsp;</dl>
+				<dr>
+					<input type="submit" name="but" id="sub" class="mar_rigth_55" value="{$Lang.Submint}" />					
+				</dr>
+			</li>		
+		</ul>	
+	</form>	
+</div>
+
+
+<script language="javascript" type="text/javascript">
+var ckeditor = new Tckeditor();
+ckeditor.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	ckeditor.init();
+	ckeditor.edit();
+});
+//释放
+$(window).unload(function(){
+	ckeditor = null;
+});
+</script>

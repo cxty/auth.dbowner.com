@@ -1,0 +1,23 @@
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/DB_checkInCodeBox.js"></script>
+
+<div id="login_box">
+    
+</div>
+
+<script language="javascript">
+//document.domain = "www.dbowner.com";
+checkInCodeBox = new TcheckInCodeBox();
+checkInCodeBox.JS_LANG = {$JS_LANG};
+checkInCodeBox.furl = '{$furl}';
+checkInCodeBox.host = '{$host}';
+checkInCodeBox.recall = '{$recall}';
+//页面完全再入后初始化
+$(document).ready(function(){
+	checkInCodeBox.init();
+});
+//释放
+$(window).unload(function(){
+	checkInCodeBox = null;
+});
+</script>

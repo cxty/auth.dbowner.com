@@ -1,0 +1,32 @@
+{include file='header_fancybox.html'}
+
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/DB.repeatComfirm.js"></script>
+
+<div class="check_wrap">
+	<div class="check_box">
+		<div class="check_title">{$Lang.AccountThirdParty}<span id="third_account"></span></div>
+		<div class="check_content" id="auth_cont"></div>
+	</div>
+	<div class="check_box m_l_50">
+		<div class="check_title">{$Lang.AccountDBOwner}<span id="db_account"></span></div>
+		<div class="check_content" id="user_cont"></div>
+	</div>
+	
+</div>
+
+<div class="check_line"></div>
+
+<div class="btn_wrap">
+	<div id="can_btn" class="input_sub fr m_r_20">
+		<span>{$Lang.Cancel} </span>
+	</div>
+	<div id="sub_btn" class="input_sub fr m_r_20">
+		<span>{$Lang.Confirm}</span>
+	</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+var lData = {$lData};
+</script>
+
+{include file='footer_fancybox.html'}

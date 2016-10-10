@@ -1,0 +1,290 @@
+
+.js_appscore_box{
+	width:700px;
+	margin:20px auto;
+	height:300px;
+	font-size: 13px;
+	color: #666;
+	font-family: Arial !important;
+    font-size: 12px !important;
+}
+.js_appscore_box #js_appscore_com{
+	padding:20px 0;
+}
+.js_appscore_box .js_appscore_href{
+	font-size: 13px;
+	color: #666;
+	text-decoration:none;
+	text-shadow: 0 0 2px #fff;
+	padding: 6px 8px;
+	border: 1px solid rgba(242,242,242,0.25);
+	background-color: rgb(242,242,242);
+	background-color: rgba(242,242,242,0.92);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#F0F0EE));
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+			border-radius: 3px;
+	-webkit-box-shadow: 0 0 3px #555;
+	   -moz-box-shadow: 0 0 3px #555;
+			box-shadow: 0 0 3px #555;
+}
+.js_appscore_box .js_appscore_href:hover{
+	color: #666;
+	text-shadow: 0 0 2px #f2f2f2;
+	text-decoration:none;
+	background:#e1e1e1;
+}
+.js_appscore_box #js_appscore_tea{
+	width:100%;
+	margin:20px auto;
+}
+.js_appscore_box #js_appscore_tea #js_appscore_star{
+	padding:20px 0;
+}
+.js_appscore_box #js_appscore_tea textarea{
+	width:100%;
+	height:150px;
+	/*
+	border: 1px solid rgba(0,0,0,0.25);
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+			border-radius: 3px;
+    */
+}
+.js_appscore_box #js_appscore_tea .js_appscore_remind{
+	width:100%;
+	text-align:right;
+	padding-right:80px;
+	margin-top:20px;
+}
+.js_appscore_box .js_appscore_line{
+	float:left;
+	width:100%;
+	height:10px;
+	border-bottom:2px solid #e1e1e1;
+}
+.js_appscore_box .js_appscore_detail{
+	float:left;
+	width:700px;
+	border-bottom:0px dashed #e1e1e1;
+	margin:10px auto;	
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation{
+	width:700px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left{
+	float:left;
+	width:290px;
+	margin-left:50px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation ul{
+	list-style:none;
+	width:290px;
+	margin-bottom:40px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation ul li{
+	padding:4px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star_title{
+	float: left;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star_bar{
+	float: left;
+	line-height:20px;
+	margin-left:5px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star5{
+	background-color: #88B131;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star4{
+	background-color: #A4CC02;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star3{
+	background-color: #FFCF02;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star2{
+	background-color: #FF9F02;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star1{
+	background-color: #FF6F31;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_left .star_count{
+	margin-left:10px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .js_appscore_sit_right{
+	float:left;
+	margin-left:80px;
+	width:150px;
+	height:150px;
+	background:#F7F7F7;
+	-webkit-border-radius: 7px;
+	   -moz-border-radius: 7px;
+			border-radius: 7px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .score_title{
+	font-weight:bold;
+	font-size:13px;
+	text-align:center;
+	padding-top:18px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .score_avValue{
+	font-weight:bold;
+	font-size:35px;
+	text-align:center;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .score_stars{
+	text-align:center;
+	padding-top:15px;
+}
+.js_appscore_box .js_appscore_detail .js_appscore_situation .score_votes{
+	text-align:center;
+	padding-top:10px;
+}
+.js_appscore_box .js_appscore_detail .js_app_table{
+	width:700px;
+	font-size:13px;
+	cellspacing:0;
+	cellpadding:0;
+	border-left:0;
+	border-bottom:0;
+	/*border-right:1px solid #e1e1e1;*/
+	border-top:2px solid #cedce5;
+}
+.js_appscore_box .js_appscore_detail .js_app_tr{
+	
+}
+.js_appscore_box .js_appscore_detail .js_app_td{
+	width:70px;
+	padding:10px;
+	text-align:center;
+	/*background:#e5edf2;*/
+	
+}
+.js_appscore_box .js_appscore_detail .js_app_solid_bottom{
+	border-bottom:2px solid #cedce5;
+}
+.js_appscore_box .js_appscore_detail .js_app_dashed_bottom{
+	border-bottom:1px dashed #e1e1e1;
+}
+.js_appscore_box .js_appscore_detail .js_app_times{
+	text-align:left;
+	padding:5px 10px;
+}
+.js_appscore_box .js_appscore_detail .js_app_center{
+	text-align:center;
+}
+.js_appscore_box .js_appscore_detail .js_app_td img{
+	width:50px;
+	height:50px;
+}
+.js_appscore_box .js_appscore_detail .js_app_td .js_app_title{
+	text-align:center;
+	line-height:30px;
+}
+.js_appscore_box .js_appscore_detail .js_app_td_com{
+	padding:10px;
+	width:500px;
+	text-align:left;
+	vertical-align:top;
+}
+.js_appscore_box .js_appscore_detail .js_app_td_score{
+	width:62px;
+	padding:10px;
+	vertical-align:top;
+}
+.js_appscore_box .js_appscore_detail .js_app_td_score .js_app_img{
+	width:100%;
+}
+.js_appscore_box .js_appscore_detail .js_app_td_score .js_app_title{
+	text-align:center;
+	line-height:30px;
+}
+.js_appscore_box .js_appscore_detail .js_app_td_score .js_app_floor{
+	float:left;
+	right:0;
+	bottom:0;
+}
+.js_appscore_box .js_appscore_page{
+	float:left;
+	width:100%;
+	text-align:center;
+}
+/*评分五角星*/
+.Star_001
+{
+    background:url(../images/dbowner.png) 0px -108px no-repeat;
+    width:10px;
+    height:10px;
+}
+.Star_002
+{
+    background:url(../images/dbowner.png) 0px -118px no-repeat;
+    width:10px;
+    height:10px;
+}
+.Star_003
+{
+    background:url(../images/dbowner.png) 0px -128px no-repeat;
+    width:10px;
+    height:10px;
+}
+.Star_Five
+{
+    background:url(../images/dbowner.png) 0px -138px no-repeat;
+    width:50px;
+    height:10px;
+}
+.Star_Four
+{
+    background:url(../images/dbowner.png) 0px -148px no-repeat;
+    width:50px;
+    height:10px;
+}
+.Star_One
+{
+    background:url(../images/dbowner.png) 0px -158px no-repeat;
+    width:50px;
+    height:10px;
+}
+.Star_Three
+{
+    background:url(../images/dbowner.png) 0px -168px no-repeat;
+    width:50px;
+    height:10px;
+}
+.Star_Two
+{
+    background:url(../images/dbowner.png) 0px -178px no-repeat;
+    width:50px;
+    height:10px;
+}
+.stars-1
+{
+    background:url(../images/dbowner.png) 0px -188px no-repeat;
+    width:62px;
+    height:62px;
+}
+.stars-2
+{
+    background:url(../images/dbowner.png) 0px -250px no-repeat;
+    width:62px;
+    height:62px;
+}
+.stars-3
+{
+    background:url(../images/dbowner.png) 0px -312px no-repeat;
+    width:62px;
+    height:62px;
+}
+.stars-4
+{
+    background:url(../images/dbowner.png) 0px -374px no-repeat;
+    width:62px;
+    height:62px;
+}
+.stars-5
+{
+    background:url(../images/dbowner.png) 0px -436px no-repeat;
+    width:62px;
+    height:62px;
+}

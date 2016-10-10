@@ -1,0 +1,56 @@
+{include file='header_wap_new.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/DB.loginWap.js"></script>
+
+				<div class="login_right"><a href="/index/register?{$redirect}">{$Lang.JS_LANG.Register}</a></div>
+			</div>
+		</aside>
+	</header>
+
+<div id="login_form">
+<section>
+	<div class="line"></div>
+	<div class="login_content">{$Lang.JS_LANG.AppWelcome}{$theApp}{$Lang.JS_LANG.Application}</div>
+	
+	<div class="login_third" id="login_third">
+		<ul >
+			{foreach item=item key=key from=$thirdArr}
+				<li><a href="javascript:loginWap.dothirdlogin('{$key}')"><dt class="{$item.icon}">{if !$item.icon}{$item.txt}{/if}</dt></a></li>			
+			{/foreach}
+		</ul>
+	</div>
+	
+	<div id="login_common">
+		<form method="POST" id="loginform" name="loginform" action="/oauth/login?{$urlStr}">
+			<input type="hidden" name="UserID" id="UserID" />
+			<input type="hidden" name="display" value="mobile" />
+			
+			<div class="form_input">
+				<div><input type="text" size="20" name="uEmail" id="uEmail" /></div>			
+				<div><input type="password" size="20" name="uPWD" id="password" /></div>
+			</div>
+					
+			<div class="form_button">
+				<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.Login}" />
+				<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+			</div>
+		</form>
+	</div>	
+</div>
+</section>
+<script type="text/javascript">
+var loginWap = new TloginWap();
+loginWap.PH_LANG = {$JS_LANG};
+loginWap.jdata = {$jdata};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginWap.init();
+});
+//释放
+$(window).unload(function(){
+	loginWap = null;
+});
+</script>
+
+{include file='footer_wap_new.html'}

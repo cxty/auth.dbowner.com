@@ -1,0 +1,4992 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://auth.dbowner.com/ManageUser/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ManageUser" targetNamespace="http://auth.dbowner.com/ManageUser/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://auth.dbowner.com/ManageUser/">
+      <xsd:element name="GetUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Auth">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserDetInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserDetInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserDetInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserDetInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserDetInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserDetInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserDetInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserDetInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserDetInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserDetInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserHeadInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserHeadInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserHeadInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserHeadInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserHeadInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserHeadInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserHeadInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserHeadInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserHeadInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserHeadInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserLoginInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserLoginInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserLoginInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserLoginInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserLoginInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserLoginInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserLoginInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserLoginInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserLoginInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserLoginInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserAccountSafeInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserAccountSafeInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAccountSafeInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAccountSafeInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAccountSafeInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAccountSafeInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAccountSafeInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAccountSafeInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAccountSafeInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAccountSafeInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserAuthInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserAuthInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserCharacterInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserCharacterInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserCharacterInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserCharacterInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserCharacterInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserCharacterInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserCharacterInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserCharacterInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserCharacterInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserCharacterInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserPointInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserPointInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserPointInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserPointInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserPointInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserPointInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserPointInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserPointInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserPointInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserPointInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserGroupsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserGroupsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserGroupsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserGroupsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserGroupsInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserGroupsInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserGroupsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserGroupsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserGroupsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserGroupsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserInviteFriendInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserInviteFriendInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInviteFriendInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInviteFriendInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInviteFriendInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInviteFriendInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInviteFriendInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInviteFriendInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInviteFriendInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInviteFriendInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserAuthenticationsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserAuthenticationsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthenticationsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthenticationsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthenticationsInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthenticationsInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthenticationsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthenticationsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthenticationsInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthenticationsInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectSysErrorLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectSysErrorLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateSysErrorLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateSysErrorLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSysErrorLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSysErrorLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertSysErrorLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertSysErrorLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteSysErrorLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteSysErrorLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserOnLineLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserOnLineLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserOnLineLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserOnLineLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserOnLineLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserOnLineLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserOnLineLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserOnLineLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserOnLineLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserOnLineLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserOnLineTime">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserOnLineTimeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserOnLineTime">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserOnLineTimeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserOnLineTimeList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserOnLineTimeListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserOnLineTime">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserOnLineTimeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserOnLineTime">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserOnLineTimeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserFailedLoginLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserFailedLoginLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectAppAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectAppAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateAppAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateAppAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppAuthNumLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppAuthNumLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertAppAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertAppAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteAppAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteAppAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthNumLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthNumLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthNumLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthNumLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserAuthFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserAuthFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserAuthFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthFailedLoginLogInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserAuthFailedLoginLogInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserAuthFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthFailedLoginLogInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserAuthFailedLoginLogInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserInviteCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserInviteCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInviteCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserInviteCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInviteCodeList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInviteCodeListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInviteCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertUserInviteCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInviteCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserInviteCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectAppScoreInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectAppScoreInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateAppScoreInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateAppScoreInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppScoreInfoList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppScoreInfoListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertAppScoreInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InsertAppScoreInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteAppScoreInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteAppScoreInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserNameByUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserNameByUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserNameListByUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserNameListByUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserNameArrByUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserNameArrByUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectEncryptValue">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectEncryptValueResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectDecryptValue">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectDecryptValueResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserIDWithAppID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserIDWithAppIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserIDByUserNameAndClientID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserIDByUserNameAndClientIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAppListByUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppListByUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserListByClientID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserListByClientIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAppUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAppUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserPageListByClientID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserPageListByClientIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAddAppUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAddAppUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetDeleteAppUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDeleteAppUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetIsExistAppUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIsExistAppUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetForbidUserUseApp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetForbidUserUseAppResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetIdentCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIdentCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAuthInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAuthInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetCoinTokenID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCoinTokenIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetCoinUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCoinUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAccountValid">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAccountValidResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAuthList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAuthListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAuthAppID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAuthAppIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetSendShortMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSendShortMsgResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetSendThirdPartyMsg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSendThirdPartyMsgResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserIDByAccessTokenAndAppID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserIDByAccessTokenAndAppIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserInfoByUserID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInfoByUserIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserInfoByUserName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserInfoByUserNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserBelongAppByUserName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserBelongAppByUserNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetUserBelongAppByEmail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserBelongAppByEmailResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetIsUserOwnAppByUserName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIsUserOwnAppByUserNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetIsUserOwnAppByEmail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIsUserOwnAppByEmailResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="GetUserInfoRequest">
+    <wsdl:part element="tns:GetUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoResponse">
+    <wsdl:part element="tns:GetUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SOAPAuth">
+    <wsdl:part name="Auth" element="tns:Auth"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserInfoRequest">
+    <wsdl:part element="tns:SelectUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserInfoResponse">
+    <wsdl:part element="tns:SelectUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInfoRequest">
+    <wsdl:part element="tns:UpdateUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInfoResponse">
+    <wsdl:part element="tns:UpdateUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInfoRequest">
+    <wsdl:part element="tns:DeleteUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInfoResponse">
+    <wsdl:part element="tns:DeleteUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoListRequest">
+    <wsdl:part element="tns:GetUserInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoListResponse">
+    <wsdl:part element="tns:GetUserInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInfoRequest">
+    <wsdl:part element="tns:InsertUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInfoResponse">
+    <wsdl:part element="tns:InsertUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+
+  <wsdl:message name="SelectUserDetInfoRequest">
+    <wsdl:part element="tns:SelectUserDetInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserDetInfoResponse">
+    <wsdl:part element="tns:SelectUserDetInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserDetInfoRequest">
+    <wsdl:part element="tns:UpdateUserDetInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserDetInfoResponse">
+    <wsdl:part element="tns:UpdateUserDetInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserDetInfoListRequest">
+    <wsdl:part element="tns:GetUserDetInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserDetInfoListResponse">
+    <wsdl:part element="tns:GetUserDetInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserDetInfoRequest">
+    <wsdl:part element="tns:InsertUserDetInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserDetInfoResponse">
+    <wsdl:part element="tns:InsertUserDetInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserDetInfoRequest">
+    <wsdl:part element="tns:DeleteUserDetInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserDetInfoResponse">
+    <wsdl:part element="tns:DeleteUserDetInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserHeadInfoRequest">
+    <wsdl:part element="tns:SelectUserHeadInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserHeadInfoResponse">
+    <wsdl:part element="tns:SelectUserHeadInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHeadInfoRequest">
+    <wsdl:part element="tns:UpdateUserHeadInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHeadInfoResponse">
+    <wsdl:part element="tns:UpdateUserHeadInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserHeadInfoListRequest">
+    <wsdl:part element="tns:GetUserHeadInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserHeadInfoListResponse">
+    <wsdl:part element="tns:GetUserHeadInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserHeadInfoRequest">
+    <wsdl:part element="tns:InsertUserHeadInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserHeadInfoResponse">
+    <wsdl:part element="tns:InsertUserHeadInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserHeadInfoRequest">
+    <wsdl:part element="tns:DeleteUserHeadInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserHeadInfoResponse">
+    <wsdl:part element="tns:DeleteUserHeadInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserLoginInfoRequest">
+    <wsdl:part element="tns:SelectUserLoginInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserLoginInfoResponse">
+    <wsdl:part element="tns:SelectUserLoginInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserLoginInfoRequest">
+    <wsdl:part element="tns:UpdateUserLoginInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserLoginInfoResponse">
+    <wsdl:part element="tns:UpdateUserLoginInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserLoginInfoListRequest">
+    <wsdl:part element="tns:GetUserLoginInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserLoginInfoListResponse">
+    <wsdl:part element="tns:GetUserLoginInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserLoginInfoRequest">
+    <wsdl:part element="tns:InsertUserLoginInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserLoginInfoResponse">
+    <wsdl:part element="tns:InsertUserLoginInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserLoginInfoRequest">
+    <wsdl:part element="tns:DeleteUserLoginInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserLoginInfoResponse">
+    <wsdl:part element="tns:DeleteUserLoginInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserAccountSafeInfoRequest">
+    <wsdl:part element="tns:SelectUserAccountSafeInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserAccountSafeInfoResponse">
+    <wsdl:part element="tns:SelectUserAccountSafeInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAccountSafeInfoRequest">
+    <wsdl:part element="tns:UpdateUserAccountSafeInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAccountSafeInfoResponse">
+    <wsdl:part element="tns:UpdateUserAccountSafeInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSafeInfoListRequest">
+    <wsdl:part element="tns:GetUserAccountSafeInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSafeInfoListResponse">
+    <wsdl:part element="tns:GetUserAccountSafeInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountSafeInfoRequest">
+    <wsdl:part element="tns:InsertUserAccountSafeInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountSafeInfoResponse">
+    <wsdl:part element="tns:InsertUserAccountSafeInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAccountSafeInfoRequest">
+    <wsdl:part element="tns:DeleteUserAccountSafeInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAccountSafeInfoResponse">
+    <wsdl:part element="tns:DeleteUserAccountSafeInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserAuthInfoRequest">
+    <wsdl:part element="tns:SelectUserAuthInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserAuthInfoResponse">
+    <wsdl:part element="tns:SelectUserAuthInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthInfoRequest">
+    <wsdl:part element="tns:UpdateUserAuthInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthInfoResponse">
+    <wsdl:part element="tns:UpdateUserAuthInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthInfoListRequest">
+    <wsdl:part element="tns:GetUserAuthInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthInfoListResponse">
+    <wsdl:part element="tns:GetUserAuthInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthInfoRequest">
+    <wsdl:part element="tns:InsertUserAuthInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthInfoResponse">
+    <wsdl:part element="tns:InsertUserAuthInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthInfoRequest">
+    <wsdl:part element="tns:DeleteUserAuthInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthInfoResponse">
+    <wsdl:part element="tns:DeleteUserAuthInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserCharacterInfoRequest">
+    <wsdl:part element="tns:SelectUserCharacterInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserCharacterInfoResponse">
+    <wsdl:part element="tns:SelectUserCharacterInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserCharacterInfoRequest">
+    <wsdl:part element="tns:UpdateUserCharacterInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserCharacterInfoResponse">
+    <wsdl:part element="tns:UpdateUserCharacterInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserCharacterInfoListRequest">
+    <wsdl:part element="tns:GetUserCharacterInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserCharacterInfoListResponse">
+    <wsdl:part element="tns:GetUserCharacterInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserCharacterInfoRequest">
+    <wsdl:part element="tns:InsertUserCharacterInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserCharacterInfoResponse">
+    <wsdl:part element="tns:InsertUserCharacterInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserCharacterInfoRequest">
+    <wsdl:part element="tns:DeleteUserCharacterInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserCharacterInfoResponse">
+    <wsdl:part element="tns:DeleteUserCharacterInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserPointInfoRequest">
+    <wsdl:part element="tns:SelectUserPointInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserPointInfoResponse">
+    <wsdl:part element="tns:SelectUserPointInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserPointInfoRequest">
+    <wsdl:part element="tns:UpdateUserPointInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserPointInfoResponse">
+    <wsdl:part element="tns:UpdateUserPointInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserPointInfoListRequest">
+    <wsdl:part element="tns:GetUserPointInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserPointInfoListResponse">
+    <wsdl:part element="tns:GetUserPointInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserPointInfoRequest">
+    <wsdl:part element="tns:InsertUserPointInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserPointInfoResponse">
+    <wsdl:part element="tns:InsertUserPointInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserPointInfoRequest">
+    <wsdl:part element="tns:DeleteUserPointInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserPointInfoResponse">
+    <wsdl:part element="tns:DeleteUserPointInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserGroupsInfoRequest">
+    <wsdl:part element="tns:SelectUserGroupsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserGroupsInfoResponse">
+    <wsdl:part element="tns:SelectUserGroupsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserGroupsInfoRequest">
+    <wsdl:part element="tns:UpdateUserGroupsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserGroupsInfoResponse">
+    <wsdl:part element="tns:UpdateUserGroupsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserGroupsInfoListRequest">
+    <wsdl:part element="tns:GetUserGroupsInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserGroupsInfoListResponse">
+    <wsdl:part element="tns:GetUserGroupsInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserGroupsInfoRequest">
+    <wsdl:part element="tns:InsertUserGroupsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserGroupsInfoResponse">
+    <wsdl:part element="tns:InsertUserGroupsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserGroupsInfoRequest">
+    <wsdl:part element="tns:DeleteUserGroupsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserGroupsInfoResponse">
+    <wsdl:part element="tns:DeleteUserGroupsInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserInviteFriendInfoRequest">
+    <wsdl:part element="tns:SelectUserInviteFriendInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserInviteFriendInfoResponse">
+    <wsdl:part element="tns:SelectUserInviteFriendInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInviteFriendInfoRequest">
+    <wsdl:part element="tns:UpdateUserInviteFriendInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInviteFriendInfoResponse">
+    <wsdl:part element="tns:UpdateUserInviteFriendInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInviteFriendInfoListRequest">
+    <wsdl:part element="tns:GetUserInviteFriendInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInviteFriendInfoListResponse">
+    <wsdl:part element="tns:GetUserInviteFriendInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInviteFriendInfoRequest">
+    <wsdl:part element="tns:InsertUserInviteFriendInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInviteFriendInfoResponse">
+    <wsdl:part element="tns:InsertUserInviteFriendInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInviteFriendInfoRequest">
+    <wsdl:part element="tns:DeleteUserInviteFriendInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInviteFriendInfoResponse">
+    <wsdl:part element="tns:DeleteUserInviteFriendInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserAuthenticationsInfoRequest">
+    <wsdl:part element="tns:SelectUserAuthenticationsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserAuthenticationsInfoResponse">
+    <wsdl:part element="tns:SelectUserAuthenticationsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthenticationsInfoRequest">
+    <wsdl:part element="tns:UpdateUserAuthenticationsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthenticationsInfoResponse">
+    <wsdl:part element="tns:UpdateUserAuthenticationsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthenticationsInfoListRequest">
+    <wsdl:part element="tns:GetUserAuthenticationsInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthenticationsInfoListResponse">
+    <wsdl:part element="tns:GetUserAuthenticationsInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthenticationsInfoRequest">
+    <wsdl:part element="tns:InsertUserAuthenticationsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthenticationsInfoResponse">
+    <wsdl:part element="tns:InsertUserAuthenticationsInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthenticationsInfoRequest">
+    <wsdl:part element="tns:DeleteUserAuthenticationsInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthenticationsInfoResponse">
+    <wsdl:part element="tns:DeleteUserAuthenticationsInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectSysErrorLogInfoRequest">
+    <wsdl:part element="tns:SelectSysErrorLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectSysErrorLogInfoResponse">
+    <wsdl:part element="tns:SelectSysErrorLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateSysErrorLogInfoRequest">
+    <wsdl:part element="tns:UpdateSysErrorLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateSysErrorLogInfoResponse">
+    <wsdl:part element="tns:UpdateSysErrorLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetSysErrorLogInfoListRequest">
+    <wsdl:part element="tns:GetSysErrorLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetSysErrorLogInfoListResponse">
+    <wsdl:part element="tns:GetSysErrorLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertSysErrorLogInfoRequest">
+    <wsdl:part element="tns:InsertSysErrorLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertSysErrorLogInfoResponse">
+    <wsdl:part element="tns:InsertSysErrorLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteSysErrorLogInfoRequest">
+    <wsdl:part element="tns:DeleteSysErrorLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteSysErrorLogInfoResponse">
+    <wsdl:part element="tns:DeleteSysErrorLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserOnLineLogInfoRequest">
+    <wsdl:part element="tns:SelectUserOnLineLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserOnLineLogInfoResponse">
+    <wsdl:part element="tns:SelectUserOnLineLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserOnLineLogInfoRequest">
+    <wsdl:part element="tns:UpdateUserOnLineLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserOnLineLogInfoResponse">
+    <wsdl:part element="tns:UpdateUserOnLineLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserOnLineLogInfoListRequest">
+    <wsdl:part element="tns:GetUserOnLineLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserOnLineLogInfoListResponse">
+    <wsdl:part element="tns:GetUserOnLineLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserOnLineLogInfoRequest">
+    <wsdl:part element="tns:InsertUserOnLineLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserOnLineLogInfoResponse">
+    <wsdl:part element="tns:InsertUserOnLineLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserOnLineLogInfoRequest">
+    <wsdl:part element="tns:DeleteUserOnLineLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserOnLineLogInfoResponse">
+    <wsdl:part element="tns:DeleteUserOnLineLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserOnLineTimeRequest">
+    <wsdl:part element="tns:SelectUserOnLineTime" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserOnLineTimeResponse">
+    <wsdl:part element="tns:SelectUserOnLineTimeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserOnLineTimeRequest">
+    <wsdl:part element="tns:UpdateUserOnLineTime" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserOnLineTimeResponse">
+    <wsdl:part element="tns:UpdateUserOnLineTimeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserOnLineTimeListRequest">
+    <wsdl:part element="tns:GetUserOnLineTimeList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserOnLineTimeListResponse">
+    <wsdl:part element="tns:GetUserOnLineTimeListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserOnLineTimeRequest">
+    <wsdl:part element="tns:InsertUserOnLineTime" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserOnLineTimeResponse">
+    <wsdl:part element="tns:InsertUserOnLineTimeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserOnLineTimeRequest">
+    <wsdl:part element="tns:DeleteUserOnLineTime" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserOnLineTimeResponse">
+    <wsdl:part element="tns:DeleteUserOnLineTimeResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:SelectUserFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:SelectUserFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:UpdateUserFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:UpdateUserFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserFailedLoginLogInfoListRequest">
+    <wsdl:part element="tns:GetUserFailedLoginLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserFailedLoginLogInfoListResponse">
+    <wsdl:part element="tns:GetUserFailedLoginLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:InsertUserFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:InsertUserFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:DeleteUserFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:DeleteUserFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectAppAuthNumLogInfoRequest">
+    <wsdl:part element="tns:SelectAppAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectAppAuthNumLogInfoResponse">
+    <wsdl:part element="tns:SelectAppAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAppAuthNumLogInfoRequest">
+    <wsdl:part element="tns:UpdateAppAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAppAuthNumLogInfoResponse">
+    <wsdl:part element="tns:UpdateAppAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppAuthNumLogInfoListRequest">
+    <wsdl:part element="tns:GetAppAuthNumLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppAuthNumLogInfoListResponse">
+    <wsdl:part element="tns:GetAppAuthNumLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertAppAuthNumLogInfoRequest">
+    <wsdl:part element="tns:InsertAppAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertAppAuthNumLogInfoResponse">
+    <wsdl:part element="tns:InsertAppAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteAppAuthNumLogInfoRequest">
+    <wsdl:part element="tns:DeleteAppAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteAppAuthNumLogInfoResponse">
+    <wsdl:part element="tns:DeleteAppAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserAuthNumLogInfoRequest">
+    <wsdl:part element="tns:SelectUserAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserAuthNumLogInfoResponse">
+    <wsdl:part element="tns:SelectUserAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthNumLogInfoRequest">
+    <wsdl:part element="tns:UpdateUserAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthNumLogInfoResponse">
+    <wsdl:part element="tns:UpdateUserAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthNumLogInfoListRequest">
+    <wsdl:part element="tns:GetUserAuthNumLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthNumLogInfoListResponse">
+    <wsdl:part element="tns:GetUserAuthNumLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthNumLogInfoRequest">
+    <wsdl:part element="tns:InsertUserAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthNumLogInfoResponse">
+    <wsdl:part element="tns:InsertUserAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthNumLogInfoRequest">
+    <wsdl:part element="tns:DeleteUserAuthNumLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthNumLogInfoResponse">
+    <wsdl:part element="tns:DeleteUserAuthNumLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserAuthFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:SelectUserAuthFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserAuthFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:SelectUserAuthFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:UpdateUserAuthFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:UpdateUserAuthFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthFailedLoginLogInfoListRequest">
+    <wsdl:part element="tns:GetUserAuthFailedLoginLogInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserAuthFailedLoginLogInfoListResponse">
+    <wsdl:part element="tns:GetUserAuthFailedLoginLogInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:InsertUserAuthFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserAuthFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:InsertUserAuthFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthFailedLoginLogInfoRequest">
+    <wsdl:part element="tns:DeleteUserAuthFailedLoginLogInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserAuthFailedLoginLogInfoResponse">
+    <wsdl:part element="tns:DeleteUserAuthFailedLoginLogInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserInviteCodeRequest">
+    <wsdl:part element="tns:SelectUserInviteCode" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserInviteCodeResponse">
+    <wsdl:part element="tns:SelectUserInviteCodeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInviteCodeRequest">
+    <wsdl:part element="tns:UpdateUserInviteCode" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserInviteCodeResponse">
+    <wsdl:part element="tns:UpdateUserInviteCodeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInviteCodeListRequest">
+    <wsdl:part element="tns:GetUserInviteCodeList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInviteCodeListResponse">
+    <wsdl:part element="tns:GetUserInviteCodeListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInviteCodeRequest">
+    <wsdl:part element="tns:InsertUserInviteCode" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertUserInviteCodeResponse">
+    <wsdl:part element="tns:InsertUserInviteCodeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInviteCodeRequest">
+    <wsdl:part element="tns:DeleteUserInviteCode" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserInviteCodeResponse">
+    <wsdl:part element="tns:DeleteUserInviteCodeResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectAppScoreInfoRequest">
+    <wsdl:part element="tns:SelectAppScoreInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectAppScoreInfoResponse">
+    <wsdl:part element="tns:SelectAppScoreInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAppScoreInfoRequest">
+    <wsdl:part element="tns:UpdateAppScoreInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAppScoreInfoResponse">
+    <wsdl:part element="tns:UpdateAppScoreInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppScoreInfoListRequest">
+    <wsdl:part element="tns:GetAppScoreInfoList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppScoreInfoListResponse">
+    <wsdl:part element="tns:GetAppScoreInfoListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertAppScoreInfoRequest">
+    <wsdl:part element="tns:InsertAppScoreInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InsertAppScoreInfoResponse">
+    <wsdl:part element="tns:InsertAppScoreInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteAppScoreInfoRequest">
+    <wsdl:part element="tns:DeleteAppScoreInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteAppScoreInfoResponse">
+    <wsdl:part element="tns:DeleteAppScoreInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserNameByUserIDRequest">
+    <wsdl:part element="tns:SelectUserNameByUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserNameByUserIDResponse">
+    <wsdl:part element="tns:SelectUserNameByUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserNameListByUserIDRequest">
+    <wsdl:part element="tns:GetUserNameListByUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserNameListByUserIDResponse">
+    <wsdl:part element="tns:GetUserNameListByUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserNameArrByUserIDRequest">
+    <wsdl:part element="tns:GetUserNameArrByUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserNameArrByUserIDResponse">
+    <wsdl:part element="tns:GetUserNameArrByUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectEncryptValueRequest">
+    <wsdl:part element="tns:SelectEncryptValue" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectEncryptValueResponse">
+    <wsdl:part element="tns:SelectEncryptValueResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectDecryptValueRequest">
+    <wsdl:part element="tns:SelectDecryptValue" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectDecryptValueResponse">
+    <wsdl:part element="tns:SelectDecryptValueResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserIDWithAppIDRequest">
+    <wsdl:part element="tns:SelectUserIDWithAppID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserIDWithAppIDResponse">
+    <wsdl:part element="tns:SelectUserIDWithAppIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserIDByUserNameAndClientIDRequest">
+    <wsdl:part element="tns:GetUserIDByUserNameAndClientID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserIDByUserNameAndClientIDResponse">
+    <wsdl:part element="tns:GetUserIDByUserNameAndClientIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAppListByUserIDRequest">
+    <wsdl:part element="tns:GetAppListByUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppListByUserIDResponse">
+    <wsdl:part element="tns:GetAppListByUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserListByClientIDRequest">
+    <wsdl:part element="tns:GetUserListByClientID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserListByClientIDResponse">
+    <wsdl:part element="tns:GetUserListByClientIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAppUserInfoRequest">
+    <wsdl:part element="tns:GetAppUserInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAppUserInfoResponse">
+    <wsdl:part element="tns:GetAppUserInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserPageListByClientIDRequest">
+    <wsdl:part element="tns:GetUserPageListByClientID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserPageListByClientIDResponse">
+    <wsdl:part element="tns:GetUserPageListByClientIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAddAppUserRequest">
+    <wsdl:part element="tns:GetAddAppUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAddAppUserResponse">
+    <wsdl:part element="tns:GetAddAppUserResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetDeleteAppUserRequest">
+    <wsdl:part element="tns:GetDeleteAppUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetDeleteAppUserResponse">
+    <wsdl:part element="tns:GetDeleteAppUserResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetIsExistAppUserRequest">
+    <wsdl:part element="tns:GetIsExistAppUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetIsExistAppUserResponse">
+    <wsdl:part element="tns:GetIsExistAppUserResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetForbidUserUseAppRequest">
+    <wsdl:part element="tns:GetForbidUserUseApp" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetForbidUserUseAppResponse">
+    <wsdl:part element="tns:GetForbidUserUseAppResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetIdentCodeRequest">
+    <wsdl:part element="tns:GetIdentCode" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetIdentCodeResponse">
+    <wsdl:part element="tns:GetIdentCodeResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAuthInfoRequest">
+    <wsdl:part element="tns:GetAuthInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAuthInfoResponse">
+    <wsdl:part element="tns:GetAuthInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetCoinTokenIDRequest">
+    <wsdl:part element="tns:GetCoinTokenID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetCoinTokenIDResponse">
+    <wsdl:part element="tns:GetCoinTokenIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetCoinUserIDRequest">
+    <wsdl:part element="tns:GetCoinUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetCoinUserIDResponse">
+    <wsdl:part element="tns:GetCoinUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAccountValidRequest">
+    <wsdl:part element="tns:GetAccountValid" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountValidResponse">
+    <wsdl:part element="tns:GetAccountValidResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAuthListRequest">
+    <wsdl:part element="tns:GetAuthList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAuthListResponse">
+    <wsdl:part element="tns:GetAuthListResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetAuthAppIDRequest">
+    <wsdl:part element="tns:GetAuthAppID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetAuthAppIDResponse">
+    <wsdl:part element="tns:GetAuthAppIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetSendShortMsgRequest">
+    <wsdl:part element="tns:GetSendShortMsg" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetSendShortMsgResponse">
+    <wsdl:part element="tns:GetSendShortMsgResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetSendThirdPartyMsgRequest">
+    <wsdl:part element="tns:GetSendThirdPartyMsg" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetSendThirdPartyMsgResponse">
+    <wsdl:part element="tns:GetSendThirdPartyMsgResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserIDByAccessTokenAndAppIDRequest">
+    <wsdl:part element="tns:GetUserIDByAccessTokenAndAppID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserIDByAccessTokenAndAppIDResponse">
+    <wsdl:part element="tns:GetUserIDByAccessTokenAndAppIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserInfoByUserIDRequest">
+    <wsdl:part element="tns:GetUserInfoByUserID" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByUserIDResponse">
+    <wsdl:part element="tns:GetUserInfoByUserIDResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserInfoByUserNameRequest">
+    <wsdl:part element="tns:GetUserInfoByUserName" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByUserNameResponse">
+    <wsdl:part element="tns:GetUserInfoByUserNameResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserBelongAppByUserNameRequest">
+    <wsdl:part element="tns:GetUserBelongAppByUserName" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserBelongAppByUserNameResponse">
+    <wsdl:part element="tns:GetUserBelongAppByUserNameResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetUserBelongAppByEmailRequest">
+    <wsdl:part element="tns:GetUserBelongAppByEmail" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserBelongAppByEmailResponse">
+    <wsdl:part element="tns:GetUserBelongAppByEmailResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetIsUserOwnAppByUserNameRequest">
+    <wsdl:part element="tns:GetIsUserOwnAppByUserName" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetIsUserOwnAppByUserNameResponse">
+    <wsdl:part element="tns:GetIsUserOwnAppByUserNameResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetIsUserOwnAppByEmailRequest">
+    <wsdl:part element="tns:GetIsUserOwnAppByEmail" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GetIsUserOwnAppByEmailResponse">
+    <wsdl:part element="tns:GetIsUserOwnAppByEmailResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:portType name="ManageUser">
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoRequest"/>
+      <wsdl:output message="tns:GetUserInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="SelectUserInfo">
+      <wsdl:input message="tns:SelectUserInfoRequest"/>
+      <wsdl:output message="tns:SelectUserInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInfo">
+      <wsdl:input message="tns:UpdateUserInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInfo">
+      <wsdl:input message="tns:DeleteUserInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoList">
+      <wsdl:input message="tns:GetUserInfoListRequest"/>
+      <wsdl:output message="tns:GetUserInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInfo">
+      <wsdl:input message="tns:InsertUserInfoRequest"/>
+      <wsdl:output message="tns:InsertUserInfoResponse"/>
+    </wsdl:operation>
+
+
+    <wsdl:operation name="SelectUserDetInfo">
+      <wsdl:input message="tns:SelectUserDetInfoRequest"/>
+      <wsdl:output message="tns:SelectUserDetInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserDetInfo">
+      <wsdl:input message="tns:UpdateUserDetInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserDetInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetInfoList">
+      <wsdl:input message="tns:GetUserDetInfoListRequest"/>
+      <wsdl:output message="tns:GetUserDetInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserDetInfo">
+      <wsdl:input message="tns:InsertUserDetInfoRequest"/>
+      <wsdl:output message="tns:InsertUserDetInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserDetInfo">
+      <wsdl:input message="tns:DeleteUserDetInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserDetInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserHeadInfo">
+      <wsdl:input message="tns:SelectUserHeadInfoRequest"/>
+      <wsdl:output message="tns:SelectUserHeadInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHeadInfo">
+      <wsdl:input message="tns:UpdateUserHeadInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserHeadInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHeadInfoList">
+      <wsdl:input message="tns:GetUserHeadInfoListRequest"/>
+      <wsdl:output message="tns:GetUserHeadInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserHeadInfo">
+      <wsdl:input message="tns:InsertUserHeadInfoRequest"/>
+      <wsdl:output message="tns:InsertUserHeadInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserHeadInfo">
+      <wsdl:input message="tns:DeleteUserHeadInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserHeadInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserLoginInfo">
+      <wsdl:input message="tns:SelectUserLoginInfoRequest"/>
+      <wsdl:output message="tns:SelectUserLoginInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserLoginInfo">
+      <wsdl:input message="tns:UpdateUserLoginInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserLoginInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLoginInfoList">
+      <wsdl:input message="tns:GetUserLoginInfoListRequest"/>
+      <wsdl:output message="tns:GetUserLoginInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserLoginInfo">
+      <wsdl:input message="tns:InsertUserLoginInfoRequest"/>
+      <wsdl:output message="tns:InsertUserLoginInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserLoginInfo">
+      <wsdl:input message="tns:DeleteUserLoginInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserLoginInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAccountSafeInfo">
+      <wsdl:input message="tns:SelectUserAccountSafeInfoRequest"/>
+      <wsdl:output message="tns:SelectUserAccountSafeInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAccountSafeInfo">
+      <wsdl:input message="tns:UpdateUserAccountSafeInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserAccountSafeInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSafeInfoList">
+      <wsdl:input message="tns:GetUserAccountSafeInfoListRequest"/>
+      <wsdl:output message="tns:GetUserAccountSafeInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountSafeInfo">
+      <wsdl:input message="tns:InsertUserAccountSafeInfoRequest"/>
+      <wsdl:output message="tns:InsertUserAccountSafeInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAccountSafeInfo">
+      <wsdl:input message="tns:DeleteUserAccountSafeInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserAccountSafeInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthInfo">
+      <wsdl:input message="tns:SelectUserAuthInfoRequest"/>
+      <wsdl:output message="tns:SelectUserAuthInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthInfo">
+      <wsdl:input message="tns:UpdateUserAuthInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserAuthInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthInfoList">
+      <wsdl:input message="tns:GetUserAuthInfoListRequest"/>
+      <wsdl:output message="tns:GetUserAuthInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthInfo">
+      <wsdl:input message="tns:InsertUserAuthInfoRequest"/>
+      <wsdl:output message="tns:InsertUserAuthInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthInfo">
+      <wsdl:input message="tns:DeleteUserAuthInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserAuthInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserCharacterInfo">
+      <wsdl:input message="tns:SelectUserCharacterInfoRequest"/>
+      <wsdl:output message="tns:SelectUserCharacterInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserCharacterInfo">
+      <wsdl:input message="tns:UpdateUserCharacterInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserCharacterInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCharacterInfoList">
+      <wsdl:input message="tns:GetUserCharacterInfoListRequest"/>
+      <wsdl:output message="tns:GetUserCharacterInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserCharacterInfo">
+      <wsdl:input message="tns:InsertUserCharacterInfoRequest"/>
+      <wsdl:output message="tns:InsertUserCharacterInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserCharacterInfo">
+      <wsdl:input message="tns:DeleteUserCharacterInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserCharacterInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserPointInfo">
+      <wsdl:input message="tns:SelectUserPointInfoRequest"/>
+      <wsdl:output message="tns:SelectUserPointInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPointInfo">
+      <wsdl:input message="tns:UpdateUserPointInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserPointInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPointInfoList">
+      <wsdl:input message="tns:GetUserPointInfoListRequest"/>
+      <wsdl:output message="tns:GetUserPointInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserPointInfo">
+      <wsdl:input message="tns:InsertUserPointInfoRequest"/>
+      <wsdl:output message="tns:InsertUserPointInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserPointInfo">
+      <wsdl:input message="tns:DeleteUserPointInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserPointInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserGroupsInfo">
+      <wsdl:input message="tns:SelectUserGroupsInfoRequest"/>
+      <wsdl:output message="tns:SelectUserGroupsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserGroupsInfo">
+      <wsdl:input message="tns:UpdateUserGroupsInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserGroupsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsInfoList">
+      <wsdl:input message="tns:GetUserGroupsInfoListRequest"/>
+      <wsdl:output message="tns:GetUserGroupsInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserGroupsInfo">
+      <wsdl:input message="tns:InsertUserGroupsInfoRequest"/>
+      <wsdl:output message="tns:InsertUserGroupsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserGroupsInfo">
+      <wsdl:input message="tns:DeleteUserGroupsInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserGroupsInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserInviteFriendInfo">
+      <wsdl:input message="tns:SelectUserInviteFriendInfoRequest"/>
+      <wsdl:output message="tns:SelectUserInviteFriendInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInviteFriendInfo">
+      <wsdl:input message="tns:UpdateUserInviteFriendInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserInviteFriendInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInviteFriendInfoList">
+      <wsdl:input message="tns:GetUserInviteFriendInfoListRequest"/>
+      <wsdl:output message="tns:GetUserInviteFriendInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInviteFriendInfo">
+      <wsdl:input message="tns:InsertUserInviteFriendInfoRequest"/>
+      <wsdl:output message="tns:InsertUserInviteFriendInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInviteFriendInfo">
+      <wsdl:input message="tns:DeleteUserInviteFriendInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserInviteFriendInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthenticationsInfo">
+      <wsdl:input message="tns:SelectUserAuthenticationsInfoRequest"/>
+      <wsdl:output message="tns:SelectUserAuthenticationsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthenticationsInfo">
+      <wsdl:input message="tns:UpdateUserAuthenticationsInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserAuthenticationsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthenticationsInfoList">
+      <wsdl:input message="tns:GetUserAuthenticationsInfoListRequest"/>
+      <wsdl:output message="tns:GetUserAuthenticationsInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthenticationsInfo">
+      <wsdl:input message="tns:InsertUserAuthenticationsInfoRequest"/>
+      <wsdl:output message="tns:InsertUserAuthenticationsInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthenticationsInfo">
+      <wsdl:input message="tns:DeleteUserAuthenticationsInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserAuthenticationsInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectSysErrorLogInfo">
+      <wsdl:input message="tns:SelectSysErrorLogInfoRequest"/>
+      <wsdl:output message="tns:SelectSysErrorLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysErrorLogInfo">
+      <wsdl:input message="tns:UpdateSysErrorLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateSysErrorLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysErrorLogInfoList">
+      <wsdl:input message="tns:GetSysErrorLogInfoListRequest"/>
+      <wsdl:output message="tns:GetSysErrorLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSysErrorLogInfo">
+      <wsdl:input message="tns:InsertSysErrorLogInfoRequest"/>
+      <wsdl:output message="tns:InsertSysErrorLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysErrorLogInfo">
+      <wsdl:input message="tns:DeleteSysErrorLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteSysErrorLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserOnLineLogInfo">
+      <wsdl:input message="tns:SelectUserOnLineLogInfoRequest"/>
+      <wsdl:output message="tns:SelectUserOnLineLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserOnLineLogInfo">
+      <wsdl:input message="tns:UpdateUserOnLineLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserOnLineLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserOnLineLogInfoList">
+      <wsdl:input message="tns:GetUserOnLineLogInfoListRequest"/>
+      <wsdl:output message="tns:GetUserOnLineLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserOnLineLogInfo">
+      <wsdl:input message="tns:InsertUserOnLineLogInfoRequest"/>
+      <wsdl:output message="tns:InsertUserOnLineLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserOnLineLogInfo">
+      <wsdl:input message="tns:DeleteUserOnLineLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserOnLineLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserOnLineTime">
+      <wsdl:input message="tns:SelectUserOnLineTimeRequest"/>
+      <wsdl:output message="tns:SelectUserOnLineTimeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserOnLineTime">
+      <wsdl:input message="tns:UpdateUserOnLineTimeRequest"/>
+      <wsdl:output message="tns:UpdateUserOnLineTimeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserOnLineTimeList">
+      <wsdl:input message="tns:GetUserOnLineTimeListRequest"/>
+      <wsdl:output message="tns:GetUserOnLineTimeListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserOnLineTime">
+      <wsdl:input message="tns:InsertUserOnLineTimeRequest"/>
+      <wsdl:output message="tns:InsertUserOnLineTimeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserOnLineTime">
+      <wsdl:input message="tns:DeleteUserOnLineTimeRequest"/>
+      <wsdl:output message="tns:DeleteUserOnLineTimeResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserFailedLoginLogInfo">
+      <wsdl:input message="tns:SelectUserFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:SelectUserFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserFailedLoginLogInfo">
+      <wsdl:input message="tns:UpdateUserFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFailedLoginLogInfoList">
+      <wsdl:input message="tns:GetUserFailedLoginLogInfoListRequest"/>
+      <wsdl:output message="tns:GetUserFailedLoginLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserFailedLoginLogInfo">
+      <wsdl:input message="tns:InsertUserFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:InsertUserFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFailedLoginLogInfo">
+      <wsdl:input message="tns:DeleteUserFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectAppAuthNumLogInfo">
+      <wsdl:input message="tns:SelectAppAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:SelectAppAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppAuthNumLogInfo">
+      <wsdl:input message="tns:UpdateAppAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateAppAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppAuthNumLogInfoList">
+      <wsdl:input message="tns:GetAppAuthNumLogInfoListRequest"/>
+      <wsdl:output message="tns:GetAppAuthNumLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAppAuthNumLogInfo">
+      <wsdl:input message="tns:InsertAppAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:InsertAppAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppAuthNumLogInfo">
+      <wsdl:input message="tns:DeleteAppAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteAppAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthNumLogInfo">
+      <wsdl:input message="tns:SelectUserAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:SelectUserAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthNumLogInfo">
+      <wsdl:input message="tns:UpdateUserAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthNumLogInfoList">
+      <wsdl:input message="tns:GetUserAuthNumLogInfoListRequest"/>
+      <wsdl:output message="tns:GetUserAuthNumLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthNumLogInfo">
+      <wsdl:input message="tns:InsertUserAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:InsertUserAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthNumLogInfo">
+      <wsdl:input message="tns:DeleteUserAuthNumLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserAuthNumLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthFailedLoginLogInfo">
+      <wsdl:input message="tns:SelectUserAuthFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:SelectUserAuthFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthFailedLoginLogInfo">
+      <wsdl:input message="tns:UpdateUserAuthFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:UpdateUserAuthFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthFailedLoginLogInfoList">
+      <wsdl:input message="tns:GetUserAuthFailedLoginLogInfoListRequest"/>
+      <wsdl:output message="tns:GetUserAuthFailedLoginLogInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthFailedLoginLogInfo">
+      <wsdl:input message="tns:InsertUserAuthFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:InsertUserAuthFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthFailedLoginLogInfo">
+      <wsdl:input message="tns:DeleteUserAuthFailedLoginLogInfoRequest"/>
+      <wsdl:output message="tns:DeleteUserAuthFailedLoginLogInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserInviteCode">
+      <wsdl:input message="tns:SelectUserInviteCodeRequest"/>
+      <wsdl:output message="tns:SelectUserInviteCodeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInviteCode">
+      <wsdl:input message="tns:UpdateUserInviteCodeRequest"/>
+      <wsdl:output message="tns:UpdateUserInviteCodeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInviteCodeList">
+      <wsdl:input message="tns:GetUserInviteCodeListRequest"/>
+      <wsdl:output message="tns:GetUserInviteCodeListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInviteCode">
+      <wsdl:input message="tns:InsertUserInviteCodeRequest"/>
+      <wsdl:output message="tns:InsertUserInviteCodeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInviteCode">
+      <wsdl:input message="tns:DeleteUserInviteCodeRequest"/>
+      <wsdl:output message="tns:DeleteUserInviteCodeResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectAppScoreInfo">
+      <wsdl:input message="tns:SelectAppScoreInfoRequest"/>
+      <wsdl:output message="tns:SelectAppScoreInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppScoreInfo">
+      <wsdl:input message="tns:UpdateAppScoreInfoRequest"/>
+      <wsdl:output message="tns:UpdateAppScoreInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppScoreInfoList">
+      <wsdl:input message="tns:GetAppScoreInfoListRequest"/>
+      <wsdl:output message="tns:GetAppScoreInfoListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAppScoreInfo">
+      <wsdl:input message="tns:InsertAppScoreInfoRequest"/>
+      <wsdl:output message="tns:InsertAppScoreInfoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppScoreInfo">
+      <wsdl:input message="tns:DeleteAppScoreInfoRequest"/>
+      <wsdl:output message="tns:DeleteAppScoreInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserNameByUserID">
+      <wsdl:input message="tns:SelectUserNameByUserIDRequest"/>
+      <wsdl:output message="tns:SelectUserNameByUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserNameListByUserID">
+      <wsdl:input message="tns:GetUserNameListByUserIDRequest"/>
+      <wsdl:output message="tns:GetUserNameListByUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserNameArrByUserID">
+      <wsdl:input message="tns:GetUserNameArrByUserIDRequest"/>
+      <wsdl:output message="tns:GetUserNameArrByUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectEncryptValue">
+      <wsdl:input message="tns:SelectEncryptValueRequest"/>
+      <wsdl:output message="tns:SelectEncryptValueResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectDecryptValue">
+      <wsdl:input message="tns:SelectDecryptValueRequest"/>
+      <wsdl:output message="tns:SelectDecryptValueResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserIDWithAppID">
+      <wsdl:input message="tns:SelectUserIDWithAppIDRequest"/>
+      <wsdl:output message="tns:SelectUserIDWithAppIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserIDByUserNameAndClientID">
+      <wsdl:input message="tns:GetUserIDByUserNameAndClientIDRequest"/>
+      <wsdl:output message="tns:GetUserIDByUserNameAndClientIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAppListByUserID">
+      <wsdl:input message="tns:GetAppListByUserIDRequest"/>
+      <wsdl:output message="tns:GetAppListByUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserListByClientID">
+      <wsdl:input message="tns:GetUserListByClientIDRequest"/>
+      <wsdl:output message="tns:GetUserListByClientIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAppUserInfo">
+      <wsdl:input message="tns:GetAppUserInfoRequest"/>
+      <wsdl:output message="tns:GetAppUserInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserPageListByClientID">
+      <wsdl:input message="tns:GetUserPageListByClientIDRequest"/>
+      <wsdl:output message="tns:GetUserPageListByClientIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAddAppUser">
+      <wsdl:input message="tns:GetAddAppUserRequest"/>
+      <wsdl:output message="tns:GetAddAppUserResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetDeleteAppUser">
+      <wsdl:input message="tns:GetDeleteAppUserRequest"/>
+      <wsdl:output message="tns:GetDeleteAppUserResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsExistAppUser">
+      <wsdl:input message="tns:GetIsExistAppUserRequest"/>
+      <wsdl:output message="tns:GetIsExistAppUserResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetForbidUserUseApp">
+      <wsdl:input message="tns:GetForbidUserUseAppRequest"/>
+      <wsdl:output message="tns:GetForbidUserUseAppResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIdentCode">
+      <wsdl:input message="tns:GetIdentCodeRequest"/>
+      <wsdl:output message="tns:GetIdentCodeResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthInfo">
+      <wsdl:input message="tns:GetAuthInfoRequest"/>
+      <wsdl:output message="tns:GetAuthInfoResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetCoinTokenID">
+      <wsdl:input message="tns:GetCoinTokenIDRequest"/>
+      <wsdl:output message="tns:GetCoinTokenIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetCoinUserID">
+      <wsdl:input message="tns:GetCoinUserIDRequest"/>
+      <wsdl:output message="tns:GetCoinUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAccountValid">
+      <wsdl:input message="tns:GetAccountValidRequest"/>
+      <wsdl:output message="tns:GetAccountValidResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthList">
+      <wsdl:input message="tns:GetAuthListRequest"/>
+      <wsdl:output message="tns:GetAuthListResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthAppID">
+      <wsdl:input message="tns:GetAuthAppIDRequest"/>
+      <wsdl:output message="tns:GetAuthAppIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetSendShortMsg">
+      <wsdl:input message="tns:GetSendShortMsgRequest"/>
+      <wsdl:output message="tns:GetSendShortMsgResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetSendThirdPartyMsg">
+      <wsdl:input message="tns:GetSendThirdPartyMsgRequest"/>
+      <wsdl:output message="tns:GetSendThirdPartyMsgResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserIDByAccessTokenAndAppID">
+      <wsdl:input message="tns:GetUserIDByAccessTokenAndAppIDRequest"/>
+      <wsdl:output message="tns:GetUserIDByAccessTokenAndAppIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserInfoByUserID">
+      <wsdl:input message="tns:GetUserInfoByUserIDRequest"/>
+      <wsdl:output message="tns:GetUserInfoByUserIDResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserInfoByUserName">
+      <wsdl:input message="tns:GetUserInfoByUserNameRequest"/>
+      <wsdl:output message="tns:GetUserInfoByUserNameResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserBelongAppByUserName">
+      <wsdl:input message="tns:GetUserBelongAppByUserNameRequest"/>
+      <wsdl:output message="tns:GetUserBelongAppByUserNameResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserBelongAppByEmail">
+      <wsdl:input message="tns:GetUserBelongAppByEmailRequest"/>
+      <wsdl:output message="tns:GetUserBelongAppByEmailResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsUserOwnAppByUserName">
+      <wsdl:input message="tns:GetIsUserOwnAppByUserNameRequest"/>
+      <wsdl:output message="tns:GetIsUserOwnAppByUserNameResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsUserOwnAppByEmail">
+      <wsdl:input message="tns:GetIsUserOwnAppByEmailRequest"/>
+      <wsdl:output message="tns:GetIsUserOwnAppByEmailResponse"/>
+    </wsdl:operation>
+
+  </wsdl:portType>
+
+  <wsdl:binding name="ManageUserSOAP" type="tns:ManageUser">
+    <soap:binding style="document"
+      transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+
+    <wsdl:operation name="SelectUserDetInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserDetInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserDetInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserDetInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserDetInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserDetInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserDetInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserDetInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserDetInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserHeadInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserHeadInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserHeadInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserHeadInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserHeadInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserHeadInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserHeadInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserHeadInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserHeadInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserHeadInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserLoginInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserLoginInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserLoginInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserLoginInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLoginInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserLoginInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserLoginInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserLoginInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserLoginInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserLoginInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAccountSafeInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserAccountSafeInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAccountSafeInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserAccountSafeInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSafeInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserAccountSafeInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountSafeInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserAccountSafeInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAccountSafeInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserAccountSafeInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserAuthInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserAuthInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserAuthInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserAuthInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserAuthInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserCharacterInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserCharacterInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserCharacterInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserCharacterInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCharacterInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserCharacterInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserCharacterInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserCharacterInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserCharacterInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserCharacterInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserPointInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserPointInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPointInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserPointInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPointInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserPointInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserPointInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserPointInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserPointInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserPointInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserGroupsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserGroupsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserGroupsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserGroupsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserGroupsInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserGroupsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserGroupsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserGroupsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserGroupsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserInviteFriendInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserInviteFriendInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInviteFriendInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserInviteFriendInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInviteFriendInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInviteFriendInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInviteFriendInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserInviteFriendInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInviteFriendInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserInviteFriendInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthenticationsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserAuthenticationsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthenticationsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserAuthenticationsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthenticationsInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserAuthenticationsInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthenticationsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserAuthenticationsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthenticationsInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserAuthenticationsInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectSysErrorLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectSysErrorLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysErrorLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateSysErrorLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysErrorLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetSysErrorLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSysErrorLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertSysErrorLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysErrorLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteSysErrorLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserOnLineLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserOnLineLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserOnLineLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserOnLineLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserOnLineLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserOnLineLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserOnLineLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserOnLineLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserOnLineLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserOnLineLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserOnLineTime">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserOnLineTime" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserOnLineTime">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserOnLineTime" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserOnLineTimeList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserOnLineTimeList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserOnLineTime">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserOnLineTime" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserOnLineTime">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserOnLineTime" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFailedLoginLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserFailedLoginLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectAppAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectAppAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateAppAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppAuthNumLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAppAuthNumLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAppAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertAppAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteAppAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="UpdateUserAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthNumLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserAuthNumLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthNumLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserAuthNumLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserAuthFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserAuthFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserAuthFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserAuthFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAuthFailedLoginLogInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserAuthFailedLoginLogInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAuthFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserAuthFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAuthFailedLoginLogInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserAuthFailedLoginLogInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserInviteCode">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserInviteCode" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInviteCode">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateUserInviteCode" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInviteCodeList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInviteCodeList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInviteCode">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertUserInviteCode" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserInviteCode">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteUserInviteCode" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectAppScoreInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectAppScoreInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppScoreInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/UpdateAppScoreInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppScoreInfoList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAppScoreInfoList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAppScoreInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/InsertAppScoreInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppScoreInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/DeleteAppScoreInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserNameByUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserNameByUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserNameListByUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserNameListByUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserNameArrByUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserNameArrByUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectEncryptValue">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectEncryptValue" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectDecryptValue">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectDecryptValue" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="SelectUserIDWithAppID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/SelectUserIDWithAppID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserIDByUserNameAndClientID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserIDByUserNameAndClientID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAppListByUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAppListByUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserListByClientID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserListByClientID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAppUserInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAppUserInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserPageListByClientID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserPageListByClientID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAddAppUser">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAddAppUser" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetDeleteAppUser">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetDeleteAppUser" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsExistAppUser">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetIsExistAppUser" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetForbidUserUseApp">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetForbidUserUseApp" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIdentCode">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetIdentCode" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthInfo">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAuthInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetCoinTokenID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetCoinTokenID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetCoinUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetCoinUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAccountValid">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAccountValid" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthList">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAuthList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetAuthAppID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetAuthAppID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetSendShortMsg">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetSendShortMsg" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetSendThirdPartyMsg">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetSendThirdPartyMsg" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserIDByAccessTokenAndAppID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserIDByAccessTokenAndAppID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserInfoByUserID">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInfoByUserID" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserInfoByUserName">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserInfoByUserName" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserBelongAppByUserName">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserBelongAppByUserName" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetUserBelongAppByEmail">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetUserBelongAppByEmail" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsUserOwnAppByUserName">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetIsUserOwnAppByUserName" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetIsUserOwnAppByEmail">
+      <soap:operation
+        soapAction="http://auth.dbowner.com/ManageUser/GetIsUserOwnAppByEmail" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+  </wsdl:binding>
+
+  <wsdl:service name="ManageUser">
+    <wsdl:port binding="tns:ManageUserSOAP" name="ManageUserSOAP">
+      <soap:address location="http://192.168.0.197:9002/soap/userInfoSoap?wsdl"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

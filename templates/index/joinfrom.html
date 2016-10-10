@@ -1,0 +1,43 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/joinForm.js"></script>
+
+<div id="join_box_u">
+<div class="u_ico"><img src="{$userInfo.image}" width="50" height="50" /></div>
+<div class="u_profile">
+<ul>
+<li>{$userInfo.uName}</li>
+<li>{$userInfo.uEmail}</li>
+</ul>
+</div>
+</div>
+<div id="join_box">
+    <form method="POST" id="loginform" name="joinform" action="{$__ROOT__}/index/joinfrom.html">
+    	<div class="l_box title">{$Lang.JoinFrom}</div>
+        <div class="r_box">
+		    <div class="input_box">
+	             <div class="input_big l_input_box"><INPUT type="text" size="20" name="uName" id="uName" value="{$userInfo.uName}"></div><div id="uName_box" class="r_input_box">{$Lang.LoginUpdate}</div>
+	        </div>
+		    <div class="input_box">
+	             <div class="input_big l_input_box"><INPUT type="text" size="20" name="uEmail" id="uEmail" value=""></div><div id="uEmail_box" class="r_input_box">{$Lang.RegisterEmail}</div>
+	        </div>     
+	        <div class="input_box_b">
+	           <div ><input type="checkbox" name="agree" id="agree" /><label>{$Lang.HavedRead} <a href="javascript:void(0);" id="to_m">{$Lang.JoinRule}</a></label></div>
+	           <div class="input_sub" id="submit_btn"><span> {$Lang.JoinUser} </span></div>          
+	        </div>    
+        </div>
+    </form>
+</div>
+
+<div class="box_body" style="display:none">{$Lang.UseRule}<div id="box_body_msg">{include file='index/regFrom.html'}</div></div>
+<script language="javascript" type="text/javascript">
+var joinForm = new TjoinForm();
+joinForm.ns = '';
+joinForm.JS_LANG = {$JS_LANG};
+//页面完全再入后初始化
+$(document).ready(function(){
+	joinForm.init();
+});
+//释放
+$(window).unload(function(){
+	joinForm = null;
+});
+</script>

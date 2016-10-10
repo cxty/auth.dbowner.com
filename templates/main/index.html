@@ -1,0 +1,41 @@
+{include file='header.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/user_profile.js"></script>
+
+<div class="user_profile">
+	<div class="user_profile_left">
+    	<div class="user_profile_left_ico" ><img class="fancybox" id="user_ico" src="{$imagesUrl_2}" /></div>
+        <div class="user_profile_left_tool">
+        	<ul>
+            	<li id="u_profile" {if $smarty.get.0 == 'u_profile'}class="selected"{/if}><div></div><span>{$Lang.UserDetail}</span></li>   
+                <li id="u_private" {if $smarty.get.0 == 'u_private'}class="selected"{/if}><div></div><span>{$Lang.LoginManage}</span></li>
+                <li id="u_safe" {if $smarty.get.0 == 'u_safe'}class="selected"{/if}><div></div><span>{$Lang.SetSafe}</span></li>
+                <li id="u_points" {if $smarty.get.0 == 'u_points'}class="selected"{/if}><div></div><span>{$Lang.UserSorce}</span></li>
+                <li id="u_active" {if $smarty.get.0 == 'u_active'}class="selected"{/if}><div></div><span>{$Lang.ActiveAccount}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="user_profile_right">
+    	{include file="main/main.html"}
+    </div>
+    <div class="content_box_c">
+		
+    </div>
+</div>
+
+<script type="text/javascript">
+var User_Profile = new TUser_Profile();
+User_Profile.ns = '';
+User_Profile.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	User_Profile.init();
+});
+//释放
+$(window).unload(function(){
+	User_Profile = null;
+});
+</script>
+
+{include file='footer.html'}

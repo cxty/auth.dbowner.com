@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+body{ 
+	margin:0px; 
+	padding:0px;
+	font-family: Arial;
+	font-size:12px;
+}
+.content{
+	margin-left:-35px;
+	width:350px \9;*width:340px;
+}
+ul{ 
+	list-style:none;
+}
+li{ 
+	margin-top:10px;
+}
+ul li input[type="text"],.content input[type="password"]{
+	text-indent:8px;*text-indent:0;
+	width:380px;width:350px \9;*width:340px;
+	height:30px;
+}
+a{ 
+	text-decoration:none; 
+	color:#8fb5ee
+}
+.def_txt {
+    border: medium none;
+    color: #b3b3b3;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    margin-left:8px;
+	margin-top:-2px;
+    position: absolute;
+	width:350px \9;
+	*width:340px;
+}
+#sub_btn{ 
+	background:#2672ec; 
+	width:100px;
+	border: medium none; 
+	height:35px; 
+	color:#fff; 
+	cursor:pointer;
+	margin-top:20px;
+}
+
+.remind_info{
+	color:red;
+}

@@ -1,0 +1,77 @@
+{include file='header_auth.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/loginform_auth.js"></script>
+
+	{if !$vdata.showLogo}
+			<div class="login_right"><a href="/index/register?{$redirect}">{$Lang.Register}</a></div>
+		</div>
+	{/if}
+	</div>	
+
+<div class="auth_narrow_right">
+
+	<div class="auth_space" style="display:none;">{$Lang.JS_LANG.AppWelcome}{$theApp}{$Lang.JS_LANG.Application}</div>
+	
+	{if $vdata.sys == true}
+		<div class="narrow_top">
+			<img src="{$pic}" />
+			<div class="narrow_exp">
+				<p>{$theApp}</p>
+				<p>{$userDev}</p>
+				<p>{$Lang.AppTotal}{$count}{$Lang.AppMsg}</p>
+			</div>
+		</div>
+	{else}
+		<div class="narrow_top_self">
+			{if $vdata.wordShow}
+				<div class="narrow_top_self_exp"><img src="{$pic}" />{$theApp}</div>
+			{/if}
+		</div>
+	{/if}
+	
+	<div class="auth_login">
+		<form method="POST" id="loginform" name="loginform" action="/oauth/login?{$urlStr}">
+			<input type="hidden" name="UserID" id="UserID" />
+			<input type="hidden" name="display" value="web" />
+			
+			<div class="form_input">
+				<div class="form_input_wrap"><input type="text" name="uEmail" id="uEmail" autocomplete="off" /></div>			
+				<div class="form_input_wrap"><input type="password" name="uPWD" id="password" autocomplete="off" /></div>
+			</div>
+					
+			<div class="form_check"><input type="checkbox" id="auth_pro_check" value="yes" checked="checked" /><label>{$Lang.RemindRead} <a href="javascript:void(0);" id="auth_pro"><< {$Lang.RemindPro} >></a></label></div>		
+			
+			<div class="form_button">
+				<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.Login}" />
+				<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+			</div>
+		</form>
+		
+		<div class="auth_msg">{if $msg}{$msg}{/if}</div>
+		
+		<div id="auth_box_msg" style="display:none">{include file='index/regFrom.html'}</div>
+		
+		{if $vdata.showLogo}
+			<div class="login_btn"><a href="/index/register?{$redirect}">{$Lang.RegisterAccount}</a></div>
+		{/if}
+	</div>
+	
+</div>
+
+<script language="javascript" type="text/javascript">
+var LoginAuth = new TLoginAuth();
+LoginAuth.Partners_json = {$Partners_json};
+LoginAuth.PH_LANG = {$JS_LANG};
+LoginAuth.sData = {$sData};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	LoginAuth.init();
+});
+//释放
+$(window).unload(function(){
+	LoginAuth = null;
+});
+</script>
+
+{include file='footer_auth.html'}

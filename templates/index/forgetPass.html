@@ -1,0 +1,29 @@
+{include file='header.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/forgetPass.js"></script>
+
+<div class="forgetpwd_box">
+	<div class="fg_title"><span class="cl_49ACCF">{$Lang.RetakePwd}</span> => {$Lang.CheckMail} => {$Lang.SetNewPwd}</div>
+	<div class="fg_cont">
+		<div class="fg_col"><dl>{$Lang.AccountEmail}</dl><dt><input type="text" class="input" id="uEmail" /></dt></div>
+	</div>
+	<div class="input_sub fg_btn" id="submit_btn"><span>{$Lang.Submint}</span></div>
+</div>
+
+<div class="content_box_c"></div>
+
+<script type="text/javascript">
+var forgetPass = new TforgetPass();
+forgetPass.JS_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	forgetPass.init();
+});
+//释放
+$(window).unload(function(){
+	forgetPass = null;
+});
+</script>
+
+{include file='footer.html'}

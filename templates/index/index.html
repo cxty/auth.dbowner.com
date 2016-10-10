@@ -1,0 +1,26 @@
+{include file='header.html'}
+
+<div class="content_box">
+    <div class="content_box_c">
+           <div class="content">
+           		{if $pageModel == 'inviteCode'}
+           			{include file='index/inviteCode.html'}
+           		{else}
+           			{if $smarty.get._action == 'register'}
+	           			{include file='index/register.html'}
+					{elseif $smarty.get._action == 'login'}
+						{include file='index/login.html'}
+					{elseif $smarty.get._action == 'beforeJoinfrom'}
+						{include file='index/loginThirdParty.html'}
+					{elseif $smarty.get._action == 'resetpwd'}
+						{include file='index/resetpwd.html'}
+					{else}
+						{include file='index/message.html'}
+					{/if}
+           		{/if}
+           		
+           </div>
+    </div>
+</div>
+
+{include file='footer.html'}

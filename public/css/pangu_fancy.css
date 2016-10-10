@@ -1,0 +1,220 @@
+body{
+	background:#fff;
+	margin-top:60px;
+	margin-left:-80px;
+	overflow:hidden;
+	min-height:300px;
+}
+.reset_pwd{
+	margin-top:-40px;
+}
+.input_box{
+	margin-bottom:10px;
+}
+.input_box_login{
+	margin-top:120px;
+	padding-top:30px;
+}
+.select_big{
+	vertical-align:middle;
+}
+.select_big select{
+	border: medium none;
+    color: #ABABAB;
+    font-family: Arial;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 4px 0 0 4px;
+    text-shadow: 0 1px 1px;
+	height:46px;
+	line-height:46px;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 5px 5px;
+	padding-top:6px;
+}
+.select_big select.option{
+	
+	vertical-align:middle;
+}
+.select_big select:hover{
+    background-color: #fff;
+    border: 1px solid #7dbef1;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 5px #CCCCCC;
+}
+.h_200{
+	height:480px;
+}
+.input_authcode_btn{
+	float:left;
+	height:46px;
+	line-height:46px;
+	margin-left:10px;
+}
+
+#reg_box{
+	margin: 0px 90px; 
+	width:820px;
+	font-size:12px;
+	padding-top:50px;
+}
+#reg_box .reset_pwd{
+	margin-left:100px;
+}
+#reg_box .input_box
+{
+	width:100%;
+	height:50px;
+	padding:5px;
+	color:#6E6C64;
+}
+#reg_box .input_box .input_box_title{
+	float:left;
+	padding:10px;
+	width:60px;
+	text-align:center;
+}
+#reg_box .input_box .input_authcode{
+	background:red;
+    width:120px;
+    height:46px;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 5px 5px;
+}
+#reg_box .input_box .input_authcode input{
+	width:110px;
+}
+#reg_box .input_box .input_authcode_btn input[type="button"]{
+	width:140px;
+	cursor:pointer;
+	color:#fff;
+	background:#7dbef1;
+	border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 5px #CCCCCC;
+}
+#reg_box .input_box .input_box_title_fance{
+	float:left;
+	padding:10px;
+	width:80px;
+	text-align:center;
+}
+#reg_box .input_box input{
+	border: medium none;
+    color: #ABABAB;
+    height: 37px;
+    line-height: 20px;
+    margin: 4px 0 0 4px;
+    width: 393px;
+	font-size:24px;
+	font-weight:bold;
+	font-family:Arial;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0.5, 0.5);
+}
+.input:hover {
+    border: 1px solid #57B2D2; 
+    text-shadow: 0 1px 1px;
+	-webkit-box-shadow:0px 1px 2px #9f9f9f;
+       -moz-box-shadow:0px 1px 2px #9f9f9f;
+            box-shadow:0px 1px 2px #9f9f9f;
+}
+.input_big{
+    width:400px;
+    height:46px;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 5px 5px;
+}
+.input_big:hover{
+    width:400px;
+    height:46px;
+	background-color: #fff;
+    border: 1px solid #7dbef1;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 5px #CCCCCC;
+}
+#reg_box .input_box .l_input_box{
+	float:left;
+}
+#reg_box .input_box .r_input_box{
+	float:left;
+	padding:10px 0 10px 10px;
+}
+#reg_box .input_box_login{
+	margin:20px 0 0 -140px;
+	text-align:center;
+}
+.input_sub{
+	background:url(../images/pangu.png) -595px 0px no-repeat;
+    width:132px;
+    height:40px;
+	font-size:24px;
+	font-weight:bold;
+	MARGIN-RIGHT: auto;
+	MARGIN-LEFT: auto;
+	cursor:pointer;
+	color:#000;
+	text-shadow: 1px 1px 0 #f0f0f0;
+	text-align:center;
+}
+.input_sub:hover{
+	background:url(../images/pangu.png) -595px -40px no-repeat;
+    width:132px;
+    height:40px;
+	font-size:24px;
+	font-weight:bold;
+	MARGIN-RIGHT: auto;
+	MARGIN-LEFT: auto;
+	cursor:pointer;
+	color:#000;
+}
+.input_sub{
+	background:url(../images/pangu.png) -595px 0px no-repeat;
+    width:132px;
+    height:40px;
+	font-size:24px;
+	font-weight:bold;
+	MARGIN-RIGHT: auto;
+	MARGIN-LEFT: auto;
+	cursor:pointer;
+	color:#000;
+	text-shadow: 1px 1px 0 #f0f0f0;
+	text-align:center;
+}
+.input_sub:hover{
+	background:url(../images/pangu.png) -595px -40px no-repeat;
+    width:132px;
+    height:40px;
+	font-size:24px;
+	font-weight:bold;
+	MARGIN-RIGHT: auto;
+	MARGIN-LEFT: auto;
+	cursor:pointer;
+	color:#000;
+}
+.input_sub span{
+	line-height:40px;
+}
+#reg_box .reset_comp{
+	width:396px;
+	padding-left:85px;
+}
+#complexitywrap {
+    border: 1px solid #C5C5C5;
+    border-radius: 5px 5px 5px 5px;
+    margin: 15px 0;
+    padding: 0;
+}
+#complexity {
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 5px #303030;
+    color: #CCCCCC;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+}
+.color_red{
+	color:red;
+}

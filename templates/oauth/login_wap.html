@@ -1,0 +1,59 @@
+{include file='header_wap.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/loginform_wap.js"></script>
+	
+		<div class="login_right"><a href="/index/register?{$redirect}">{$Lang.JS_LANG.Register}</a></div>
+	</div>
+	
+	<div id="login_form">
+		<div class="line"></div>
+		<div class="login_content">{$Lang.JS_LANG.AppWelcome}{$theApp}{$Lang.JS_LANG.Application}</div>
+		
+		<div id="login_common">
+			<form method="POST" id="loginform" name="loginform" action="/oauth/login?{$urlStr}">
+				<input type="hidden" name="UserID" id="UserID" />
+				<input type="hidden" name="display" value="mobile" />
+				
+				<div class="form_input">
+					<div><input type="text" size="20" name="uEmail" id="uEmail" /></div>			
+					<div><input type="password" size="20" name="uPWD" id="password" /></div>
+				</div>
+						
+				<div class="form_button">
+					<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.Login}" />
+					<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+				</div>
+			</form>
+		</div>	
+	</div>
+	
+	<div id="login_thirdparty">
+		<div class="line"></div>
+		<div class="login_third_title">{$Lang.JS_LANG.OtherLoginWay}</div>
+		<div id="login_more">			
+			<ul>
+				{foreach item=item key=key from=$thirdArr}
+					<li><a href="javascript:loginForm.dothirdlogin('{$key}')"><dt class="{$item.icon}">{if !$item.icon}{$item.txt}{/if}</dt></a></li>			
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+	
+	<div id="login_explain_tog"><div class="show_right"></div><div></div></div>
+
+<script type="text/javascript">
+var loginForm = new TloginForm();
+loginForm.PH_LANG = {$JS_LANG};
+loginForm.def_type = '{$def_type}';
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginForm.init();
+});
+//释放
+$(window).unload(function(){
+	loginForm = null;
+});
+</script>
+
+{include file='footer_wap.html'}

@@ -1,0 +1,154 @@
+{include file='header_nature.html'}
+
+<link href="{$__PUBLIC__}/css/third_logo_nature.css" rel="stylesheet" type="text/css" />
+<!-- 
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/loginForm.js"></script>
+ -->
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/loginFormNature.js"></script>
+
+<div class="login_wrap {if $bg_trans == 1}bg_trans{else}bg_ntrans{/if}"><div class="login_box">
+	<!-- 
+	<div class="lg_top" id="lg_type">
+		<div class="lg_top_item lg_top_on" ident="pwd">
+			<div class="lg_top_text lg_top_line">{$Lang.Login_Account}</div>
+			<div class="lg_top_blank">
+				{if $bg_trans != 1}
+					<img src="{$__PUBLIC__}/images/tl_trias.png" />
+				{/if}
+			</div>
+		</div>
+		<div class="lg_top_item" ident="tl">
+			<div class="lg_top_text lg_top_line">{$Lang.Login_Third}</div>
+			<div class="lg_top_blank">
+				{if $bg_trans != 1}
+					<img src="{$__PUBLIC__}/images/tl_trias.png" />
+				{/if}
+			</div>
+		</div>
+		<div class="lg_top_item" ident="qr">
+			<div class="lg_top_text">{$Lang.Login_Qr}</div>
+			<div class="lg_top_blank">
+				{if $bg_trans != 1}
+					<img src="{$__PUBLIC__}/images/tl_trias.png" />
+				{/if}
+			</div>
+		</div>
+	</div>
+	 -->
+	<div class="lg_middle">
+		<div class="lg_ct" id="lg_ct_0">
+			<form method="post" id="login_form" action="{$checkLoginUrl}">
+				<div class="lg_login_box">
+					<div class="lo_input_box">
+						<input type="text" name="uEmail" id="uEmail_nature" />
+						<input type="password" name="uPWD" id="passwords_nature" />
+					</div>
+					<div class="lo_btn_msg">{$msgkey}</div>
+					<div class="lo_btn_box">
+						<div class="lo_btn_sub" id="sub_btn"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 
+		<div class="lg_ct" id="lg_ct_0" style="display:none;">
+			<form method="post" id="login_form" action="{$checkLoginUrl}">
+				<div class="lg_ct_ip">
+					<div class="lg_ct_exp"><img src="{$__PUBLIC__}/images/tl_email.png" /></div>
+					<input type="text" class="input" name="uEmail" id="uEmail">
+				</div>
+				<div class="lg_ct_ip">
+					<div class="lg_ct_exp"><img src="{$__PUBLIC__}/images/tl_pwd.png" /></div>
+					<input type="password" class="input" name="uPWD" id="password">
+				</div>
+				<div class="lg_ct_pw">
+					<span>{$msgkey}</span>
+					<a id="btn_forget" href="javascript:void(0);" target="_blank">{$Lang.ForgetPass}</a>
+				</div>
+		        <div class="lg_ct_btn"><div class="input_sub input_sub_w380" id="submit_btn"><span> {$Lang.Login} </span></div></div>  
+			</form>
+		</div>
+		<div class="lg_ct" id="lg_ct_1">
+			{if $thirdLogin}
+				<ul id="lg_ct_list_box">
+					{foreach item=item key=key from=$thirdLogin}
+						<li id="{$item.partner}" class="def_partners_t"><dt class="{$item.icon}">{if !$item.icon}{$item.txt}{/if}</dt></li>
+					{/foreach}
+				</ul>
+			{/if}
+		</div>
+		<div class="lg_ct" id="lg_ct_2">
+			<div class="lg_ct_img"><img src="{$qrCode}" /></div>
+			<div class="lg_ct_bw">{$Lang.QrLogin}<a href="{$clientSDK}" target="_blank">{$Lang.Install}</a></div>
+		</div>
+		 -->
+	</div>
+	<!-- 
+	<div class="lg_bottom">
+		<div class="lgb_left">
+			<img src="{$__PUBLIC__}/images/tl_go.png" />
+			<div class="lgb_lbtn"><a id="btn_register" href="javascript:void(0);" target="_blank">{$Lang.Register_Free2}</a></div>
+		</div>
+		<div class="lgb_right"><a href="javascript:window.parent.location.href='https://auth.dbowner.com'" target="_blank"><img src="{$__PUBLIC__}/images/tl_logo.png" /></a></div>
+	</div>
+	 -->
+</div></div>
+
+<script type="text/javascript">
+$(function(){
+	function GetRequest() {
+	   var url = window.location.href; //获取url中"?"符后的字串
+	   var theRequest = new Object();
+	   if (url.indexOf("?") != -1) {
+	      var str = url.substr(1);
+	      strs = str.split("&");
+	      for(var i = 0; i < strs.length; i ++) {
+	         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	      }
+	   }
+	   return theRequest;
+	}
+
+	var phref = window.location.href;
+	if ( phref ) {
+		var request = new Object(); 
+		request = GetRequest(); 
+		var src_forget = request['src_forget'];
+		
+		if ( typeof(src_forget) != 'undefined' ) {
+			$('#btn_forget').attr('href', src_forget);
+		}
+		src_forget = null;
+		
+		var src_register = request['src_register'];
+		if ( typeof(src_register) != 'undefined' ) {
+			$('#btn_register').attr('href', src_register);
+		} 
+		src_register = null; 
+	}
+	phref = null;
+	
+});
+
+
+var jdata = {$JS_LANG};
+/*
+var loginForm = new TloginForm();
+loginForm.ns = '';
+loginForm.loginWay = {$loginWay},
+loginForm.Partners_json = {$Partners_json};
+loginForm.JS_LANG = {$JS_LANG};
+loginForm.vData = {$vData};
+loginForm.page_type = 2;
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginForm.init();
+});
+//释放
+$(window).unload(function(){
+	loginForm = null;
+});
+*/
+</script>
+
+{include file='footer_nature.html'}

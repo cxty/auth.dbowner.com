@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0 auto; padding:0px; font-family:Arial; font-size:10pt; overflow:hidden; background-color:#ffffff;
+}
+ul{ list-style:none; padding:0px; margin:0px;}
+li{ margin-top:10px;}
+a{ text-decoration:none; color:#8fb5ee}
+.content_top{width:100%; position:absolute; top:0%}
+.content_top .content_top_right{width:100%;margin:0 auto;}
+.content_top .content_top_right li {margin-top:15px;}
+.content_top .content_top_right #btn_login{ background:#2672ec; width:100px;border: medium none; height:35px; color:#fff; cursor:pointer; margin-top:20px;}
+.content_top .content_top_right .title{  width:259px; height:50px;}
+.content_top .content_top_right .title img{width:259px;}
+.content_bottom{width:100%; background-color:#eeeeee; position:absolute; bottom:0px; text-align:right}
+.content_bottom .link{width:80%;margin:0 auto;}
+.content_bottom .link .link_bottom{  }
+.content_bottom .link .link_bottom li{ float:left; margin-left:5px;}
+.link_top{ font-size:14pt; margin-top:15px;}
+.introduction{ margin-top:25px;}
+.CannotAccess{margin-top:25px;}
+#save_bt{ background-color:#0066CC}

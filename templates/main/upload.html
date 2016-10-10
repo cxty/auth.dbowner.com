@@ -1,0 +1,65 @@
+<html>
+     <head>
+     <title>景点管理</title>
+       <meta http-equiv="content-type" content="text/html; charset=utf-8">  
+      <link rel="stylesheet" href="../../css/share.css" type="text/css">
+       <script type="text/javascript" src="../../js/jquery-1.6.2.js"></script>
+       <script type="text/javascript" src="../../js/ajaxupload.3.6.js"></script>
+       <script type="text/javascript">
+       $(document).ready(function(){
+     var button = $('#upload_button'), interval;
+     var fileType = "pic",fileNum = "one"; 
+    new AjaxUpload(button,{
+         action: 'upload.php',
+         name: 'userfile',
+         onSubmit : function(file, ext){
+             if(fileType == "pic")
+             {
+                 if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
+                     this.setData({
+                         'info': '文件类型为图片'
+                     });
+                 } else {
+                     button.text('非图片类型文件，重新上传');
+                     return false;               
+                }
+             }
+             $("#pic_path").val(file);            
+            button.text('文件上传中');
+             
+            if(fileNum == 'one')
+                 this.disable();
+             interval = window.setInterval(function(){
+                 var text = button.text();
+                 if (text.length < 14){
+                     button.text(text + '.');                    
+                } else {
+                     button.text('文件上传中');             
+                }
+             }, 200);
+         },
+         onComplete: function(file, response){
+             if(response.indexOf("success")<0)
+                 alert(response);
+             else
+             {
+                 $arr=new Array();
+                 $arr=response.split(":")
+                 $("#ima").attr("src","upload/"+$arr[1]);
+                 $("#ima").show();
+                 button.text('重新上传'); 
+            }            
+            window.clearInterval(interval);         
+            this.enable();
+         }
+     });
+  
+ });
+       </script>
+       </head>
+       
+<ul>
+ 
+    <input type="text" size="50" style="float:left ;" id="pic_path"><div id="upload_button" style="float: left;border-bottom: #cc4f00 1px solid; border-left: #ff9000 1px solid;border-top: #ff9000 1px solid;   border-right: #cc4f00 1px solid;text-align: center; padding: 2px 10px; line-height: 16px; background: #e36b0f;  height: 24px; color: #fff; font-size: 12px; cursor: pointer;">文件上传</div>
+  <img src="" alt="预览图片" id="ima" style="display: none;">  
+    </ul> 

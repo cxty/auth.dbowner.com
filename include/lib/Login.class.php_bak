@@ -1,0 +1,1088 @@
+<?php 
+/**
+ * 处理用户信息类
+ * 
+ * @author wbqing405@sina.com
+ */
+
+include_once('Config.class.php'); //引入处理类的编码格式 utf-8
+include_once('Addslashes.class.php'); //数据过滤类
+include_once('ComFun.class.php'); //公共方法
+
+class Login{
+	
+	var $tbUserInfo = 'tbUserInfo'; //用户基础信息表
+	
+	var $tbUserLoginInfo = 'tbUserLoginInfo'; //用户登录累计信息
+	
+	var $tbUserOnLineLogInfo = 'tbUserOnLineLogInfo';  //用户在线记录信息 
+	
+	var $tbUserFailedLoginLogInfo = 'tbUserFailedLoginLogInfo'; //用户登录失败记录信息 
+	
+	var $tbUserAuthenticationsInfo = 'tbUserAuthenticationsInfo'; //第三方平台登录信息
+	
+	var $tbUserOnLineTime = 'tbUserOnLineTime'; //用户在线时间记录信息(每月一条)
+	
+	public function __construct($base){
+		$this->model  = $base;		
+
+		$this->init();
+	}
+	
+	/**
+	 * 初始化
+	 */
+	function init(){
+		$this->Addslashes = new Addslashes();
+	}
+	/**
+	 * 检查邮箱的唯一性
+	 */
+	function doCheckEmail($eMail){
+		$eMail = $this->Addslashes->get_addslashes($eMail);
+		//$condition['uEmail'] = $eMail;
+		$condition = 'uEstate != 2 and uEmail = \''.$eMail.'\'';
+		$re = $this->model->table($this->tbUserInfo)->where($condition)->select();
+		if($re){
+			return $re[0]['UserID'];
+		}else{
+			return -1;
+		}
+	}
+	/**
+	 * 账户注册数据处理
+	 */
+	public function doRegister($post){
+		$fieldArr = $this->Addslashes->get_addslashes($post);
+
+		$fieldArr['uPWD']          = md5(trim($fieldArr['uPWD']));
+		$fieldArr['uCode']         = ComFun::getRandom();
+		$fieldArr['uAppendTime']   = time();
+		$fieldArr['uEstate']       = -1;
+	
+		return $this->addNewUser($fieldArr);
+	}	
+	/**
+	 * 插入新用户表记录
+	 */
+	function addNewUser($fieldArr){		
+		$uName = $fieldArr['uName'];
+		
+		$re = $this->checkRepeatName($fieldArr);
+		if($re['uName'] == $uName){
+			$fieldArr['uName'] = $fieldArr['uName'];
+			$this->addNewUser($re);
+		}elseif($re == -1){
+			$fieldArr['uName'] = $fieldArr['uName'];
+		}else{
+			$fieldArr['uName'] = $re['uName'];
+		}
+
+		$iData['uEmail']      = $fieldArr['uEmail'];
+		$iData['uName']       = $fieldArr['uName'];
+		$iData['uPWD']        = $fieldArr['uPWD'];
+		$iData['uCode']       = $fieldArr['uCode'];
+		$iData['uAppendTime'] = $fieldArr['uAppendTime'];
+		$iData['uEstate']     = $fieldArr['uEstate'];
+		
+		$UserID = $this->model->table($this->tbUserInfo)->data($iData)->insert();
+	
+		if($UserID){		
+			$tArr['UserID'] = $UserID;
+			$tArr['uName']  = $fieldArr['uName'];
+			
+			//操作log表
+			$this->UsLogInfo($tArr);
+			$this->UsOnLineTimeLog($tArr);	
+			$this->UsOnLineLog($tArr);
+		
+			//记录$_COOKIE
+			$cookies['UserID']     = $UserID;
+			$cookies['uName']      = $fieldArr['uName'];
+			$cookies['remusrname'] = $fieldArr['remusrname'];
+				
+			$this->toSetCookies($cookies);
+
+			//发邮件
+			if($fieldArr['uEmail']){
+				if($fieldArr['uEstate'] == -2){
+					$type = 'joinReg';
+				}else{
+					$type = 'register';
+				}
+				
+				$emailArr['uName']   = $fieldArr['uName'];
+				$emailArr['uEmail']  = $fieldArr['uEmail'];
+				$emailArr['uCode']   = $fieldArr['uCode'];
+					
+				ComFun::toSendMail($emailArr,$type);
+			}
+			
+			return $UserID;
+		}else{
+			return -1;
+		}
+	}
+	/**
+	 * 检查用户名是否重复，若是则在用户名后加3个随机数
+	 */
+	function checkRepeatName($fieldArr){
+		$condition['uName'] = $fieldArr['uName'];
+		
+		$re = $this->model->table($this->tbUserInfo)->where($condition)->select();
+
+		if($re){
+			$fieldArr['uName'] = $fieldArr['uName'].mt_rand(100,999);
+			return $fieldArr;
+		}else{
+			return -1;
+		}	
+	}
+	/**
+	 * 登录检验
+	 */
+	public function doCheckLogin($fieldArr){
+		$fieldArr = $this->Addslashes->get_addslashes($fieldArr);
+		
+		$uPWD = md5(trim($fieldArr['uPWD']));
+	
+		//$condition['uEmail'] = $fieldArr['uEmail'];
+		//$condition['uPWD']   = $uPWD;
+		$condition = 'uEstate != 2 and uEmail = \''.$fieldArr['uEmail'].'\' and uPWD = \''.$uPWD.'\'';
+		
+		$list = $this->model->table($this->tbUserInfo)->where($condition)->select();
+
+		if($list){		
+			if(trim($list[0]['uEmail']) == trim($fieldArr['uEmail']) && trim($list[0]['uPWD']) == $uPWD){
+				$tArr['UserID'] = $list[0]['UserID'];
+				$tArr['uName']  = $list[0]['uName'];
+
+				//操作log表
+				$this->UsLogInfo($tArr);
+				$this->UsOnLineTimeLog($tArr);
+				$this->UsOnLineLog($tArr);
+				
+				//记录$_COOKIE
+				$cookies['UserID']     = $tArr['UserID'];
+				$cookies['uName']      = $tArr['uName'];
+				$cookies['remusrname'] = $fieldArr['remusrname'];
+	
+				$this->toSetCookies($cookies);
+	
+				return $list[0]['UserID'];
+			}else{
+				$this->FailedLoginLog();
+	
+				return -2;
+			}
+		}else{
+			$this->FailedLoginLog();
+				
+			return -1;
+		}
+	}
+	/**
+	 * 登出处理
+	 */
+	public function doLoginOut($UserID=false){
+		if($UserID){
+			$tArr['UserID'] = $UserID;
+		}else{
+			$tArr['UserID'] = $this->getCookies('UserID');
+		}
+
+		if($tArr['UserID']){
+			//操作log表
+			$this->UdOnLineLog($tArr);
+		}
+			
+		//注销$_COOKIE
+		$this->toDestoryCookies();
+	}
+	/**
+	 * 用户登录累计信息
+	 */
+	function UsLogInfo($fieldArr){
+		$condition['UserID'] = $fieldArr['UserID'];
+		
+		$re = $this->model->table($this->tbUserLoginInfo)->where($condition)->select();
+		
+		if($re){
+			$uData['uLastActivity'] = time();
+			
+			$this->model->table($this->tbUserLoginInfo)->data($uData)->where($condition)->update();
+			
+			return 1;
+		}else{
+			$tArr['UserID'] = $fieldArr['UserID'];
+			
+			return $this->UiLogInfo($tArr);
+		}
+	}
+	/**
+	 * 增加用户登录累计信息   
+	 */
+	private function UiLogInfo($fieldArr){
+		$nowTime = time();
+		$IP      = ComFun::getIP();
+
+		if($fieldArr['olTime']){
+			$olTime = $fieldArr['olTime'];
+		}else{
+			$olTime = 0;
+		}
+		
+		$iData['UserID']        = $fieldArr['UserID'];
+		$iData['uUpAppendTime'] = $nowTime;
+		$iData['uLastActivity'] = $nowTime;
+		$iData['uLastIP']       = $IP;
+		$iData['uRegIP']        = $IP;
+		$iData['olTime']        = $olTime;
+			
+		return $this->model->table($this->tbUserLoginInfo)->data($iData)->insert();
+	}
+	/**
+	 * 用户在线记录信息  
+	 */
+	function UsOnLineLog($fieldArr){
+		$condition['UserID'] = $fieldArr['UserID'];
+		
+		$re = $this->model->table($this->tbUserOnLineLogInfo)->where($condition)->select();
+	
+		if($re){
+			$uData['oLastTime'] = time();
+				
+			$this->model->table($this->tbUserOnLineLogInfo)->data($uData)->where($condition)->update();
+			
+			$UserOnLineLogID = $re[0]['UserOnLineLogID'];
+			
+		}else{
+			$nowTime = time();
+			$IP      = ComFun::getIP();
+				
+			$iData['UserID']        = $fieldArr['UserID'];
+			$iData['oIP']           = $IP;
+			$iData['oUserName']     = $fieldArr['uName'];
+			$iData['oAppendTime']   = $nowTime;
+			$iData['oLastTime']     = $nowTime;
+			$iData['oCode']         = $_COOKIE['PHPSESSID'];
+				
+			$UserOnLineLogID = $this->model->table($this->tbUserOnLineLogInfo)->data($iData)->insert();
+		}
+		
+		$cookies['UserOnLineLogID'] = $UserOnLineLogID;
+			
+		$this->toSetCookies($cookies);
+		
+		return $UserOnLineLogID;
+	}
+	/**
+	 * 用户在线时间记录信息(每月一条)    
+	 */
+	function UsOnLineTimeLog($fieldArr){
+		$tMonth = date('m');
+		
+		$condition['UserID']    = $fieldArr['UserID'];
+		$condition['thismonth'] = $tMonth;
+		
+		$re = $this->model->table($this->tbUserOnLineTime)->where($condition)->select();
+		
+		if($re){
+			$uData['lastupdate'] = time();
+		
+			$this->model->table($this->tbUserOnLineTime)->data($uData)->where($condition)->update();
+			
+			return 1;
+		}else{			
+			$tArr['UserID']    = $fieldArr['UserID'];
+			$tArr['thismonth'] = $tMonth;
+			
+			return $this->UiOnLineTimeLog($tArr);
+		}
+	}
+	/**
+	 * 增加用户在线时间记录信息(每月一条)
+	 */
+	private function UiOnLineTimeLog($fieldArr){
+		if($fieldArr['total']){
+			$total = $fieldArr['total'];
+		}else{
+			$total = 0;
+		}
+		
+		$iData['UserID']       = $fieldArr['UserID'];
+		$iData['thismonth']    = $fieldArr['thismonth'];
+		$iData['total']        = $total;
+		$iData['lastupdate']   = time();
+		
+		return $this->model->table($this->tbUserOnLineTime)->data($iData)->insert();
+	}
+	/**
+	 * 登录失败后，记录本机IP的登录次数
+	 */
+	private function FailedLoginLog(){
+		$IP = ComFun::getIP();
+		
+		$condition['ip'] = $IP;
+	
+		$re = $this->model->table($this->tbUserFailedLoginLogInfo)->where($condition)->select();
+	
+		if($re){
+			$udata['errcount']   = $re[0]['errcount']+1;
+			$udata['lastupdate'] = time();
+	
+			$this->model->table($this->tbUserFailedLoginLogInfo)->data($udata)->where($condition)->update();
+			
+			return 1;
+		}else{
+			$idata['ip']         = $IP;
+			$idata['errcount']   = 1;
+			$idata['lastupdate'] = time();
+				
+			$this->model->table($this->tbUserFailedLoginLogInfo)->data($idata)->insert();
+			
+			return 1;
+		}
+	}
+	/**
+	 * 用户登出后删除此用户的在线记录信息
+	 */
+	function UdOnLineLog($fieldArr){
+		$condition['UserID'] = $fieldArr['UserID'];
+
+		$re = $this->model->table($this->tbUserOnLineLogInfo)->where($condition)->select();
+		
+		if($re){
+			
+			$nowTime = time();
+
+			$total   = ($nowTime-$re[0]['oAppendTime'])/24/3600;			
+			
+			$tArr_1['uUpAppendTime'] = $re[0]['oAppendTime'];
+			$tArr_1['uLastIP']       = $re[0]['oIP'];
+			$tArr_1['olTime']        = $total;
+			$tArr_1['uLastActivity'] = $nowTime;
+	
+			$this->UdLogInfo($condition,$tArr_1);
+			
+			$tArr_2['total']      = $total;
+			$tArr_2['lastupdate'] = $nowTime;
+			
+			$this->UdOnLineTimeLog($condition,$tArr_2);
+			
+			$this->model->table($this->tbUserOnLineLogInfo)->where($condition)->delete();
+		}
+	}
+	/**
+	 * 更新用户登录累计信息
+	 */
+	function UdLogInfo($tCnd,$fieldArr){
+
+		$condition['UserID'] = $tCnd['UserID'];
+		
+		$re = $this->model->table($this->tbUserLoginInfo)->where($condition)->select();
+	
+		if($re){
+			$uData['uUpAppendTime'] = $fieldArr['uUpAppendTime'];
+			$uData['uLastIP']       = $fieldArr['uLastIP'];
+			$uData['olTime']        = $fieldArr['olTime'];
+			$uData['uLastActivity'] = $fieldArr['uLastActivity'];
+
+			$this->model->table($this->tbUserLoginInfo)->data($uData)->where($condition)->update();
+			
+			return 1;
+		}else{
+			$tArr['UserID'] = $fieldArr['UserID'];
+			$tArr['olTime'] = $fieldArr['olTime'];
+				
+			return $this->UiLogInfo($tArr);
+		}
+	}
+	/**
+	 * 更新用户在线时间记录信息(每月一条)
+	 */
+	function UdOnLineTimeLog($tCnd,$fieldArr){
+		$condition['UserID'] = $tCnd['UserID'];
+		
+		$re = $this->model->table($this->tbUserOnLineTime)->where($condition)->select();
+		
+		if($re){
+			$uData['total']        = $fieldArr['total'];
+			$uData['lastupdate']   = $fieldArr['lastupdate'];
+
+			$this->model->table($this->tbUserOnLineTime)->data($uData)->where($condition)->update();
+				
+			return 1;
+		}else{
+			$tArr['UserID'] = $fieldArr['UserID'];
+			$tArr['total']  = $fieldArr['total'];
+		
+			return $this->UiOnLineTimeLog($tArr);
+		}
+	}
+	/**
+	 * 更新系统动态数据：包括用户在线信息、用户登录失败次数
+	 */
+	function updateSysDate($fieldArr){
+		$eTimeOnLineLog = time() - $fieldArr['ONLINE'];	
+		
+		$where = 'oLastTime < \''.$eTimeOnLineLog.'\'';
+
+		$re = $this->model->table($this->tbUserOnLineLogInfo)->where($where)->select();
+
+		if($re){
+			foreach($re as $ke=>$va){
+				if($va['UserID']){
+					$tArr['UserID'] = $va['UserID'];
+					$this->UdOnLineLog($tArr);
+				}
+			}
+			
+			$this->model->table($this->tbUserOnLineLogInfo)->where($where)->delete();
+		}
+		
+		//删除登录失败的IP记录
+		$eTimeFailedLoginLog = time() - $fieldArr['FAILlOGIN'];			
+		$where = 'lastupdate < \''.$eTimeFailedLoginLog.'\'';		
+		$this->model->table($this->tbUserFailedLoginLogInfo)->where($where)->delete();
+	}
+	/**
+	 * 用户每次动作，更新此次的时间
+	 */
+	function updateLastTime($UserID=false){
+		if($UserID){
+			$tArr['UserID']  = $UserID;
+		}else{
+			$tArr['UserID']  = $this->getCookies('UserID');
+		}
+		
+		
+		//更新表的最新活动时间
+		$this->UsLogInfo($tArr);
+		$this->UsOnLineLog($tArr);
+		$this->UsOnLineTimeLog($tArr);
+		
+		//删除本机IP的错误登录次数记录
+		$sql = 'delete from '.$this->tbUserFailedLoginLogInfo.' where ip = \''.ComFun::getIP().'\'';
+		$this->model->query($sql);
+	}
+	/**
+	 * 正常第三方登录页面，若账号未注册，则进行默认注册，若注册，则只写第三方验证信息表
+	 */
+	function doJoinForm($fieldArr){
+		$fieldArr = $this->Addslashes->get_addslashes($fieldArr);
+	
+		//$condition['uEmail'] = $fieldArr['uEmail'];
+		$condition = 'uEstate != 2 and uEmail = \''.$fieldArr['uEmail'].'\'';
+		
+		$re = $this->model->table($this->tbUserInfo)->where($condition)->select();
+	
+		$uCode =  ComFun::getRandom();
+	
+		if($re){
+			$rArr['UserID']  = $re[0]['UserID'];
+			$rArr['uName']   = $re[0]['uName'];
+			$rArr['uEmail']  = $re[0]['uEmail'];	
+			
+			$this->dirAddAuthInfo($rArr);
+			
+			$UserID = $re[0]['UserID'];
+			
+			$cookies['UserID'] = $UserID;
+			$this->toSetCookies($cookies);
+			
+			$this->updateLastTime($UserID);
+		}else{
+			$tArr['uEmail']  = $fieldArr['uEmail'];
+			$this->checkJoinThird($tArr);
+		}
+	}
+	/**
+	 * 检查第三方是否已经绑定，存在则返回用户ID跟邮箱
+	 */
+	function checkOAuthInfo($isSetCookies=false){
+		//UserAuthenticationsID,UserID,uEmail
+		$uProvider = ucfirst($this->getCookies('provider'));
+		
+		$uProvider_uid = ComFun::getTUserID($uProvider); 
+		
+		$uCheck_value  = ComFun::getTCheckValue($uProvider);
+
+		$sql = 'select UserAuthenticationsID,UserID,uEmail from '.$this->tbUserAuthenticationsInfo.' where uEstate != 2 and uProvider = \''.$uProvider.'\' and uProvider_uid = \''.$uProvider_uid.'\' and uCheck_value = \''.$uCheck_value.'\'';
+		$re = $this->model->query($sql);
+
+		if($re){
+			$UserID = $re[0]['UserID'];
+			
+			$sql = 'select UserID,uPWD,uName from '.$this->tbUserInfo.' where uEstate != 2 and UserID = \''.$UserID.'\'';
+			$res = $this->model->query($sql);
+			if(!$res){
+				$sql = 'update '.$this->tbUserAuthenticationsInfo.' set uEstate = 2 where UserID = \''.$UserID.'\'';
+				$this->model->query($sql);
+				return -1;
+			}
+
+			$this->upPermission($uProvider,$uProvider_uid,$uCheck_value);
+			
+			if($isSetCookies){			
+										
+				$cookies['UserID'] = $UserID;	
+				$cookies['uName'] = $res[0]['uName'];
+				$this->toSetCookies($cookies);	
+							
+				$this->updateLastTime($UserID);						
+// 				//发邮件
+// 				if($re[0]['uEmail']){
+// 					$emailArr['uName']   = $re[0]['uDisplay_name'];
+// 					$emailArr['uEmail']  = $re[0]['uEmail'];
+// 					$emailArr['uCode']   = $re[0]['uCode'];
+						
+// 					ComFun::toSendMail($emailArr,'jointhird');
+// 				}
+			}
+			
+			$reArr['UserAuthenticationsID'] = $re[0]['UserAuthenticationsID'];
+			$reArr['uEmail']                = $re[0]['uEmail'];
+			$reArr['UserID']                = $re[0]['UserID'];
+			$reArr['uPWD']                  = $res[0]['uPWD'];
+			
+			return $reArr;
+		}else{
+			return -1;
+		}
+	}
+	/**
+	 * 检查第三方授权表是否存在第三方信息
+	 */
+	function doCheckBandThird($UserID,$uEmail){
+		if($UserID < 0){
+			return -2;
+		}
+		
+		$uProvider = $this->getCookies('provider');
+		$uProvider_uid = ComFun::getCUserID($uProvider);
+		$uCheck_value  = ComFun::getTCheckValue($uProvider);
+		
+		//$condition['uProvider']     = ucfirst($uProvider);
+		//$condition['uProvider_uid'] = $uProvider_uid;
+		
+		$condition = 'uEstate != 2 and uProvider = \''.ucfirst($uProvider).'\' and uProvider_uid = \''.$uProvider_uid.'\' and uCheck_value = \''.$uCheck_value.'\'';
+		
+		$re = $this->model->table($this->tbUserAuthenticationsInfo)->where($condition)->select();
+		
+		if($re){
+			$UserAuthenticationsID = $re[0]['UserAuthenticationsID'];
+			
+			$uData['uEstate'] = 2;
+			$uData['OUserID'] = $UserAuthenticationsID;
+			
+			$uCondition['UserID'] = $re[0]['UserID'];
+			
+			$re = $this->model->table($this->tbUserInfo)->data($uData)->where($uCondition)->update();
+			
+			$uCode = ComFun::getRandom();
+			
+			$oData['UserID']       = $UserID;
+			$oData['uEmail']       = $uEmail;
+			$oData['uCode']        = $uCode;
+			$oData['uPermissions'] = $this->getPermission($uProvider,$uProvider_uid);
+			
+			$oCondition['UserAuthenticationsID'] = $UserAuthenticationsID;
+
+			$this->model->table($this->tbUserAuthenticationsInfo)->data($oData)->where($oCondition)->update();
+			
+			$cookies['UserID'] = $UserID;
+			$this->toSetCookies($cookies);
+				
+			$this->updateLastTime($UserID);
+			
+			//发邮件
+			if($uEmail){
+				$emailArr['uName']   = $re[0]['uDisplay_name'];
+				$emailArr['uEmail']  = $uEmail;
+				$emailArr['uCode']   = $uCode;
+			
+				ComFun::toSendMail($emailArr,'jointhird');
+			}
+			
+			return $UserAuthenticationsID;
+		}else{
+			return -1;
+		}	
+	}
+	/**
+	 * 更新第三方平台授权信息
+	 */
+	function upPermission($uProvider,$uProvider_uid,$uCheck_value){
+		$condition['uProvider']     = ucfirst($uProvider);
+		$condition['uProvider_uid'] = $uProvider_uid;
+		$condition['uCheck_value']  = $uCheck_value;
+			
+		$udata['uPermissions'] = $this->getPermission($uProvider,$uProvider_uid);
+		
+		$this->model->table($this->tbUserAuthenticationsInfo)->data($udata)->where($condition)->update();
+	}
+	/**
+	 * 已登录用户，直接绑定第三方用户到授权信息表
+	 */
+	function dirjoinThird(){
+		$UserID    = $this->getCookies('UserID');
+			
+		//$condition['UserID']     = $UserID;
+	
+		$condition = 'uEstate != 2 and UserID = \''.$UserID.'\'';
+		
+		$proInfo = $this->model->table($this->tbUserInfo)->where($condition)->select();	
+
+		if($proInfo){
+			$rArr['uName']   = $proInfo[0]['uName'];
+			$rArr['uEmail']  = $proInfo[0]['uEmail'];
+		}
+
+		$rArr['UserID']  = $UserID;
+		
+		$this->dirAddAuthInfo($rArr);
+	}
+	/**
+	 * 用户表已经存在账户，只写第三方授权信息表
+	 */
+	function dirAddAuthInfo($fieldArr){
+		$partner  = $this->getCookies('provider');
+		
+		$uid = ComFun::getTUserID($partner);
+
+		$re = $this->getTUserInfo($partner,false);
+	
+		if($re['userInfo'] != -1){
+			$oData['uDisplay_name']    = $re['userInfo']['uDisplay_name'];
+			$oData['uImages']          = $re['userInfo']['uImages'];
+		}
+		
+		$uCode = ComFun::getRandom();
+		
+		//第三方授权记录表数据构造
+		$oData['UserID']           = $fieldArr['UserID'];
+		$oData['uProvider']        = $partner;
+		$oData['uProvider_uid']    = $uid;
+		$oData['uCheck_value']     = ComFun::getTCheckValue($partner);
+		$oData['uEmail']           = $fieldArr['uEmail'];
+		$oData['uPermissions']     = $this->getPermission($partner,$uid);
+		$oData['uCreatedDateTime'] = time();
+		$oData['uCode']            = $uCode;
+		$oData['uEstate']          = -2;
+		
+		$this->addUserAuthenticationsInfo($oData); //增加新第三方用户信息
+		
+		//是否多次通过第三方登录验证
+		$proNum = $this->getCookies('proNum');
+		
+		if($proNum){
+			$this->addMultiOAuthInfo($proNum,$oData);
+		}
+		
+		//发邮件
+		if($fieldArr['uEmail']){
+			$emailArr['uName']   = $fieldArr['uName'];
+			$emailArr['uEmail']  = $fieldArr['uEmail'];
+			$emailArr['uCode']   = $uCode;
+		
+			ComFun::toSendMail($emailArr,'jointhird');
+		}
+	}
+	/**
+	 * 第三方登录页面直接登录（步骤二）、跳过验证登录、正常登录时账号未注册：直接插入用户表跟第三方授权信息表
+	 */
+	function checkJoinThird($fieldArr=null){
+		$partner  = $this->getCookies('provider');	
+
+		$re = $this->getTUserInfo($partner);
+
+		if($re['userInfo'] != -1){
+			$uName         = $re['userInfo']['uDisplay_name'];
+			$uImages       = $re['userInfo']['uImages'];
+		}
+	
+		$uCode       = ComFun::getRandom();
+		$nowTime     = time();
+		
+		//用户表插入数据构造
+		$uData['uEmail']       = $fieldArr['uEmail'];
+		$uData['uName']        = $uName;
+		$uData['uPWD']         = '';
+		$uData['uCode']        = $uCode;
+		$uData['uAppendTime']  = $nowTime;
+		$uData['uEstate']      = -2;
+	
+		$UserID = $this->addNewUser($uData);  //增加新用户信息
+
+		if($UserID){	
+			$uid = ComFun::getTUserID($partner);
+			
+			//第三方授权记录表数据构造
+			$oData['UserID']           = $UserID;
+			$oData['uProvider']        = $partner;
+			$oData['uProvider_uid']    = $uid;
+			$oData['uCheck_value']     = ComFun::getTCheckValue($partner);
+			$oData['uEmail']           = $fieldArr['uEmail'];
+			$oData['uDisplay_name']    = $uName;
+			$oData['uPermissions']     = $this->getPermission($partner,$uid);
+			$oData['uImages']          = $uImages;
+			$oData['uCreatedDateTime'] = $nowTime;
+			$oData['uCode']            = $uCode;
+			$oData['uEstate']          = -1;
+
+			$this->addUserAuthenticationsInfo($oData); //增加新第三方用户信息
+				
+			//是否多次通过第三方登录验证
+			$proNum = $this->getCookies('proNum');
+			
+			if($proNum){
+				$this->addMultiOAuthInfo($proNum,$oData);
+			}
+			
+			return $UserID;
+		}
+	}
+	/**
+	 * 返回当前第三方用户信息
+	 */
+	function getTUserInfo($partner,$isGet=true){
+		//当前第三方配置信息
+		$apiArr   = ComFun::getNowApi($partner); 
+		
+		//返回第三方登录用户信息
+		$cArr['partner']  = $partner;
+		$cArr['provider'] = $apiArr['provider'];
+		$cArr['OAuthArr'] = ComFun::getOAuthInfo($partner);
+
+		if($isGet){
+			$re['userInfo'] = ComFun::getTUserInfo($cArr);
+			ComFun::pr($re);
+		}
+		
+		$re['api']      = $apiArr;
+
+		return $re;
+	}
+	/**
+	 * 增加第三方授权库信息
+	 */
+	function addUserAuthenticationsInfo($fieldArr){
+		$uProvider = ucfirst($fieldArr['uProvider']);
+		
+		//$condition['uProvider']      = $uProvider;
+		//$condition['uProvider_uid']  = $fieldArr['uProvider_uid'];
+		
+		$condition = 'uEstate != 2 and uProvider = \''.$uProvider.'\' and uProvider_uid = \''.$fieldArr['uProvider_uid'].'\' and uCheck_value = \''.$fieldArr['uCheck_value'].'\'';
+		
+		$re = $this->model->table($this->tbUserAuthenticationsInfo)->where($condition)->select();
+			
+		if($re){
+			if($re[0]['UserID'] != $fieldArr['UserID']){
+				$uData['uEstate'] = 2;
+				$uData['OUserID'] = $re[0]['UserAuthenticationsID'];
+				
+				$uCondition['UserID'] = $re[0]['UserID'];
+				
+				$this->model->table($this->tbUserInfo)->data($uData)->where($uCondition)->update();
+				
+				$uCode       = ComFun::getRandom();
+				
+				$udata['UserID'] = $fieldArr['UserID'];
+				$udata['uCode'] = $uCode;
+				
+			}
+			
+			$udata['uEmail']        = $fieldArr['uEmail'];	
+			$udata['uPermissions']  = $fieldArr['uPermissions'];
+			//$udata['uPermissions'] = $this->getPermission($uProvider,$uProvider_uid);
+
+			$this->model->table($this->tbUserAuthenticationsInfo)->data($udata)->where($condition)->update();
+			
+			return $re[0]['UserAuthenticationsID'];
+		}else{
+			$oData['UserID']            = $fieldArr['UserID'];
+			$oData['uProvider']         = $uProvider;
+			$oData['uProvider_uid']     = $fieldArr['uProvider_uid'];
+			$oData['uCheck_value']      = $fieldArr['uCheck_value'];
+			$oData['uEmail']            = $fieldArr['uEmail'];
+			$oData['uDisplay_name']     = $fieldArr['uDisplay_name'];
+			$oData['uPermissions']      = $fieldArr['uPermissions'];
+			$oData['uImages']           = $fieldArr['uImages'];
+			$oData['uCreatedDateTime']  = $fieldArr['uCreatedDateTime'];
+			$oData['uCode']             = $fieldArr['uCode'];
+			$oData['uEstate']           = $fieldArr['uEstate'];
+			
+			return $this->model->table($this->tbUserAuthenticationsInfo)->data($oData)->insert();
+		}	
+	}
+	/**
+	 * 构成授权表字段uPermissions为json格式
+	 */
+	private function getPermission($partner,$uid){	
+		$apiArr = ComFun::getNowApi($partner);	
+		$authway = $apiArr['provider']['authway'];
+	
+		if($authway == 'auth2'){
+			$uPermissions = '"refresh_token":"'.$this->getCookies($partner.'_refresh_token').'"';
+			$uPermissions .= ',"access_token":"'.$this->getCookies($partner.'_access_token').'"';
+		}else{
+			$uPermissions = '"oauth_token":"'.$this->getCookies($partner.'_oauth_token').'"';
+			$uPermissions .= ',"oauth_token_secret":"'.$this->getCookies($partner.'_oauth_token_secret').'"';
+		}
+		$uPermissions .= ',"user_id":"'.$uid.'"';		
+
+		return $this->Addslashes->get_addslashes('{'.$uPermissions.'}');
+	}
+	/**
+	 * 已经默认绑定的账号，重新给予绑定
+	 */
+	function doReBangJoin($authID,$fieldArr){
+		$fieldArr = $this->Addslashes->get_addslashes($fieldArr);
+		
+		$user = $this->getClass('User');
+		$UserInfo = $user->getEmailUserID($fieldArr['uEmail']);
+		
+		$uCode       = ComFun::getRandom();
+		
+		$aCondition['UserAuthenticationsID'] = $authID;
+			
+		//取原第三方用户ID
+		$aInfo = $this->model->table($this->tbUserAuthenticationsInfo)->where($aCondition)->select();
+		
+		if($UserInfo && $aInfo){	
+			$UserID = $UserInfo['UserID'];
+			
+			$aData['UserID'] = $UserID;
+			$aData['uEmail'] = $UserInfo['uEmail'];
+			$aData['uCode']  = $uCode;
+			
+			//更新第三方当前绑定账号信息
+			$this->model->table($this->tbUserAuthenticationsInfo)->data($aData)->where($aCondition)->update();
+				
+			//更新源默认绑定账号
+			$uData['uEstate'] = 2;
+			$uData['OUserID'] = $authID;
+				
+			$uCondition['UserID'] = $aInfo[0]['UserID'];
+				
+			$this->model->table($this->tbUserInfo)->data($uData)->where($uCondition)->update();			
+		}elseif($aInfo){
+			$UserID = $aInfo[0]['UserID'];
+			
+			$uData['uCode']  = $uCode;
+			$uData['uEmail'] = $fieldArr['uEmail'];
+			
+			$condition['UserID'] = $aInfo[0]['UserID'];
+			
+			$this->model->table($this->tbUserInfo)->data($uData)->where($condition)->update();
+			$this->model->table($this->tbUserAuthenticationsInfo)->data($uData)->where($condition)->update();
+		}		
+		
+		//发邮件
+		if($fieldArr['uEmail']){
+			$emailArr['uName']   = $fieldArr['uDisplay_name'];
+			$emailArr['uEmail']  = $UserInfo['uEmail'];
+			$emailArr['uCode']   = $uCode;
+		
+			ComFun::toSendMail($emailArr,'jointhird');
+		}
+		
+		//是否通过多次第三方登录
+		$this->addOAuthInfo($aData);
+		
+		//重新写$_COOKIES
+		$cookies['UserID'] = $UserID;	
+		$this->toSetCookies($cookies);
+		
+		$this->updateLastTime($UserID);	
+	}
+	/**
+	 * 是否通过多次第三方登录，若是则绑定之前第三方信息到此第三方账号名下
+	 */
+	function addOAuthInfo($fieldArr){		
+		//是否多次通过第三方登录验证
+		$proNum = $this->getCookies('proNum');
+
+		if($proNum){
+			$oData['UserID']           = $fieldArr['UserID'];
+			$oData['uEmail']           = $fieldArr['uEmail'];
+			$oData['uCreatedDateTime'] = time();
+			$oData['uCode']            = ComFun::getRandom();
+			$oData['uEstate']          = -1;
+			
+			$this->addMultiOAuthInfo($proNum,$oData);
+		}	
+
+		$sCookies['UserID'] = $fieldArr['UserID'];
+		$this->toSetCookies($sCookies);
+		
+		$this->updateLastTime($fieldArr['UserID']);
+	}
+	/**
+	 * 记录多次登录信息到第三方授权库信息
+	 */
+	private function addMultiOAuthInfo($proNum,$oData){
+		if($proNum){
+			
+			for($i=1;$i<=$proNum;$i++){
+				
+				$uProvider = $this->getCookies('provider_'.$i);
+				
+				$uid       = ComFun::getTUserID($uProvider);
+				
+				$oRe = $this->getTUserInfo($uProvider,false);
+				//echo $uProvider.'<br>'.$uid;exit;
+				$oData['uProvider']     = $uProvider;
+				$oData['uProvider_uid'] = $uid;
+				$oData['uCheck_value']  = ComFun::getTCheckValue($uProvider);
+				$oData['uPermissions']  = $this->getPermission($uProvider,$uid);
+
+				if($oRe['userInfo'] != -1){
+					$oData['uDisplay_name']    = $oRe['userInfo']['uDisplay_name'];
+					$oData['uImages']          = $oRe['userInfo']['uImages'];
+				}
+		
+				$this->addUserAuthenticationsInfo($oData); //增加新第三方用户信息
+				
+				$cookies['provider_'.$i] = '';
+			}	
+
+			//发邮件
+			if($oData['uEmail']){
+				$emailArr['uName']   = $oData['uDisplay_name'];
+				$emailArr['uEmail']  = $oData['uEmail'];
+				$emailArr['uCode']   = $oData['uCode'];
+			
+				ComFun::toSendMail($emailArr,'jointhird');
+			}
+			
+			$cookies['proNum'] ='';
+			$this->toDestoryCookies($cookies);
+		}
+	}
+	/**
+	 * 检测邮箱是否已绑定过第三方，若已绑定，则选出所有已绑定的第三方
+	 */
+	function doCheckJoinfrom($uEmail){
+		$uEmail = $this->Addslashes->get_addslashes($uEmail);
+	
+		$sql = 'select uProvider from '.$this->tbUserAuthenticationsInfo.' where uEstate != 2 and uEmail = \''.$uEmail.'\'';
+	
+		return $this->model->query($sql);
+	}
+	/**
+	 * 判断是否存在用户在线ID
+	 */
+	function checkOnLineID(){
+		$condition['UserID'] = $this->getCookies('UserID');
+		
+		return $this->model->table($this->tbUserOnLineLogInfo)->where($condition)->select();
+	}
+	/**
+	 * 直接删除用户在线ID
+	 */
+	function delOnLineID($UserID){
+		$condition['UserID'] = $UserID;
+
+		$this->model->table($this->tbUserOnLineLogInfo)->where($condition)->delete();
+	}
+	/**
+	 * 取用户在线表的IP
+	 */
+	function getOnLineIP($UserOnLineLogID){
+		
+		$condition['UserOnLineLogID'] = $UserOnLineLogID;
+		
+		$re = $this->model->table($this->tbUserOnLineLogInfo)->where($condition)->select();
+		
+		if($re){
+			return $re[0]['oIP'];
+		}else{
+			return '';
+		}
+	}
+	/**
+	 * 邮箱激活
+	 */
+	function doActivate($fieldArr){
+		$fieldArr = $this->Addslashes->get_addslashes($fieldArr);
+		
+		$deArr = ComFun::_decodeArr($fieldArr['data']);
+
+		$this->uEmail = $deArr['uEmail'];
+		$this->uCode  = $deArr['uCode'];
+		$this->type   = $deArr['type'];
+				
+		$condition['uEmail']   = $this->uEmail;
+		$condition['uCode']    = $this->uCode;
+
+		$updateArr['uEstate']  = 0;
+		$updateArrf['uEstate'] = 2;
+	
+		switch($this->type){
+			case 'register':
+				$reUpdate = $this->model->table($this->tbUserInfo)->data($updateArr)->where($condition)->update();
+	
+				return 1;
+				break;
+			case 'joinRegs':
+				$this->model->table($this->tbUserInfo)->data($updateArr)->where($condition)->update();
+				$this->model->table($this->tbUserAuthenticationsInfo)->data($updateArr)->where($condition)->update();
+	
+				return 1;
+				break;
+			case 'joinRegf':
+				$this->model->table($this->tbUserInfo)->data($updateArrf)->where($condition)->update();
+				$this->model->table($this->tbUserAuthenticationsInfo)->where($condition)->delete();
+	
+				return 2;
+				break;
+			case 'jointhirds':
+				$this->model->table($this->tbUserAuthenticationsInfo)->data($updateArr)->where($condition)->update();
+	
+				return 1;
+				break;
+			case 'jointhirdf':
+				$this->model->table($this->tbUserAuthenticationsInfo)->where($condition)->delete();
+	
+				return 2;
+				break;
+		}
+	}
+	/**
+	 * 取加密的$_COOKIE值
+	 */
+	public function getCookies($value=false){
+		return ComFun::getCookies($value);
+	}
+	/**
+	 * 注册$_COOKIE
+	 */
+	private function toSetCookies($cookies){
+		ComFun::setCookies($cookies);
+	}
+	/**
+	 * 注销$_COOKIE
+	 */
+   function toDestoryCookies($cookies=null){
+		ComFun::destoryCookies($cookies);
+	}
+	/**
+	 * 取得类
+	 */
+	private function getClass($className,$fieldArr=Null){
+		switch($className){
+			case 'User':
+				include_once('User.class.php');
+				return new User($this->model);
+				break;
+			case 'GetUserInfo':
+				include_once(dirname(dirname(dirname(__FILE__))).'/include/ext/partner/common/GetUserInfo.php');
+				return new GetUserInfo($fieldArr['partner'],$fieldArr['provider'],$fieldArr['OAuthArr']);
+				break;
+			default:
+				break;
+		}
+	}
+}

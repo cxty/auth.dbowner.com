@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://user.dbowner.com/ManageUser/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ManageUser" targetNamespace="http://user.dbowner.com/ManageUser/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://user.dbowner.com/ManageUser/">
+      <xsd:element name="Auth">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SelectUserOauthPermInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SelectUserOauthPermInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="return" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="SOAPAuth">
+    <wsdl:part name="Auth" element="tns:Auth"/>
+  </wsdl:message>
+
+  <wsdl:message name="SelectUserOauthPermInfoRequest">
+    <wsdl:part element="tns:SelectUserOauthPermInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SelectUserOauthPermInfoResponse">
+    <wsdl:part element="tns:SelectUserOauthPermInfoResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:portType name="ManageUser">
+    <wsdl:operation name="SelectUserOauthPermInfo">
+      <wsdl:input message="tns:SelectUserOauthPermInfoRequest"/>
+      <wsdl:output message="tns:SelectUserOauthPermInfoResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="ManageUserSOAP" type="tns:ManageUser">
+    <soap:binding style="document"
+      transport="http://schemas.xmlsoap.org/soap/http" />
+
+    <wsdl:operation name="SelectUserOauthPermInfo">
+      <soap:operation
+        soapAction="http://user.dbowner.com/ManageUser/SelectUserOauthPermInfo" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SOAPAuth" part="Auth"
+          use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+  </wsdl:binding>
+
+  <wsdl:service name="ManageUser">
+    <wsdl:port binding="tns:ManageUserSOAP" name="ManageUserSOAP">
+      <soap:address location="http://user.dbowner.com/soap/userInfoSoap?wsdl"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

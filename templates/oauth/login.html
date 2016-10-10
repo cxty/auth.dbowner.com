@@ -1,0 +1,65 @@
+{include file='header_auth.html'}
+
+<script type="text/javascript" src="{$__PUBLIC__}/js/loginform_auth.js"></script>
+
+
+			<div class="login_right"><a href="/index/register?{$redirect}">{$Lang.Register}</a></div>
+		</div>
+	</div>	
+	
+<div class="auth_left">
+	<div class="auth_top">
+		<div class="auth_img"><img src="{$pic}" /></div>
+		<p>{$Lang.AppDev}：{$userDev}</p>
+		<p>{$Lang.AppTotal}{$count}{$Lang.AppMsg}</p>
+	</div>
+	
+</div>
+
+<div class="auth_mid_login">&nbsp;</div>
+
+<div class="auth_right">
+
+	<div class="auth_space">{$Lang.JS_LANG.AppWelcome}{$theApp}{$Lang.JS_LANG.Application}</div>
+	
+	<div class="auth_login">
+		<form method="POST" id="loginform" name="loginform" action="/oauth/login?{$urlStr}">
+			<input type="hidden" name="UserID" id="UserID" />
+			<input type="hidden" name="display" value="web" />
+			
+			<div class="form_input">
+				<div><input type="text" name="uEmail" id="uEmail" autocomplete="off" /></div>			
+				<div><input type="password" name="uPWD" id="password" autocomplete="off" /></div>
+			</div>
+					
+			<div class="form_check"><input type="checkbox" id="auth_pro_check" value="yes" checked="checked" /><label>{$Lang.RemindRead} <a href="javascript:void(0);" id="auth_pro"><< {$Lang.RemindPro} >></a></label></div>		
+			
+			<div class="form_button">
+				<input type="button" id="submit_btn" size="20" value="{$Lang.JS_LANG.Login}" />
+				<input type="button" id="button_btn" class="mar_left" size="20" value="{$Lang.JS_LANG.Cancel}" />
+			</div>
+		</form>
+		
+		<div class="auth_msg">{if $msg}{$msg}{/if}</div>
+		
+		<div id="auth_box_msg" style="display:none">{include file='index/regFrom.html'}</div>
+	</div>
+	
+</div>
+
+<script language="javascript" type="text/javascript">
+var LoginAuth = new TLoginAuth();
+LoginAuth.Partners_json = {$Partners_json};
+LoginAuth.PH_LANG = {$JS_LANG};
+
+//页面完全再入后初始化
+$(document).ready(function(){
+	LoginAuth.init();
+});
+//释放
+$(window).unload(function(){
+	LoginAuth = null;
+});
+</script>
+
+{include file='footer_auth.html'}

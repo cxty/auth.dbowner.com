@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet" href="{$__PUBLIC__}/css/login_yannyo.css">
+
+<script type="text/javascript" language="javascript" src="{$__PUBLIC__}/js/jquery.js" ></script>
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/loginFormNature.js"></script>
+
+</head>
+<body>
+<div class="content">
+	<form method="post" id="login_form" action="{$checkLoginUrl}">
+		<ul>
+			<li class="introduction"><span>VinSCM账号</span>&nbsp;<span><a href="javascript:void(0)">这是什么？</a></span></li>
+			<li><input type="text" id="uEmail_nature"  name="uEmail"></li>
+			<li><input type="password" id="passwords_nature" name="uPWD"></li>
+			<li><input type="checkbox">使我保持登录状态</li>
+			<li><input type="button" value="登录" id="sub_btn"></li>
+			<li class="CannotAccess"><span><a href="javascript:void(0)">无法访问你的账号？</a></span></li>
+			<li class="remind_info">{$msgkey}</li>
+		</ul>
+	</form>
+</div>
+   
+   
+<script type="text/javascript">
+$(function(){
+	function GetRequest() {
+	   var url = window.location.href; //获取url中"?"符后的字串
+	   var theRequest = new Object();
+	   if (url.indexOf("?") != -1) {
+	      var str = url.substr(1);
+	      strs = str.split("&");
+	      for(var i = 0; i < strs.length; i ++) {
+	         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	      }
+	   }
+	   return theRequest;
+	}
+
+	var phref = window.location.href;
+	if ( phref ) {
+		var request = new Object(); 
+		request = GetRequest(); 
+		var src_forget = request['src_forget'];
+		
+		if ( typeof(src_forget) != 'undefined' ) {
+			$('#btn_forget').attr('href', src_forget);
+		}
+		src_forget = null;
+		
+		var src_register = request['src_register'];
+		if ( typeof(src_register) != 'undefined' ) {
+			$('#btn_register').attr('href', src_register);
+		} 
+		src_register = null; 
+	}
+	phref = null;
+	
+});
+
+var ismobile = {$ismobile};
+var jdata = {$JS_LANG};
+/*
+var loginForm = new TloginForm();
+loginForm.ns = '';
+loginForm.loginWay = {$loginWay},
+loginForm.Partners_json = {$Partners_json};
+loginForm.JS_LANG = {$JS_LANG};
+loginForm.vData = {$vData};
+loginForm.page_type = 2;
+//页面完全再入后初始化
+$(document).ready(function(){
+	loginForm.init();
+});
+//释放
+$(window).unload(function(){
+	loginForm = null;
+});
+*/
+</script>
+
+</body>
+</html>

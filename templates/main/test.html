@@ -1,0 +1,57 @@
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="{$__PUBLIC__}/js/jquery.jUploader-1.0.js"></script>
+
+
+<form method="post" enctype="multipart/form-data" action="/file/up">
+	<input type="file" name="filename"  />
+	<input type="submit" value="提交" />
+</form>
+
+<a href="javascript:void(0);" id="user_ico_tool_bar">上传图片</a>
+<div id="Protrait" style="display:none">正在上传。。。</div>
+<script>
+
+$.jUploader.setDefaults({
+    cancelable: true,
+    allowedExtensions: ['jpg', 'png', 'gif'],
+    messages: {
+        upload: '上传',
+        cancel: '取消',
+        emptyFile: " 为空，请选择一个文件.",
+        invalidExtension: " 后缀名不合法. 只有  是允许的.",
+        onLeave: "文件正在上传，如果你现在离开，上传将会被取消。"
+    }
+});
+
+$(function(){
+
+	upfile_ini();
+});
+
+function upfile_ini(){
+
+
+	$.jUploader({
+        button: 'user_ico_tool_bar', // 这里设置按钮id
+        action: '/file/up', // 这里设置上传处理接口，这个加了参数test_cancel=1来测试取消
+
+        onUpload: function (fileName) {
+alert('正在上传');
+	    	//$('#Protrait').css('display':'block');
+	    },
+	    
+        // 上传完成事件
+        onComplete: function (fileName, response) {
+        	//$('#Protrait').css('display':'none');
+        	alert(222);
+        	//if (response.state) {
+	       // 	alert(response.data.filecode);
+	      //  } else {
+	       //     alert('上传失败');
+	        //}
+        }
+    });
+}
+
+
+</script>
